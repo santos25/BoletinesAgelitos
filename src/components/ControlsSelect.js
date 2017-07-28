@@ -10,9 +10,9 @@
                     value={props.valueSelected}  onChange={props.changeData}>
                     <option value="">---Escoger---</option>
         {Object.keys(props.data)
-            .map(key => <option key={key} value={props.data[key].name}>
-                            {props.data[key].name}
-                        </option>)
+                    .map(key => <option key={key} value={key}>
+                                  {props.data[key].name}
+                                </option>)
         }
       </FormControl>
     </FormGroup>

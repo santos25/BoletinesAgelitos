@@ -11,8 +11,8 @@ constructor(){
   super();
   this.state = {
       grados : '',
-      periodos : '',
-      estudiantes:''
+      periodos : ''
+      // estudiantes:''
   }
 }
 
@@ -27,10 +27,10 @@ componentWillMount(){
     state: 'periodos',
   });
 
-  // this.ref = Base.syncState(`grados/grado1/estudiantes`, {
-  //   context: this,
-  //   state: 'estudiantes',
-  // });
+  this.ref = Base.syncState(`grados/grado1/estudiantes`, {
+    context: this,
+    state: 'estudiantes',
+  });
 
 }
 
