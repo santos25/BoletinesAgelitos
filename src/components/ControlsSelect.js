@@ -11,7 +11,7 @@
                     <option value="">---Escoger---</option>
         {Object.keys(props.data)
                     .map(key => <option key={key} value={key}>
-                                  {props.data[key].name}
+                                  {props.data[key].nombre}
                                 </option>)
         }
       </FormControl>

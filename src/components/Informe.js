@@ -33,8 +33,8 @@ class Informe extends Component {
 
     if(this.state.isPlanilla){
       return (
-        <Planilla periodoSelected={this.props.periodos[this.state.keyPeriodoSelected].name}
-          gradoSelected={this.props.grados[this.state.keyGradoSelected].name}
+        <Planilla periodoSelected={this.props.periodos[this.state.keyPeriodoSelected].nombre}
+          gradoSelected={this.props.grados[this.state.keyGradoSelected]}
         />
       )
     }

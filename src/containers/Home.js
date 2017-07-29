@@ -10,7 +10,7 @@ class Home extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">###############</a>
+              <a href="#">Instituto Angelitos Alegres</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

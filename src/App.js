@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import Home from './containers/Home';
 import Informe from './components/Informe';
 import Base from './Base';
-import estudiantes from './Load-data';
+// import estudiantes from './Load-data';
 
 class App extends Component {
 constructor(){
@@ -27,10 +27,10 @@ componentWillMount(){
     state: 'periodos',
   });
 
-  this.ref = Base.syncState(`grados/grado1/estudiantes`, {
-    context: this,
-    state: 'estudiantes',
-  });
+  // this.ref = Base.syncState(`grados/grado1/estudiantes`, {
+  //   context: this,
+  //   state: 'estudiantes',
+  // });
 
 }
 
