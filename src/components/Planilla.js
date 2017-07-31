@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Grid,Row,Col,Button,Label } from 'react-bootstrap';
+import {Grid,Row,Col,Button,Label,Table } from 'react-bootstrap';
 import Base from '../Base';
 import ControlsSelect from './ControlsSelect';
-import FormEstudiantes from './FormEstudiantes';
+import RowTable from './RowTable';
+import HeaderTable from './HeaderTable';
 // import CuadroDescriptivo from './CuadroDescriptivo';
 import '../App.css';
 
@@ -44,14 +45,18 @@ class Planilla extends Component {
 
   onChangeNotas(e){
     //Se repite en todos los campos de la tabla
-   let nota = e.target.value;
-   if(nota => 1 && nota <= 5){
-     if(nota > 4){
-          // this.setState({
-          //   desempeno : 'Superior'
-          // })
-      }
-   }
+    let nota = e.target.value;
+     if(nota => 1 && nota <= 5){
+       if(nota > 4){
+            this.setState({
+              desempeno : 'Superior'
+            })
+        }else if (nota > 3 && nota <= 4) {
+          this.setState({
+            desempeno : 'Alto'
+          })
+        }
+     }
   }
 
   submitPlantilla(){
@@ -62,15 +67,17 @@ class Planilla extends Component {
       context: this,
       asArray: false
     }).then(data => {
-     this.setState({
-       asignaturas :  data[keyAsignatura]
-     })
+      this.setState({
+        asignaturas :  data[keyAsignatura]
+      })
     }).catch(error => {
       //handle error
     })
   }
 
   render(){
+    const columns = ['Nombre Del Estudiante', 'Descripcion Del Desempeño', 'Nota', 'DS = Desempeño' ,'H/S'];
+
     return(
       <Grid>
         <Row className="show-grid">
@@ -102,23 +109,40 @@ class Planilla extends Component {
           </Row>
           <Row>
             <Col xs={12} md={12} >
-              <FormEstudiantes estudiantes={this.props.gradoSelected.estudiantes}
-                               onChangeNotas={this.onChangeNotas.bind(this)}
-                               desempeno={this.state.desempeno}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} md={12} >
-              <div className="formPlanilla">
-                <Button bsStyle="primary" type="submit" bsSize="large"
-                        onClick={this.submitPlantilla.bind(this)}> Guardar Planilla</Button>
-              </div>
-            </Col>
-          </Row>
+              <Table striped bordered condensed hover>
+                <HeaderTable  columns={columns}/>
+                <tbody>
+                  {
+                    Object.keys(this.props.gradoSelected.estudiantes)
+                    .map((estudiante,index) =>{
+                      return(
+                        <RowTable key={index}
+                          estudiante={this.props.gradoSelected.estudiantes[estudiante]}
+                          onChangeNotas={this.onChangeNotas.bind(this)}
+                          desempeno={this.state.desempeno}/>
+                        )
+                      })
+                    }
+                  </tbody>
+                </Table>
 
-        </Grid>
-      )
-    }
-  }
+                {/* <FormEstudiantes estudiantes={this.props.gradoSelected.estudiantes}
+                onChangeNotas={this.onChangeNotas.bind(this)}
+                desempeno={this.state.desempeno}/> */}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={12} >
+                <div className="formPlanilla">
+                  <Button bsStyle="primary" type="submit" bsSize="large"
+                    onClick={this.submitPlantilla.bind(this)}> Guardar Planilla</Button>
+                  </div>
+                </Col>
+              </Row>
 
-  export default Planilla;
+            </Grid>
+          )
+        }
+      }
+
+      export default Planilla;
