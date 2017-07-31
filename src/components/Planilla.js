@@ -13,7 +13,6 @@ class Planilla extends Component {
     this.state = {
       asignaturas:{},
       keyAsignaturaSelected : '',
-      desempeno : ''
       // estudiantes : {}
     }
   }
@@ -43,21 +42,7 @@ class Planilla extends Component {
     })
   }
 
-  onChangeNotas(e){
-    //Se repite en todos los campos de la tabla
-    let nota = e.target.value;
-     if(nota => 1 && nota <= 5){
-       if(nota > 4){
-            this.setState({
-              desempeno : 'Superior'
-            })
-        }else if (nota > 3 && nota <= 4) {
-          this.setState({
-            desempeno : 'Alto'
-          })
-        }
-     }
-  }
+
 
   submitPlantilla(){
     console.log("Working on it");
@@ -117,9 +102,7 @@ class Planilla extends Component {
                     .map((estudiante,index) =>{
                       return(
                         <RowTable key={index}
-                          estudiante={this.props.gradoSelected.estudiantes[estudiante]}
-                          onChangeNotas={this.onChangeNotas.bind(this)}
-                          desempeno={this.state.desempeno}/>
+                          estudiante={this.props.gradoSelected.estudiantes[estudiante]} />
                         )
                       })
                     }
