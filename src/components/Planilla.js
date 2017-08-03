@@ -45,7 +45,8 @@ class Planilla extends Component {
 
 
   submitPlantilla(){
-    console.log("Working on it");
+    let date = new Date().getDate();
+    console.log(date);
   }
   getAsignaturas(keyAsignatura){
     Base.fetch('asignaturas', {
@@ -96,8 +97,9 @@ class Planilla extends Component {
             <Col xs={12} md={12} >
               <Table striped bordered condensed hover>
                 <HeaderTable  columns={columns}/>
-                <tbody>
-                  {
+                  <RowTable estudiantes={this.props.gradoSelected.estudiantes}
+                              />
+                  {/* {
                     Object.keys(this.props.gradoSelected.estudiantes)
                     .map((estudiante,index) =>{
                       return(
@@ -105,8 +107,7 @@ class Planilla extends Component {
                           estudiante={this.props.gradoSelected.estudiantes[estudiante]} />
                         )
                       })
-                    }
-                  </tbody>
+                    } */}
                 </Table>
 
                 {/* <FormEstudiantes estudiantes={this.props.gradoSelected.estudiantes}
