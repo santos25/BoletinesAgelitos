@@ -13,18 +13,12 @@ class Planilla extends Component {
     this.state = {
       asignaturas:{},
       keyAsignaturaSelected : '',
-      estudiantes : {}
+      estudiantes : {},
     }
   }
 
   componentWillMount(){
-    // this.ref = Base.syncState(`grados`, {
-    //   context: this,
-    //   state: 'grados',
-    // });
-    this.setState({
-      estudiantes : {...this.props.gradoSelected.estudiantes}
-    })
+    this.findPlanillasByPeriodAndGrado();
   }
 
   componentWillUnmount(){
@@ -32,11 +26,7 @@ class Planilla extends Component {
   }
 
   componentDidMount(){
-    // const asig = Object.keys(this.props.gradoSelected.asignaturas);
     this.getAsignaturas(Object.keys(this.props.gradoSelected.asignaturas));
-    // this.setState({
-    //   estudiantes : this.props.gradoSelected.estudiantes
-    // })
   }
 
   onChangeAsignatura(e){
@@ -45,29 +35,65 @@ class Planilla extends Component {
     })
   }
 
+  createNewPlanilla(){
+    let planilla = {};
+    planilla.ano = new Date().getFullYear();
+    planilla.periodo = this.props.periodoSelected;
+    planilla.grado = this.props.gradoSelected.nombre;
+    planilla.asignatura = {}
+    Base.post(`planillas/${ new Date().getFullYear()+this.props.gradoSelected.nombre + this.props.periodoSelected}`, {
+      data: planilla
+    }).then(() => {
+      console.log("Guardado Exitoso");
+    }).catch(err => {
+      // handle error
+      console.log("Error al registrar Planilla Nueva");
+    });
+  }
+
+  findPlanillasByPeriodAndGrado(){
+
+    Base.fetch('planillas', {
+      context: this,
+      asArray: true,
+      queries: {
+        orderByChild: 'grado',
+        equalTo : this.props.gradoSelected.nombre
+      }
+    }).then(data => {
+      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
+      if(planilla.length > 0){
+        this.uploadStudents(planilla[0].asignatura.asignatura1.estudiantes)
+      }else {
+        this.uploadStudents(this.props.gradoSelected.estudiantes);
+        this.createNewPlanilla();
+      }
+    }).catch(error => {
+      //handle error
+      console.log("Error Consultando Planillas  "  + error);
+    })
+  }
+
+  uploadStudents(students){
+    this.setState({
+      estudiantes : {...students},
+    })
+  }
+
   submitPlantilla(){
     let date = new Date();
     let asignatura = this.state.asignaturas[this.state.keyAsignaturaSelected];
     let estudiantes = {...this.state.estudiantes};
     let planilla = {};
-    planilla.ano = date.getFullYear();
-    planilla.periodo = this.props.periodoSelected;
-    planilla.grado = this.props.gradoSelected.nombre;
+
     planilla.asignatura = {
       [this.state.keyAsignaturaSelected] : {
         nombre : asignatura.nombre,
         estudiantes : estudiantes
       }
-
     }
 
-    Base.post(`planillas/${new Date().getTime()}`, {
-      data: planilla
-    }).then(() => {
-        console.log("Guardado Exitoso");
-    }).catch(err => {
-      // handle error
-    });
+
   }
 
   getAsignaturas(keyAsignatura){
@@ -93,7 +119,6 @@ class Planilla extends Component {
 
   render(){
     const columns = ['Nombre Del Estudiante', 'Descripcion Del Desempeño', 'Nota', 'DS = Desempeño' ,'H/S'];
-
     return(
       <Grid>
         <Row className="show-grid">
@@ -115,7 +140,6 @@ class Planilla extends Component {
               data={this.state.asignaturas}/>
             </Col>
           </Row>
-
           <Row>
             <Col xs={12} md={12} >
               <div className="formPlanilla">
@@ -129,34 +153,21 @@ class Planilla extends Component {
                 <HeaderTable  columns={columns}/>
                 <RowTable estudiantes={this.state.estudiantes}
                   onChangeStudent={this.onChangeStudent.bind(this)}  />
-                  {/* {
-                    Object.keys(this.props.gradoSelected.estudiantes)
-                    .map((estudiante,index) =>{
-                    return(
-                    <RowTable key={index}
-                    estudiante={this.props.gradoSelected.estudiantes[estudiante]} />
-                  )
-                })
-              } */}
-            </Table>
 
-            {/* <FormEstudiantes estudiantes={this.props.gradoSelected.estudiantes}
-            onChangeNotas={this.onChangeNotas.bind(this)}
-            desempeno={this.state.desempeno}/> */}
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={12} >
-            <div className="formPlanilla">
-              <Button bsStyle="primary" type="submit" bsSize="large"
-                onClick={this.submitPlantilla.bind(this)}> Guardar Planilla</Button>
-              </div>
-            </Col>
-          </Row>
+                </Table>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={12} >
+                <div className="formPlanilla">
+                  <Button bsStyle="primary" type="submit" bsSize="large"
+                    onClick={this.submitPlantilla.bind(this)}> Guardar Planilla</Button>
+                  </div>
+                </Col>
+              </Row>
+            </Grid>
+          )
+        }
+      }
 
-        </Grid>
-      )
-    }
-  }
-
-  export default Planilla;
+      export default Planilla;

@@ -7,8 +7,8 @@ class Informe extends Component {
   constructor(){
     super();
     this.state = {
-      keyGradoSelected : 'grado1',
-      keyPeriodoSelected: 'periodo1',
+      keyGradoSelected : '',
+      keyPeriodoSelected: '',
       isPlanilla: false
     }
   }
