@@ -4,6 +4,7 @@ import Base from '../Base';
 import ControlsSelect from './ControlsSelect';
 import RowTable from './RowTable';
 import HeaderTable from './HeaderTable';
+import Alert from './AlertStudentData';
 // import CuadroDescriptivo from './CuadroDescriptivo';
 import '../App.css';
 
@@ -14,6 +15,8 @@ class Planilla extends Component {
       asignaturas:{},
       keyAsignaturaSelected : '',
       estudiantes : {},
+      planilla : [],
+      alertVisible: true
     }
   }
 
@@ -29,10 +32,44 @@ class Planilla extends Component {
     this.getAsignaturas(Object.keys(this.props.gradoSelected.asignaturas));
   }
 
+  findPlanillasByPeriodAndGrado(){
+
+    Base.fetch('planillas', {
+      context: this,
+      asArray: true,
+      queries: {
+        orderByChild: 'grado',
+        equalTo : this.props.gradoSelected.nombre
+      }
+    }).then(data => {
+      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
+      if(planilla.length > 0){
+        // this.uploadStudents(planilla[0].asignatura.asignatura1.estudiantes)
+        this.setState({
+          planilla
+        })
+      }else {
+        // this.uploadStudents(this.props.gradoSelected.estudiantes);
+        this.createNewPlanilla();
+      }
+    }).catch(error => {
+      //handle error
+      console.log("Error Consultando Planillas  "  + error);
+    })
+  }
+
   onChangeAsignatura(e){
+
     this.setState({
       keyAsignaturaSelected : e.target.value
     })
+
+    if(this.state.planilla.length === 0){
+      this.uploadStudents(this.props.gradoSelected.estudiantes);
+    }else {
+      console.log("WE are working on this");
+    }
+
   }
 
   createNewPlanilla(){
@@ -51,29 +88,6 @@ class Planilla extends Component {
     });
   }
 
-  findPlanillasByPeriodAndGrado(){
-
-    Base.fetch('planillas', {
-      context: this,
-      asArray: true,
-      queries: {
-        orderByChild: 'grado',
-        equalTo : this.props.gradoSelected.nombre
-      }
-    }).then(data => {
-      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
-      if(planilla.length > 0){
-        this.uploadStudents(planilla[0].asignatura.asignatura1.estudiantes)
-      }else {
-        this.uploadStudents(this.props.gradoSelected.estudiantes);
-        this.createNewPlanilla();
-      }
-    }).catch(error => {
-      //handle error
-      console.log("Error Consultando Planillas  "  + error);
-    })
-  }
-
   uploadStudents(students){
     this.setState({
       estudiantes : {...students},
@@ -81,18 +95,26 @@ class Planilla extends Component {
   }
 
   submitPlantilla(){
-    let date = new Date();
     let asignatura = this.state.asignaturas[this.state.keyAsignaturaSelected];
     let estudiantes = {...this.state.estudiantes};
-    let planilla = {};
+    let dataStudentForm = {};
 
-    planilla.asignatura = {
-      [this.state.keyAsignaturaSelected] : {
+    dataStudentForm[this.state.keyAsignaturaSelected] = {
         nombre : asignatura.nombre,
         estudiantes : estudiantes
-      }
     }
 
+    var immediatelyAvailableReference = Base.push(`planillas/${ new Date().getFullYear()+this.props.gradoSelected.nombre + this.props.periodoSelected}`, {
+        data: dataStudentForm
+      }).then(newLocation => {
+        var generatedKey = newLocation.key;
+        console.log("then " , generatedKey);
+      }).catch(err => {
+        //handle error
+      });
+      //available immediately, you don't have to wait for the Promise to resolve
+      var generatedKey = immediatelyAvailableReference.key;
+      console.log("after then " , generatedKey);
 
   }
 
@@ -117,10 +139,15 @@ class Planilla extends Component {
     })
   }
 
+  handleAlertDismiss() {
+      this.setState({alertVisible: false});
+  }
+
   render(){
     const columns = ['Nombre Del Estudiante', 'Descripcion Del Desempeño', 'Nota', 'DS = Desempeño' ,'H/S'];
     return(
       <Grid>
+        {this.state.alertVisible ?<Alert handleDismiss= {this.handleAlertDismiss.bind(this)}/> : ""}
         <Row className="show-grid">
           <Col xs={12} md={6} >
             <h4>
