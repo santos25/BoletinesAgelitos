@@ -15,7 +15,7 @@ class Planilla extends Component {
       asignaturas:{},
       keyAsignaturaSelected : '',
       estudiantes : {},
-      // planilla : [],
+      keyPlanilla : '',
       alertVisible: true
     }
   }
@@ -80,10 +80,9 @@ class Planilla extends Component {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
       console.log(planilla);
       if(planilla[0][asignaturaKey]){
-        console.log("Tiene datos");
-        this.uploadStudents(planilla[0][asignaturaKey].estudiantes);
+        this.uploadStudents(planilla[0][asignaturaKey].estudiantes , planilla[0].key);
       }else {
-        this.uploadStudents(this.props.gradoSelected.estudiantes);
+        this.uploadStudents(this.props.gradoSelected.estudiantes, planilla[0].key);
       }
     }).catch(error => {
       //handle error
@@ -107,31 +106,22 @@ class Planilla extends Component {
     });
   }
 
-  uploadStudents(students){
+  uploadStudents(students, keyPlani){
     this.setState({
       estudiantes : {...students},
+      keyPlanilla : keyPlani
     })
   }
 
   submitPlantilla(){
-    // let asignatura = this.state.asignaturas[this.state.keyAsignaturaSelected];
     let estudiantes = {...this.state.estudiantes};
     let dataStudentForm = {};
     dataStudentForm = {
       nombre : this.state.asignaturas[this.state.keyAsignaturaSelected].nombre,
       estudiantes : estudiantes
     }
-
-    var usersRef = firebase.database().ref(`planillas/${ new Date().getFullYear()+this.props.gradoSelected.nombre + this.props.periodoSelected}`);
+    var usersRef = firebase.database().ref(`planillas/${ this.state.keyPlanilla}`);
     usersRef.child(this.state.keyAsignaturaSelected).set(dataStudentForm);
-
-    // Base.push(`planillas/${ new Date().getFullYear()+this.props.gradoSelected.nombre + this.props.periodoSelected}`, {
-    //   data: dataStudentForm
-    // }).then(newLocation => {
-    //   console.log("Key " , newLocation.key);
-    // }).catch(err => {
-    //   console.log("Error Insert Planilla " , err);
-    // });
   }
 
   getAsignaturas(keyAsignatura){
@@ -143,7 +133,7 @@ class Planilla extends Component {
         asignaturas :  data[keyAsignatura]
       })
     }).catch(error => {
-      //handle error
+      console.log("Fallo Consultar Asignaturas");
     })
   }
 
