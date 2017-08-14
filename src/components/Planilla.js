@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Grid,Row,Col,Button,Label,Table } from 'react-bootstrap';
-import Base from '../Base';
+import {Base, firebase} from '../Base';
 import ControlsSelect from './ControlsSelect';
 import RowTable from './RowTable';
 import HeaderTable from './HeaderTable';
@@ -15,7 +15,7 @@ class Planilla extends Component {
       asignaturas:{},
       keyAsignaturaSelected : '',
       estudiantes : {},
-      planilla : [],
+      // planilla : [],
       alertVisible: true
     }
   }
@@ -45,9 +45,9 @@ class Planilla extends Component {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
       if(planilla.length > 0){
         // this.uploadStudents(planilla[0].asignatura.asignatura1.estudiantes)
-        this.setState({
-          planilla
-        })
+        // this.setState({
+        //   planilla
+        // })
       }else {
         // this.uploadStudents(this.props.gradoSelected.estudiantes);
         this.createNewPlanilla();
@@ -64,11 +64,30 @@ class Planilla extends Component {
       keyAsignaturaSelected : e.target.value
     })
 
-    if(this.state.planilla.length === 0){
-      this.uploadStudents(this.props.gradoSelected.estudiantes);
-    }else {
-      console.log("WE are working on this");
-    }
+    this.findPlanillasByAsignatura(e.target.value)
+    // this.uploadStudents(this.props.gradoSelected.estudiantes);
+  }
+
+  findPlanillasByAsignatura(asignaturaKey){
+    Base.fetch('planillas', {
+      context: this,
+      asArray: true,
+      queries: {
+        orderByChild: 'grado',
+        equalTo : this.props.gradoSelected.nombre
+      }
+    }).then(data => {
+      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
+      console.log(planilla);
+      if(planilla[0][asignaturaKey]){
+        console.log("Tiene datos");
+        this.uploadStudents(planilla[0][asignaturaKey].estudiantes);
+      }else {
+        this.uploadStudents(this.props.gradoSelected.estudiantes);
+      }
+    }).catch(error => {
+      //handle error
+    })
 
   }
 
@@ -95,27 +114,24 @@ class Planilla extends Component {
   }
 
   submitPlantilla(){
-    let asignatura = this.state.asignaturas[this.state.keyAsignaturaSelected];
+    // let asignatura = this.state.asignaturas[this.state.keyAsignaturaSelected];
     let estudiantes = {...this.state.estudiantes};
     let dataStudentForm = {};
-
-    dataStudentForm[this.state.keyAsignaturaSelected] = {
-        nombre : asignatura.nombre,
-        estudiantes : estudiantes
+    dataStudentForm = {
+      nombre : this.state.asignaturas[this.state.keyAsignaturaSelected].nombre,
+      estudiantes : estudiantes
     }
 
-    var immediatelyAvailableReference = Base.push(`planillas/${ new Date().getFullYear()+this.props.gradoSelected.nombre + this.props.periodoSelected}`, {
-        data: dataStudentForm
-      }).then(newLocation => {
-        var generatedKey = newLocation.key;
-        console.log("then " , generatedKey);
-      }).catch(err => {
-        //handle error
-      });
-      //available immediately, you don't have to wait for the Promise to resolve
-      var generatedKey = immediatelyAvailableReference.key;
-      console.log("after then " , generatedKey);
+    var usersRef = firebase.database().ref(`planillas/${ new Date().getFullYear()+this.props.gradoSelected.nombre + this.props.periodoSelected}`);
+    usersRef.child(this.state.keyAsignaturaSelected).set(dataStudentForm);
 
+    // Base.push(`planillas/${ new Date().getFullYear()+this.props.gradoSelected.nombre + this.props.periodoSelected}`, {
+    //   data: dataStudentForm
+    // }).then(newLocation => {
+    //   console.log("Key " , newLocation.key);
+    // }).catch(err => {
+    //   console.log("Error Insert Planilla " , err);
+    // });
   }
 
   getAsignaturas(keyAsignatura){
@@ -140,7 +156,7 @@ class Planilla extends Component {
   }
 
   handleAlertDismiss() {
-      this.setState({alertVisible: false});
+    this.setState({alertVisible: false});
   }
 
   render(){

@@ -8,6 +8,9 @@ var app = firebase.initializeApp({
   projectId: "informe-angelitos"
 });
 
-var base = Rebase.createClass(app.database());
+var Base = Rebase.createClass(app.database());
 
-export default base;
+export {
+  Base,
+  firebase
+}

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import Home from './containers/Home';
 import Informe from './components/Informe';
-import Base from './Base';
+import {Base} from './Base';
 // import estudiantes from './Load-data';
 
 class App extends Component {
