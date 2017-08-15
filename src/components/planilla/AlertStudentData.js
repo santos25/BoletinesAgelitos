@@ -2,7 +2,7 @@ import React from 'react';
 import { Button,Alert } from 'react-bootstrap';
 
 
-const alert = (props) =>{
+const alertAsignatura = (props) =>{
   return (
     <Alert bsStyle="danger" onDismiss={props.handleDismiss}>
       <h3>Seleccione Una Asignatura!</h3>
@@ -15,4 +15,4 @@ const alert = (props) =>{
   )
 }
 
-export default alert;
+export default alertAsignatura;

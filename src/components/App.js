@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import Home from './containers/Home';
-import Informe from './components/Informe';
+import Informe from './planilla/Informe';
 import {Base} from './Base';
 // import estudiantes from './Load-data';
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
 
 class App extends Component {
 constructor(){
   super();
   this.state = {
       grados : '',
-      periodos : ''
+      periodos : '',
+      isPlanilla : false,
+      isBoletines : false
       // estudiantes:''
   }
 }
@@ -50,6 +54,7 @@ render() {
           <Informe header="Informe De Desempeño"
             grados={this.state.grados}
             periodos={this.state.periodos}/>
+          <Alert stack={{limit: 3}} />
       </Home>
     </div>
   );

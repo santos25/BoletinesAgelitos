@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import {Grid,Row,Col,Button } from 'react-bootstrap';
-import ControlsSelect from './ControlsSelect';
+import { } from 'react-bootstrap';
 import Planilla from './Planilla';
+import InputGradoPeriodo from '../general/InputGradoPeriodo'
 
 class Informe extends Component {
   constructor(){
     super();
     this.state = {
       keyGradoSelected : '',
-      keyPeriodoSelected: '',
-      isPlanilla: false
+      keyPeriodoSelected: ''
+      // isPlanilla: false
     }
   }
 
@@ -41,7 +41,16 @@ class Informe extends Component {
 
     return (
       <div>
-        <Grid>
+        <InputGradoPeriodo onSubmit={this.showPlanilla.bind(this)}
+                          valueGradoSelected={this.state.keyGradoSelected}
+                          changeGradoData={this.changeData.bind(this)}
+                          dataGrado={this.props.grados}
+                          valuePeriodoSelected={this.state.keyPeriodoSelected}
+                          changePeriodoData={this.changeData.bind(this)}
+                          dataPeriodo={this.props.periodos}
+                          disabled={disabled}
+        />
+        {/* <Grid>
           <Row className="show-grid">
             <form onSubmit={this.showPlanilla.bind(this)}>
               <Col xs={12} md={6} >
@@ -61,7 +70,7 @@ class Informe extends Component {
               </Col>
             </form>
           </Row>
-        </Grid>
+        </Grid> */}
       </div>
     );
   }

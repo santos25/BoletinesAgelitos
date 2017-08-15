@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import {Grid,Row,Col,Button,Label,Table } from 'react-bootstrap';
 import {Base, firebase} from '../Base';
-import ControlsSelect from './ControlsSelect';
+import ControlsSelect from '../general/ControlsSelect';
 import RowTable from './RowTable';
 import HeaderTable from './HeaderTable';
-import Alert from './AlertStudentData';
+import AlertAsignatura from './AlertStudentData';
+// import Modal from './ModalInformation'
 // import CuadroDescriptivo from './CuadroDescriptivo';
 import '../App.css';
+import Alert from 'react-s-alert';
 
 class Planilla extends Component {
   constructor(){
@@ -16,7 +18,9 @@ class Planilla extends Component {
       keyAsignaturaSelected : '',
       estudiantes : {},
       keyPlanilla : '',
-      alertVisible: true
+      alertVisible: false,
+      showModalAsignatura: false,
+      // renderPlanilla: false
     }
   }
 
@@ -30,6 +34,11 @@ class Planilla extends Component {
 
   componentDidMount(){
     this.getAsignaturas(Object.keys(this.props.gradoSelected.asignaturas));
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    // console.log("State --> " , nextState);
+    return true;
   }
 
   findPlanillasByPeriodAndGrado(){
@@ -60,12 +69,12 @@ class Planilla extends Component {
 
   onChangeAsignatura(e){
 
+    // this.openModal(e);
     this.setState({
-      keyAsignaturaSelected : e.target.value
+      keyAsignaturaSelected : e.target.value,
     })
-
+    // this.openModal(e);
     this.findPlanillasByAsignatura(e.target.value)
-    // this.uploadStudents(this.props.gradoSelected.estudiantes);
   }
 
   findPlanillasByAsignatura(asignaturaKey){
@@ -122,6 +131,11 @@ class Planilla extends Component {
     }
     var usersRef = firebase.database().ref(`planillas/${ this.state.keyPlanilla}`);
     usersRef.child(this.state.keyAsignaturaSelected).set(dataStudentForm);
+
+    Alert.info('Planilla Guardada!', {
+      position: 'bottom-left',
+      timeout: 'none'
+    });
   }
 
   getAsignaturas(keyAsignatura){
@@ -149,11 +163,23 @@ class Planilla extends Component {
     this.setState({alertVisible: false});
   }
 
+  closeModal(){
+    this.setState({
+      showModalAsignatura : false
+    })
+
+  }
+
+  openModal(){
+    this.setState({
+      showModalAsignatura : !this.state.showModalAsignatura
+    })
+  }
   render(){
     const columns = ['Nombre Del Estudiante', 'Descripcion Del Desempeño', 'Nota', 'DS = Desempeño' ,'H/S'];
     return(
       <Grid>
-        {this.state.alertVisible ?<Alert handleDismiss= {this.handleAlertDismiss.bind(this)}/> : ""}
+        {this.state.alertVisible ?<AlertAsignatura handleDismiss= {this.handleAlertDismiss.bind(this)}/> : ""}
         <Row className="show-grid">
           <Col xs={12} md={6} >
             <h4>
@@ -186,8 +212,7 @@ class Planilla extends Component {
                 <HeaderTable  columns={columns}/>
                 <RowTable estudiantes={this.state.estudiantes}
                   onChangeStudent={this.onChangeStudent.bind(this)}  />
-
-                </Table>
+              </Table>
               </Col>
             </Row>
             <Row>
@@ -198,9 +223,11 @@ class Planilla extends Component {
                   </div>
                 </Col>
               </Row>
-            </Grid>
-          )
+              {/* <Modal showModalAsignatura={this.state.showModalAsignatura}
+                    close={this.closeModal.bind(this )}/> */}
+              </Grid>
+            )
+          }
         }
-      }
 
-      export default Planilla;
+        export default Planilla;

@@ -1,16 +1,8 @@
 
 import React,{Component} from 'react';
-import {Table,FormGroup,FormControl,Label } from 'react-bootstrap';
+import {FormGroup,FormControl,Label } from 'react-bootstrap';
 
 class RowTable extends Component {
-  constructor(){
-    super();
-
-  }
-
-  componentWillMount(){
-
-  }
 
   changeDataRow(value, name,keyEstudiante, desempeno){
 
@@ -93,7 +85,7 @@ class RowTable extends Component {
           return(
             <tbody>
               {Object.keys(this.props.estudiantes).map(this.renderRow.bind(this))}
-            </tbody>
+          </tbody>
 
           )
         }
