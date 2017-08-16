@@ -14,8 +14,8 @@ constructor(){
   this.state = {
       grados : '',
       periodos : '',
-      isPlanilla : false,
-      isBoletines : false
+      // isPlanilla : false,
+      // isBoletines : false
       // estudiantes:''
   }
 }
@@ -44,6 +44,7 @@ componentDidMount(){
   // })
 }
 componentWillUnmount(){
+  console.log("desmonto App.js");
   Base.removeBinding(this.ref);
 }
 

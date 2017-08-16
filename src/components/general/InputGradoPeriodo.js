@@ -20,7 +20,7 @@ const GradoPeriodo = (props) => {
             valueSelected={props.valuePeriodoSelected}
             changeData={props.changePeriodoData}
             data={props.dataPeriodo}/>
-            <Button disabled={props.disabled} bsStyle="primary" type="submit"> Ir a Planillas</Button>
+            <Button disabled={props.disabled} bsStyle="primary" type="submit"> {props.labelButton}</Button>
           </Col>
         </form>
       </Row>

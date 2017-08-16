@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-import {} from 'react-bootstrap';
+import {Grid,Row,Col,Table} from 'react-bootstrap';
+import HeaderTable from '../planilla/HeaderTable';
+import RowTableBoletin from './RowTableBoletin';
 
-class BoletinStudent extends Component {
-  constructor(){
-    super();
-    this.state = {
+const BoletinStudent = (props) => {
+  const columns = ['Nombre Del Estudiante', 'Ver', 'Imprimir'];
 
-    }
-  }
-
-render(){
   return(
     <div>
-
+      <Grid>
+        <Row className="show-grid">
+          <Col xs={12} md={4}>
+            <Table striped bordered condensed hover>
+              <HeaderTable  columns={columns}/>
+              <RowTableBoletin estudiantes={props.estudiantes} />
+            </Table>
+          </Col>
+        </Row>
+      </Grid>
     </div>
   )
-}
 }
 
 
