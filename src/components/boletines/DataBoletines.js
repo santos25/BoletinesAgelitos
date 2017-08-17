@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Label,Alert,Button,Row,Grid,Col} from 'react-bootstrap';
 import Home from '../containers/Home';
 import BoletinStudent from './BoletinStudent';
+// import PrintBoletin from './PrintBoletin';
 import InputGradoPeriodo from '../general/InputGradoPeriodo';
 import {Base} from '../Base';
 
@@ -10,13 +11,16 @@ class DataBoletines extends Component {
     super();
     this.state = {
       // estudiantes : {},
-      planilla : {},
-      keyGradoSelected : '',
-      keyPeriodoSelected: '',
+      planilla : [],
+      keyGradoSelected : 'grado1',
+      keyPeriodoSelected: 'periodo1',
       showBoletines : false,
       grados : '',
       periodos : '',
-      showNoData: false
+      asignaturasByGrado:{},
+      showNoData: false,
+      keyEstudiante : '',
+      print: false
     }
   }
 
@@ -38,6 +42,20 @@ class DataBoletines extends Component {
     Base.removeBinding(this.ref);
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+
+    console.log(nextState);
+    if (nextState.showBoletines ) {
+      if(nextState.planilla.length === 0 ){
+        return false
+      }else {
+        return true
+      }
+    }else {
+      return true
+    }
+
+  }
 
   showBoletinesStudent(e){
     e.preventDefault();
@@ -52,10 +70,13 @@ class DataBoletines extends Component {
     }).then(data => {
       let planilla = data.filter((planilla) => planilla.periodo === this.state.periodos[this.state.keyPeriodoSelected].nombre);
       if(planilla.length > 0){
-        console.log(planilla);
-        this.setState({
-          showBoletines : true
-        })
+        // console.log(planilla[0].grado);
+        this.findAsignaturasByGrado(Object.keys(this.state.grados[this.state.keyGradoSelected].asignaturas) , planilla);
+        // this.setState({
+        //   showBoletines : true,
+        //   planilla
+        // })
+
       }else {
         this.setState(prevState => ({
           showNoData: true
@@ -65,9 +86,22 @@ class DataBoletines extends Component {
       //handle error
       console.log("Error Consultando Planillas  "  + error);
     })
-    // this.setState(prevState => ({
-    //   showBoletines: !prevState.isPlanilla
-    // }))
+  }
+
+  findAsignaturasByGrado(keyAsignatura, planilla){
+    Base.fetch('asignaturas', {
+      context: this,
+      asArray: false,
+    }).then(data => {
+      console.log(keyAsignatura);
+      this.setState({
+        asignaturasByGrado :  data[keyAsignatura],
+        showBoletines : true,
+        planilla
+      })
+    }).catch(error => {
+      console.log("Fallo Consultar Asignaturas" , error);
+    })
 
   }
 
@@ -84,11 +118,35 @@ class DataBoletines extends Component {
     }))
   }
 
+  clickPreviewBoletin(keyStudent){
+    console.log("Key Student " , keyStudent);
+    this.setState({
+      keyEstudiante : keyStudent
+    })
+  }
+
+  clickPrintBoletin(keyStudent){
+    console.log("Key Student print " , keyStudent);
+    window.print();
+
+  }
+
   render(){
     const disabled =  this.state.keyGradoSelected && this.state.keyPeriodoSelected? false : true;
     if (this.state.showBoletines) {
+
+      // if(this.state.print){
+      //     this.PrintComponent()
+      //
+      //
+      // }
       return  ( <Home>
-        <BoletinStudent estudiantes={this.state.grados[this.state.keyGradoSelected].estudiantes}/>
+        <BoletinStudent estudiantes={this.state.grados[this.state.keyGradoSelected].estudiantes}
+                        planilla={this.state.planilla}
+                        asignaturas={this.state.asignaturasByGrado}
+                        clickPreviewBoletin={this.clickPreviewBoletin.bind(this)}
+                        clickPrintBoletin={this.clickPrintBoletin.bind(this)}
+                        keyEstudiante= {this.state.keyEstudiante}/>
       </Home>
     )
   }
