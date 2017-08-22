@@ -12,28 +12,34 @@ const PreviewBoletin = (props) => {
   return(
     <div>
       <Row className="show-grid">
-        <Col xs={12} md={4}>
-          <img className="escudo" src={escudo} alt="Escudo"></img>
-        </Col>
-        <Col xs={12} md={4}>
-          <div>
-            <Label>INSTITUTO ANGELITOS ALEGRES </Label>
-          </div>
-          <div>
-            <Label>Nuevo Bosque Trv. 51    N° 29 B 77</Label>
-          </div>
-          <div>
-            <Label>Aprobado por Resolución N° 7962</Label>
-          </div>
-          <div>
-            <Label>Dane: 313001000185</Label>
-          </div>
-        </Col>
+        <div className="divLeft">
+          <Col xs={12} md={4}>
+            <img className="escudo" src={escudo} alt="Escudo"></img>
+          </Col>
+        </div>
+        <div className="">
+          <Col xs={12} md={4}>
+            <div>
+              <Label>INSTITUTO ANGELITOS ALEGRES </Label>
+            </div>
+            <div>
+              <Label>Nuevo Bosque Trv. 51    N° 29 B 77</Label>
+            </div>
+            <div>
+              <Label>Aprobado por Resolución N° 7962</Label>
+            </div>
+            <div>
+              <Label>Dane: 313001000185</Label>
+            </div>
+          </Col>
+        </div>
+        <div className="divRight">
         <Col xs={12} md={4}>
           <div>
             <Label>Andres Fernado Santos Gueto</Label>
           </div>
         </Col>
+        </div>
       </Row>
       <Row className="show-grid">
         <Col xs={12} md={12}>
@@ -64,7 +70,6 @@ const PreviewBoletin = (props) => {
             {Object.keys(asignaturas).map ((key, i) => {
               if (planilla[0][key] && keyEstudiante !== '') {
                 let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
-                console.log(estudianteData);
                 return(
                   <tr key={key}>
                     <td>{planilla[0][key].nombre}

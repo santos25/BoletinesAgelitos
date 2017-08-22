@@ -17,22 +17,23 @@ const BoletinStudent = (props) => {
               <Table striped bordered condensed hover>
                 <HeaderTable  columns={columns}/>
                 <RowTableBoletin estudiantes={props.estudiantes}
-                                clickPreviewBoletin={props.clickPreviewBoletin}
-                                clickPrintBoletin={props.clickPrintBoletin}/>
-              </Table>
-            </div>
-          </Col>
+                  clickPreviewBoletin={props.clickPreviewBoletin}
+                  clickPrintBoletin={props.clickPrintBoletin}/>
+                </Table>
+              </div>
+            </Col>
 
-          <Col xs={12} md={8}>
-            <PreviewBoletin planilla={props.planilla}
-                            asignaturas={props.asignaturas}
-                            keyEstudiante={props.keyEstudiante}/>
-          </Col>
-        </Row>
-      </Grid>
-    </div>
-  )
-}
+            <Col xs={12} md={8}>
+                <PreviewBoletin planilla={props.planilla}
+                  asignaturas={props.asignaturas}
+                  keyEstudiante={props.keyEstudiante}/>
+
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      )
+    }
 
 
-export default BoletinStudent;
+    export default BoletinStudent;
