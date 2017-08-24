@@ -7,9 +7,9 @@ const HeaderTable = (props) => {
     <thead>
       <tr>
         {
-          props.columns.map((colum,i) => <th key={i}>{colum}</th>)
+          props.columns.map((colum,i) => <th key={i} >{colum}</th>)
         }
-      
+
       </tr>
     </thead>
   )

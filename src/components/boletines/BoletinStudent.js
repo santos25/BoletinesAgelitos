@@ -4,6 +4,7 @@ import HeaderTable from '../planilla/HeaderTable';
 import RowTableBoletin from './RowTableBoletin';
 import PreviewBoletin from './PreviewBoletin';
 import PrintTemplate  from 'react-print';
+import PrintBoletin  from './PrintBoletin';
 
 const BoletinStudent = (props) => {
   const columns = ['Nombre Del Estudiante', 'Ver', 'Imprimir'];
@@ -24,10 +25,18 @@ const BoletinStudent = (props) => {
             </Col>
 
             <Col xs={12} md={8}>
+              <div id="react-no-print">
                 <PreviewBoletin planilla={props.planilla}
                   asignaturas={props.asignaturas}
                   keyEstudiante={props.keyEstudiante}/>
-
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={12}>
+                <PrintBoletin planilla={props.planilla}
+                  asignaturas={props.asignaturas}
+                  keyEstudiante={props.keyEstudiante} />
               </Col>
             </Row>
           </Grid>

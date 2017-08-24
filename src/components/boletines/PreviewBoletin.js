@@ -20,7 +20,7 @@ const PreviewBoletin = (props) => {
         <div className="">
           <Col xs={12} md={4}>
             <div>
-              <Label>INSTITUTO ANGELITOS ALEGRES </Label>
+              <Label> INSTITUTO ANGELITOS ALEGRES </Label>
             </div>
             <div>
               <Label>Nuevo Bosque Trv. 51    N° 29 B 77</Label>

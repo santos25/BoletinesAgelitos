@@ -8,7 +8,7 @@ class RowTable extends Component {
 
     let estuEdit = {...this.props.estudiantes[keyEstudiante], [name] : value};
     if(desempeno)
-      estuEdit.desempeno = desempeno;
+    estuEdit.desempeno = desempeno;
     this.props.onChangeStudent(keyEstudiante,estuEdit);
 
   }
@@ -35,37 +35,39 @@ class RowTable extends Component {
 
   renderRow(key){
     let estudiante = this.props.estudiantes[key];
-
+    const style = {
+      width : 90
+    }
     return(
       <tr key={key}>
-        <td>{estudiante.nombre + " " + estudiante.apellido}
+
+        <td style={{width : 150}}>
+              {estudiante.nombre + " " + estudiante.apellido}
         </td>
         <td>
           <FormGroup controlId="formControlsTextarea">
             <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
               componentClass="textarea"
+              style={{ height: 150 }}
               name="descripcion"
               value={estudiante.descripcion || ''}
               placeholder="Descripcion" />
             </FormGroup>
           </td>
-          <td>
-
-            <FormGroup controlId="formControlsText">
-              <FormControl  id="formControlsText"
-                onChange={(e) => this.onChangeRowStudent(e, key)}
-                type="text"
-                name="nota"
-                value={estudiante.nota || ''}
-                placeholder="Enter Nota"/>
-              </FormGroup>
+          <td style={style}>
+              <FormGroup  controlId="formControlsText">
+                <FormControl  id="formControlsText"
+                  onChange={(e) => this.onChangeRowStudent(e, key)}
+                  type="number"
+                  name="nota"
+                  value={estudiante.nota || ''}
+                  placeholder="Nota"/>
+                </FormGroup>
             </td>
-            <td>
-              <h3 className="formPlanilla">
-                <Label bsStyle="info">{estudiante.desempeno || ''}</Label>
-              </h3>
+            <td style={style}>
+                <h3 className="formPlanilla"><Label bsStyle="info">{ estudiante.desempeno || ''}</Label></h3>
             </td>
-            <td>
+            <td style={style}>
               <FormGroup controlId="formControlsText">
                 <FormControl
                   id="formControlsText"
@@ -85,11 +87,13 @@ class RowTable extends Component {
           return(
             <tbody>
               {Object.keys(this.props.estudiantes).map(this.renderRow.bind(this))}
-          </tbody>
+            </tbody>
 
           )
         }
       }
+
+
 
 
       export default RowTable ;

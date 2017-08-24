@@ -23,7 +23,6 @@ function renderRow(estudiantes , clickPreviewBoletin ,clickPrintBoletin ,key){
 const RowTableBoletin = (props) => {
 
   const {estudiantes, clickPreviewBoletin , clickPrintBoletin} = props;
-  console.log(clickPrintBoletin);
   return(
     <tbody>
       {Object.keys(props.estudiantes).map(renderRow.bind(this, props.estudiantes , clickPreviewBoletin , clickPrintBoletin))}

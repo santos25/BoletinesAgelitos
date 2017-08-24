@@ -127,7 +127,10 @@ class DataBoletines extends Component {
 
   clickPrintBoletin(keyStudent){
     console.log("Key Student print " , keyStudent);
-    window.print();
+    this.setState({
+      keyEstudiante : keyStudent
+    } , () => window.print())
+    // window.print();
 
   }
 
