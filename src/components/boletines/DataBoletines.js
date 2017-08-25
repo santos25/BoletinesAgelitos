@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Label,Alert,Button,Row,Grid,Col} from 'react-bootstrap';
+import {Label,Alert,Row,Grid,Col} from 'react-bootstrap';
 import Home from '../containers/Home';
 import BoletinStudent from './BoletinStudent';
 // import PrintBoletin from './PrintBoletin';
@@ -44,7 +44,6 @@ class DataBoletines extends Component {
 
   shouldComponentUpdate(nextProps, nextState){
 
-    console.log(nextState);
     if (nextState.showBoletines ) {
       if(nextState.planilla.length === 0 ){
         return false

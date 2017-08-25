@@ -3,7 +3,7 @@ import {Grid,Row,Col,Table} from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
 import RowTableBoletin from './RowTableBoletin';
 import PreviewBoletin from './PreviewBoletin';
-import PrintTemplate  from 'react-print';
+// import PrintTemplate  from 'react-print';
 import PrintBoletin  from './PrintBoletin';
 
 const BoletinStudent = (props) => {
@@ -28,7 +28,8 @@ const BoletinStudent = (props) => {
               <div id="react-no-print">
                 <PreviewBoletin planilla={props.planilla}
                   asignaturas={props.asignaturas}
-                  keyEstudiante={props.keyEstudiante}/>
+                  keyEstudiante={props.keyEstudiante}
+                  estudiantes={props.estudiantes}/>
                 </div>
               </Col>
             </Row>
@@ -36,7 +37,8 @@ const BoletinStudent = (props) => {
               <Col xs={12} md={12}>
                 <PrintBoletin planilla={props.planilla}
                   asignaturas={props.asignaturas}
-                  keyEstudiante={props.keyEstudiante} />
+                  keyEstudiante={props.keyEstudiante}
+                  estudiantes={props.estudiantes}/>
               </Col>
             </Row>
           </Grid>

@@ -18,7 +18,7 @@ class Planilla extends Component {
       keyAsignaturaSelected : '',
       estudiantes : {},
       keyPlanilla : '',
-      alertVisible: false,
+      alertVisible: true,
       showModalAsignatura: false,
       // renderPlanilla: false
     }
@@ -87,7 +87,7 @@ class Planilla extends Component {
       }
     }).then(data => {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
-      console.log(planilla);
+      // console.log(planilla);
       if(planilla[0][asignaturaKey]){
         this.uploadStudents(planilla[0][asignaturaKey].estudiantes , planilla[0].key);
       }else {
@@ -115,10 +115,11 @@ class Planilla extends Component {
     });
   }
 
-  uploadStudents(students, keyPlani){
+  uploadStudents(students, keyPlani , asignaturaKey){
     this.setState({
       estudiantes : {...students},
       keyPlanilla : keyPlani
+      // keyAsignaturaSelected : asignaturaKey
     })
   }
 

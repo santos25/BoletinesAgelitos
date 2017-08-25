@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {FormGroup,FormControl,Label,Button } from 'react-bootstrap';
+import {Button } from 'react-bootstrap';
 
 
 function renderRow(estudiantes , clickPreviewBoletin ,clickPrintBoletin ,key){
@@ -25,7 +25,7 @@ const RowTableBoletin = (props) => {
   const {estudiantes, clickPreviewBoletin , clickPrintBoletin} = props;
   return(
     <tbody>
-      {Object.keys(props.estudiantes).map(renderRow.bind(this, props.estudiantes , clickPreviewBoletin , clickPrintBoletin))}
+      {Object.keys(props.estudiantes).map(renderRow.bind(this, estudiantes , clickPreviewBoletin , clickPrintBoletin))}
     </tbody>
   )
 }

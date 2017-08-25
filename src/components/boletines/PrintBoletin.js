@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormGroup,FormControl, Table,Label,Button } from 'react-bootstrap';
+import { Table,Label } from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
 import PrintTemplate  from 'react-print';
 import escudo from '../escudo.jpg'
@@ -30,7 +30,10 @@ const PrintBoletin = (props) => {
             </div>
           </div>
           <div>
-              <Label>Andres Fernado Santos Gueto</Label>
+              <Label>  { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
+                                       +  props.estudiantes[props.keyEstudiante].apellido
+                                      : ""
+              }</Label>
           </div>
         </div>
         <div id="informacion">
@@ -62,7 +65,7 @@ const PrintBoletin = (props) => {
                 if (planilla[0][key] && keyEstudiante !== '') {
                   let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
                   return(
-                    <tr key={key}>
+                  <tr key={key}>
                       <td>{planilla[0][key].nombre}
                       </td>
                       <td><pre>{estudianteData.descripcion}</pre>
@@ -75,6 +78,8 @@ const PrintBoletin = (props) => {
                     </td>
                   </tr>
                 )
+              }else {
+                return null;
               }
             })}
           </tbody>

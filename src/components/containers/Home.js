@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {Navbar,NavItem,Nav } from 'react-bootstrap';
+import {Navbar,NavItem,Nav,Label } from 'react-bootstrap';
+import escudo from '../escudo.jpg';
 
 class Home extends Component {
   render() {
@@ -11,7 +12,7 @@ class Home extends Component {
           <Navbar.Header>
             <Navbar.Brand>
                   <Link to={'/'}>
-                  Instituto Angelitos Alegres
+                      Instituto Angelitos Alegres
                   </Link>
             </Navbar.Brand>
             <Navbar.Toggle />
@@ -20,12 +21,12 @@ class Home extends Component {
             <Nav>
               <NavItem >
                 <Link to={'/informe'}>
-                Ir a Planillas
+                <h4><Label bsStyle="primary">Ir a Planillas</Label></h4>
               </Link>
             </NavItem>
             <NavItem  >
               <Link to={'/boletines'}>
-              Ir a Boletines
+              <h4><Label bsStyle="primary">Ir a Boletines</Label></h4>
             </Link>
           </NavItem>
         </Nav>

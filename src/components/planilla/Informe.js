@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Label } from 'react-bootstrap';
+import {Label,Grid,Row,Col } from 'react-bootstrap';
 import Planilla from './Planilla';
 import InputGradoPeriodo from '../general/InputGradoPeriodo'
 
@@ -41,19 +41,29 @@ class Informe extends Component {
 
     return (
       <div>
-        <div className="formPlanilla">
-          <h3><Label bsStyle="default"> PLANILLAS </Label><br></br></h3>
-        </div>
-        <InputGradoPeriodo onSubmit={this.showPlanilla.bind(this)}
-                          valueGradoSelected={this.state.keyGradoSelected}
-                          changeGradoData={this.changeData.bind(this)}
-                          dataGrado={this.props.grados}
-                          valuePeriodoSelected={this.state.keyPeriodoSelected}
-                          changePeriodoData={this.changeData.bind(this)}
-                          dataPeriodo={this.props.periodos}
-                          disabled={disabled}
-                          labelButton="Ir a Planillas"
-        />
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={12} md={8}>
+              <div className="formPlanilla">
+                <h3><Label bsStyle="default"> PLANILLA </Label><br></br></h3>
+              </div>
+            </Col>
+          </Row>
+          <Row className="show-grid">
+            <Col xs={12} md={8}>
+              <InputGradoPeriodo onSubmit={this.showPlanilla.bind(this)}
+                valueGradoSelected={this.state.keyGradoSelected}
+                changeGradoData={this.changeData.bind(this)}
+                dataGrado={this.props.grados}
+                valuePeriodoSelected={this.state.keyPeriodoSelected}
+                changePeriodoData={this.changeData.bind(this)}
+                dataPeriodo={this.props.periodos}
+                disabled={disabled}
+                labelButton="Ir a Planillas"
+              />
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
