@@ -2,6 +2,8 @@ import React from 'react';
 import {Row,Col,Table,Label} from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
 import escudo from '../escudo.jpg'
+import Firmas from './Firmas'
+import CuadroDescriptivo from './CuadroDescriptivo'
 // import HeaderTable from '../planilla/HeaderTable';
 // import RowTableBoletin from './RowTableBoletin';
 function returnEstudianteData(planilla, key , keyEstudiante){
@@ -26,23 +28,23 @@ const PreviewBoletin = (props) => {
         <div className="">
           <Col xs={12} md={4}>
             <div>
-              <Label> INSTITUTO ANGELITOS ALEGRES </Label>
+              <Label bsStyle="primary"> INSTITUTO ANGELITOS ALEGRES </Label>
             </div>
             <div>
-              <Label>Nuevo Bosque Trv. 51    N° 29 B 77</Label>
+              <Label bsStyle="primary">Nuevo Bosque Trv. 51    N° 29 B 77</Label>
             </div>
             <div>
-              <Label>Aprobado por Resolución N° 7962</Label>
+              <Label bsStyle="primary" >Aprobado por Resolución N° 7962</Label>
             </div>
             <div>
-              <Label>Dane: 313001000185</Label>
+              <Label bsStyle="primary">Dane: 313001000185</Label>
             </div>
           </Col>
         </div>
         <div className="divRight">
           <Col xs={12} md={4}>
             <div>
-              <Label>
+              <Label bsStyle="primary">
                 { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
                                        +  props.estudiantes[props.keyEstudiante].apellido
                                       : ""
@@ -56,25 +58,26 @@ const PreviewBoletin = (props) => {
       <Col xs={12} md={12}>
         <div className="tittleBoletinContainer">
           <div className="tittleFloating">
-            <Label bsStyle="default">INFORME ACADEMICO </Label>
+            <Label bsStyle="primary">INFORME ACADEMICO </Label>
           </div>
           <div className="tittleFloating">
-            <Label bsStyle="default">{`GRADO : ${planilla[0].grado}`} </Label>
+            <Label bsStyle="primary">{`GRADO : ${planilla[0].grado}`} </Label>
           </div>
           <div className="tittleFloating">
-            <Label bsStyle="default">JORNADA : Mañana</Label>
+            <Label bsStyle="primary">JORNADA : Mañana</Label>
           </div>
           <div className="tittleFloating">
-            <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label>
+            <Label bsStyle="primary">{`PERIODO : ${planilla[0].periodo}`}</Label>
           </div>
           <div className="tittleFloating">
-            <Label bsStyle="default"> {`AÑO : ${ new Date().getFullYear()}`}</Label>
+            <Label bsStyle="primary"> {`AÑO : ${ new Date().getFullYear()}`}</Label>
           </div>
         </div>
       </Col>
 
     </Row>
-    <Row>
+    <Row className="show-grid">
+      <Col xs={12} md={12}>
       <Table striped bordered condensed hover>
         <HeaderTable  columns={columns}/>
         <tbody>
@@ -97,6 +100,7 @@ const PreviewBoletin = (props) => {
           })}
         </tbody>
       </Table>
+      </Col>
     </Row>
   </div>
 )

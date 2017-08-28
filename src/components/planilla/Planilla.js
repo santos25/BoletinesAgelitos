@@ -37,7 +37,7 @@ class Planilla extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    // console.log("State --> " , nextState);
+    console.log("State --> " , nextState);
     return true;
   }
 
@@ -164,14 +164,7 @@ class Planilla extends Component {
     this.setState({alertVisible: false});
   }
 
-  closeModal(){
-    this.setState({
-      showModalAsignatura : false
-    })
-
-  }
-
-  openModal(){
+  toogleModal(){
     this.setState({
       showModalAsignatura : !this.state.showModalAsignatura
     })
@@ -219,7 +212,7 @@ class Planilla extends Component {
             <Row>
               <Col xs={12} md={12} >
                 <div className="formPlanilla">
-                  <Button bsStyle="primary" type="submit" bsSize="large"
+                  <Button disabled={this.state.keyAsignaturaSelected ? false : true} bsStyle="primary" type="submit" bsSize="large"
                     onClick={this.submitPlantilla.bind(this)}> Guardar Planilla</Button>
                   </div>
                 </Col>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {Navbar,NavItem,Nav,Label } from 'react-bootstrap';
-import escudo from '../escudo.jpg';
+// import escudo from '../escudo.jpg';
 
 class Home extends Component {
   render() {

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Table,Label } from 'react-bootstrap';
+import { Table,Label,Row,Col } from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
 import PrintTemplate  from 'react-print';
 import escudo from '../escudo.jpg'
+import Firmas from './Firmas'
+import CuadroDescriptivo from './CuadroDescriptivo'
 
 const PrintBoletin = (props) => {
   const columns = ['Asignatura','Descripcion Del Desempeño', 'Nota', 'DS' ,'H/S'];
@@ -12,28 +14,29 @@ const PrintBoletin = (props) => {
     <div >
       <PrintTemplate>
         <div id="cabecera">
-          <div >
-            <img className="escudo" src={escudo} alt="Escudo"></img>
+          <div className="escudoBoletin">
+            <img  src={escudo} alt="Escudo"></img>
           </div>
-          <div>
-            <div>
-              <Label> INSTITUTO ANGELITOS ALEGRES </Label>
+          <div className="divCabecera">
+            <div >
+              <label> INSTITUTO ANGELITOS ALEGRES </label>
             </div>
             <div>
-              <Label>Nuevo Bosque Trv. 51    N° 29 B 77</Label>
+              <label>Nuevo Bosque Trv. 51    N° 29 B 77</label>
             </div>
             <div>
-              <Label>Aprobado por Resolución N° 7962</Label>
+              <label>Aprobado por Resolución N° 7962</label>
             </div>
             <div>
-              <Label>Dane: 313001000185</Label>
+              <label>Dane: 313001000185</label>
             </div>
           </div>
-          <div>
-              <Label>  { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
+          <div className="divCabecera">
+              <label>Nombre del Estudiante : </label> <br/>
+              <label>  { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
                                        +  props.estudiantes[props.keyEstudiante].apellido
                                       : ""
-              }</Label>
+              }</label>
           </div>
         </div>
         <div id="informacion">
@@ -85,6 +88,25 @@ const PrintBoletin = (props) => {
           </tbody>
         </Table>
         </div>
+        <Row className="show-grid">
+          <Col xs={12} md={6}>
+            <div>
+              <label>Observaciones</label>
+              <pre>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+               sagittis tellus.</pre>
+            </div>
+          </Col>
+          <Col xs={12} md={6}>
+
+            <CuadroDescriptivo />
+          </Col>
+        </Row>
+        <Row className="show-grid">
+          <Col xs={12} md={12}>
+
+            <Firmas />
+          </Col>
+        </Row>
       </PrintTemplate>
     </div>
 

@@ -20,6 +20,23 @@ body {
   margin-bottom: 1rem;
 }
 
-nav {
-    background-color: #CC1414;
+.cuadroDescriptivo {
+  float : right;
+}
+
+.cuadroDescriptivo table td, th{
+  border: 1px solid #999;
+  padding: 0.5rem;
+}
+
+.firmas {
+    margin-top: 5rem;
+}
+
+.firmaDirectora {
+  float: left;
+}
+
+.firmaRectora {
+  float: right;
 }

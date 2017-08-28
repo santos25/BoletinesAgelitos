@@ -7,8 +7,10 @@ class RowTable extends Component {
   changeDataRow(value, name,keyEstudiante, desempeno){
 
     let estuEdit = {...this.props.estudiantes[keyEstudiante], [name] : value};
-    if(desempeno)
-    estuEdit.desempeno = desempeno;
+    if(desempeno){
+      estuEdit.desempeno = desempeno;
+      estuEdit.horas = 5;
+    }
     this.props.onChangeStudent(keyEstudiante,estuEdit);
 
   }
@@ -69,7 +71,8 @@ class RowTable extends Component {
                 <h3 className="formPlanilla"><Label bsStyle="info">{ estudiante.desempeno || ''}</Label></h3>
             </td>
             <td style={style}>
-              <FormGroup controlId="formControlsText">
+                <h3 className="formPlanilla"><Label bsStyle="info">{estudiante.horas || ''}</Label></h3>
+              {/* <FormGroup controlId="formControlsText">
                 <FormControl
                   id="formControlsText"
                   type="text"
@@ -77,7 +80,7 @@ class RowTable extends Component {
                   value={estudiante.horas || ''}
                   onChange={(e) => this.onChangeRowStudent(e, key)}
                   placeholder="Horas"/>
-                </FormGroup>
+                </FormGroup> */}
               </td>
             </tr>
           )
