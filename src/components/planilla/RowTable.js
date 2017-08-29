@@ -62,6 +62,7 @@ class RowTable extends Component {
                 <FormControl  id="formControlsText"
                   onChange={(e) => this.onChangeRowStudent(e, key)}
                   type="number"
+                  min="0"
                   name="nota"
                   value={estudiante.nota || ''}
                   placeholder="Nota"/>
@@ -72,15 +73,6 @@ class RowTable extends Component {
             </td>
             <td style={style}>
                 <h3 className="formPlanilla"><Label bsStyle="info">{estudiante.horas || ''}</Label></h3>
-              {/* <FormGroup controlId="formControlsText">
-                <FormControl
-                  id="formControlsText"
-                  type="text"
-                  name="horas"
-                  value={estudiante.horas || ''}
-                  onChange={(e) => this.onChangeRowStudent(e, key)}
-                  placeholder="Horas"/>
-                </FormGroup> */}
               </td>
             </tr>
           )

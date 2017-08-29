@@ -171,7 +171,7 @@ class DataBoletines extends Component {
             <Row className="show-grid">
               <Col xs={12} md={8}>
                 <div className="formPlanilla">
-                  <h3><Label bsStyle="default"> BOLETINES</Label><br></br></h3>
+                  <h3><Label bsStyle="primary"> BOLETINES</Label><br></br></h3>
                 </div>
               </Col>
             </Row>

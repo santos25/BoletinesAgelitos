@@ -32,11 +32,11 @@ const PrintBoletin = (props) => {
             </div>
           </div>
           <div className="divCabecera">
-              <label>Nombre del Estudiante : </label> <br/>
-              <label>  { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
-                                       +  props.estudiantes[props.keyEstudiante].apellido
-                                      : ""
-              }</label>
+            <label>Nombre del Estudiante : </label>
+            <label>  { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
+              +  props.estudiantes[props.keyEstudiante].apellido
+              : ""
+            }</label>
           </div>
         </div>
         <div id="informacion">
@@ -68,49 +68,46 @@ const PrintBoletin = (props) => {
                 if (planilla[0][key] && keyEstudiante !== '') {
                   let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
                   return(
-                  <tr key={key}>
+                    <tr key={key}>
                       <td>{planilla[0][key].nombre}
                       </td>
-                      <td><pre>{estudianteData.descripcion}</pre>
-                    </td>
-                    <td>{estudianteData.nota}
-                    </td>
-                    <td>{estudianteData.desempeno}
-                    </td>
-                    <td>{estudianteData.horas}
-                    </td>
-                  </tr>
-                )
-              }else {
-                return null;
-              }
-            })}
-          </tbody>
-        </Table>
+                      <td className="rowDescripcin">{estudianteData.descripcion}   </td>
+                      <td>{estudianteData.nota}
+                      </td>
+                      <td>{estudianteData.desempeno}
+                      </td>
+                      <td>{estudianteData.horas}
+                      </td>
+                    </tr>
+                  )
+                }else {
+                  return null;
+                }
+              })}
+            </tbody>
+          </Table>
         </div>
         <Row className="show-grid">
-          <Col xs={12} md={6}>
-            <div>
+          <div className="obserCuadro">
+            <div className="observacion">
               <label>Observaciones</label>
               <pre>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-               sagittis tellus.</pre>
+                sagittis tellus. Lorem ipsum dolor sit amet</pre>
+              </div>
+              <div className="cuadro">
+                <CuadroDescriptivo />
+              </div>
             </div>
-          </Col>
-          <Col xs={12} md={6}>
+          </Row>
+          <Row className="show-grid">
+            <Col xs={12} md={12}>
+              <Firmas />
+            </Col>
+          </Row>
+        </PrintTemplate>
+      </div>
 
-            <CuadroDescriptivo />
-          </Col>
-        </Row>
-        <Row className="show-grid">
-          <Col xs={12} md={12}>
+    )
+  }
 
-            <Firmas />
-          </Col>
-        </Row>
-      </PrintTemplate>
-    </div>
-
-  )
-}
-
-export default PrintBoletin;
+  export default PrintBoletin;
