@@ -19,7 +19,7 @@ class RowTable extends Component {
 
     let name = e.target.name;
     if(name === 'nota')  {
-      if(e.target.value <= 5){
+      if(e.target.value <= 5 && e.target.value.length < 4){
         if(e.target.value >= 4.6){
           this.changeDataRow(e.target.value, name, keyEstudiante,'S');
         }else if (e.target.value >= 4.0) {

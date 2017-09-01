@@ -18,7 +18,7 @@ class Planilla extends Component {
       keyAsignaturaSelected : '',
       estudiantes : {},
       keyPlanilla : '',
-      alertVisible: true,
+      alertVisible: false,
       showModalAsignatura: false,
       // renderPlanilla: false
     }
@@ -133,9 +133,11 @@ class Planilla extends Component {
     var usersRef = firebase.database().ref(`planillas/${ this.state.keyPlanilla}`);
     usersRef.child(this.state.keyAsignaturaSelected).set(dataStudentForm);
 
-    Alert.info('Planilla Guardada!', {
+    Alert.success('Planilla Guardada!', {
       position: 'bottom-left',
-      timeout: 'none'
+      effect: 'scale',
+      timeout: 3000
+
     });
   }
 

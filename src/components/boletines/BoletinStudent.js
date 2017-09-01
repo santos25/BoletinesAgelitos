@@ -15,11 +15,12 @@ const BoletinStudent = (props) => {
         <Row className="show-grid">
           <Col xs={12} md={4}>
             <div id="react-no-print">
-              <Table striped bordered condensed hover>
+              <Table  bordered condensed >
                 <HeaderTable  columns={columns}/>
                 <RowTableBoletin estudiantes={props.estudiantes}
                   clickPreviewBoletin={props.clickPreviewBoletin}
-                  clickPrintBoletin={props.clickPrintBoletin}/>
+                  clickPrintBoletin={props.clickPrintBoletin}
+                  rowSelected={props.rowSelected}/>
                 </Table>
               </div>
             </Col>
@@ -33,7 +34,7 @@ const BoletinStudent = (props) => {
                 </div>
               </Col>
             </Row>
-            <Row>
+            <Row  className="show-grid">
               <Col xs={12} md={12}>
                 <PrintBoletin planilla={props.planilla}
                   asignaturas={props.asignaturas}

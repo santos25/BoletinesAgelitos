@@ -7,6 +7,7 @@ import {Base} from './Base';
 // import estudiantes from './Load-data';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/scale.css';
 
 class App extends Component {
 constructor(){
@@ -55,7 +56,8 @@ render() {
           <Informe header="Informe De Desempeño"
             grados={this.state.grados}
             periodos={this.state.periodos}/>
-          <Alert stack={{limit: 3}} />
+          <Alert stack={{limit: 3}}
+                  />
       </Home>
     </div>
   );

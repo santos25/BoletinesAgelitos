@@ -20,6 +20,7 @@ class DataBoletines extends Component {
       asignaturasByGrado:{},
       showNoData: false,
       keyEstudiante : '',
+      // rowSelected : '',
       print: false
     }
   }
@@ -118,7 +119,6 @@ class DataBoletines extends Component {
   }
 
   clickPreviewBoletin(keyStudent){
-    console.log("Key Student " , keyStudent);
     this.setState({
       keyEstudiante : keyStudent
     })
@@ -136,19 +136,14 @@ class DataBoletines extends Component {
   render(){
     const disabled =  this.state.keyGradoSelected && this.state.keyPeriodoSelected? false : true;
     if (this.state.showBoletines) {
-
-      // if(this.state.print){
-      //     this.PrintComponent()
-      //
-      //
-      // }
       return  ( <Home>
         <BoletinStudent estudiantes={this.state.grados[this.state.keyGradoSelected].estudiantes}
                         planilla={this.state.planilla}
                         asignaturas={this.state.asignaturasByGrado}
                         clickPreviewBoletin={this.clickPreviewBoletin.bind(this)}
                         clickPrintBoletin={this.clickPrintBoletin.bind(this)}
-                        keyEstudiante= {this.state.keyEstudiante}/>
+                        keyEstudiante= {this.state.keyEstudiante}
+                        rowSelected={this.state.keyEstudiante}/>
       </Home>
     )
   }

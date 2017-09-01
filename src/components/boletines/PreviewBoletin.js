@@ -19,7 +19,7 @@ const PreviewBoletin = (props) => {
   const {planilla , asignaturas , keyEstudiante} = props;
   return(
     <div>
-      <Row className="show-grid">
+      {/* <Row className="show-grid">
         <div className="divLeft">
           <Col xs={12} md={4}>
             <img className="escudo" src={escudo} alt="Escudo"></img>
@@ -53,8 +53,8 @@ const PreviewBoletin = (props) => {
           </div>
         </Col>
       </div>
-    </Row>
-    <Row className="show-grid">
+    </Row> */}
+    {/* <Row className="show-grid">
       <Col xs={12} md={12}>
         <div className="tittleBoletinContainer">
           <div className="tittleFloating">
@@ -75,12 +75,12 @@ const PreviewBoletin = (props) => {
         </div>
       </Col>
 
-    </Row>
+    </Row> */}
     <Row className="show-grid">
       <Col xs={12} md={12}>
       <Table striped bordered condensed hover>
-        <HeaderTable  columns={columns}/>
-        <tbody>
+        <HeaderTable boletin={true}  columns={columns}/>
+        {/* <tbody>
           {Object.keys(asignaturas).map ((key, i) => {
             if (planilla[0][key] && keyEstudiante !== '') {
               // let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
@@ -98,7 +98,7 @@ const PreviewBoletin = (props) => {
               return null;
             }
           })}
-        </tbody>
+        </tbody> */}
       </Table>
       </Col>
     </Row>
