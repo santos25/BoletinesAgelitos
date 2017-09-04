@@ -5,7 +5,6 @@ import {Button } from 'react-bootstrap';
 
 function renderRow(estudiantes , clickPreviewBoletin ,clickPrintBoletin, rowSelected ,key){
   let estudiante = estudiantes[key];
-  console.log("Resutl row " ,  key === rowSelected ? "matched" : "nothing");
   return(
     <tr key={key} className={ key === rowSelected ? "styleRow" : ""} >
       <td>{estudiante.nombre + " " + estudiante.apellido}

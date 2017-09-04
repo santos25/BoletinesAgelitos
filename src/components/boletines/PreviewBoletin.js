@@ -79,8 +79,8 @@ const PreviewBoletin = (props) => {
     <Row className="show-grid">
       <Col xs={12} md={12}>
       <Table striped bordered condensed hover>
-        <HeaderTable boletin={true}  columns={columns}/>
-        {/* <tbody>
+        <HeaderTable boletin={true} />
+        <tbody>
           {Object.keys(asignaturas).map ((key, i) => {
             if (planilla[0][key] && keyEstudiante !== '') {
               // let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
@@ -98,7 +98,7 @@ const PreviewBoletin = (props) => {
               return null;
             }
           })}
-        </tbody> */}
+        </tbody>
       </Table>
       </Col>
     </Row>

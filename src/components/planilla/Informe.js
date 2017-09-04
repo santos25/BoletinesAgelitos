@@ -15,6 +15,7 @@ class Informe extends Component {
 
   showPlanilla(e){
     e.preventDefault();
+    console.log("show planilla");
     this.setState(prevState => ({
       isPlanilla: !prevState.isPlanilla
     }))
@@ -32,6 +33,7 @@ class Informe extends Component {
     const disabled =  this.state.keyGradoSelected && this.state.keyPeriodoSelected? false : true;
 
     if(this.state.isPlanilla){
+      console.log(this.props.grados[this.state.keyGradoSelected]);
       return (
         <Planilla periodoSelected={this.props.periodos[this.state.keyPeriodoSelected].nombre}
           gradoSelected={this.props.grados[this.state.keyGradoSelected]}
@@ -59,6 +61,7 @@ class Informe extends Component {
                 changePeriodoData={this.changeData.bind(this)}
                 dataPeriodo={this.props.periodos}
                 disabled={disabled}
+                showPeriodo={true}
                 labelButton="Ir a Planillas"
               />
             </Col>

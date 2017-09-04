@@ -68,10 +68,11 @@ class DataBoletines extends Component {
         equalTo : this.state.grados[this.state.keyGradoSelected].nombre
       }
     }).then(data => {
-      let planilla = data.filter((planilla) => planilla.periodo === this.state.periodos[this.state.keyPeriodoSelected].nombre);
-      if(planilla.length > 0){
+      // let planilla = data.filter((planilla) => planilla.periodo === this.state.periodos[this.state.keyPeriodoSelected].nombre);
+      if(data.length > 0){
+        console.log(data);
         // console.log(planilla[0].grado);
-        this.findAsignaturasByGrado(Object.keys(this.state.grados[this.state.keyGradoSelected].asignaturas) , planilla);
+        // this.findAsignaturasByGrado(Object.keys(this.state.grados[this.state.keyGradoSelected].asignaturas) , planilla);
         // this.setState({
         //   showBoletines : true,
         //   planilla
@@ -134,7 +135,7 @@ class DataBoletines extends Component {
   }
 
   render(){
-    const disabled =  this.state.keyGradoSelected && this.state.keyPeriodoSelected? false : true;
+    const disabled =  this.state.keyGradoSelected ? false : true;
     if (this.state.showBoletines) {
       return  ( <Home>
         <BoletinStudent estudiantes={this.state.grados[this.state.keyGradoSelected].estudiantes}
@@ -155,8 +156,7 @@ class DataBoletines extends Component {
             <Row className="show-grid">
               <Col xs={12} md={8}>
                 <Alert bsStyle="danger" onDismiss={this.closeNoDataException.bind(this)}>
-                  {`No se Econtro Datos para  Grado  : ${this.state.grados[this.state.keyGradoSelected].nombre}
-                  y Periodo :  ${this.state.periodos[this.state.keyPeriodoSelected].nombre}`}
+                  {`No se Econtro Datos para  Grado  : ${this.state.grados[this.state.keyGradoSelected].nombre}`}
                   <br></br>
                   {/* <Button bsStyle="primary" onClick={}>Cerrar</Button> */}
                 </Alert>
@@ -177,10 +177,11 @@ class DataBoletines extends Component {
                   valueGradoSelected={this.state.keyGradoSelected}
                   changeGradoData={this.changeData.bind(this)}
                   dataGrado={this.state.grados}
-                  valuePeriodoSelected={this.state.keyPeriodoSelected}
-                  changePeriodoData={this.changeData.bind(this)}
-                  dataPeriodo={this.state.periodos}
+                  // valuePeriodoSelected={this.state.keyPeriodoSelected}
+                  // changePeriodoData={this.changeData.bind(this)}
+                  // dataPeriodo={this.state.periodos}
                   disabled={disabled}
+                  showPeriodo={false}
                   labelButton="Ir a Boletines"
                 />
               </Col>

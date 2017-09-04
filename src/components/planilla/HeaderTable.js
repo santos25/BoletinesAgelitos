@@ -5,14 +5,28 @@ const HeaderTable = (props) => {
   if (props.boletin) {
     return(
       <thead>
-        <tr>
-          <th>Asignatura</th>
-          <th>Descripcion Del Desempeño</th>
+        <tr >
+          <th rowSpan="2">Asignatura</th>
+          <th rowSpan="2">Descripcion Del Desempeño</th>
           <th colSpan="2">Periodo 1</th>
-          <th>H/S</th>
+          <th colSpan="2">Periodo 2</th>
+          <th colSpan="2">Periodo 3</th>
+          <th colSpan="2">Periodo 4</th>
+          <th rowSpan="2">H/S</th>
+        </tr>
+        <tr>
+          <th> Nota </th>
+          <th> DS </th>
+          <th> Nota </th>
+          <th> DS </th>
+          <th> Nota </th>
+          <th> DS </th>
+          <th> Nota </th>
+          <th> DS </th>
         </tr>
       </thead>
     )
+
   }
   return (
     <thead>

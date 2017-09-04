@@ -33,6 +33,7 @@ class Planilla extends Component {
   }
 
   componentDidMount(){
+    console.log("objeto asig " , this.props.gradoSelected.asignaturas);
     this.getAsignaturas(Object.keys(this.props.gradoSelected.asignaturas));
   }
 
@@ -142,6 +143,7 @@ class Planilla extends Component {
   }
 
   getAsignaturas(keyAsignatura){
+    console.log(keyAsignatura);
     Base.fetch('asignaturas', {
       context: this,
       asArray: false
