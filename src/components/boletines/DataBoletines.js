@@ -70,12 +70,12 @@ class DataBoletines extends Component {
     }).then(data => {
       // let planilla = data.filter((planilla) => planilla.periodo === this.state.periodos[this.state.keyPeriodoSelected].nombre);
       if(data.length > 0){
-        console.log(data);
+        // console.log(data);
         // console.log(planilla[0].grado);
-        this.findAsignaturasByGrado(Object.keys(this.state.grados[this.state.keyGradoSelected].asignaturas) , planilla);
+        this.findAsignaturasByGrado(Object.keys(this.state.grados[this.state.keyGradoSelected].asignaturas) , data);
         // this.setState({
         //   showBoletines : true,
-        //   planilla
+        //   planilla : data
         // })
 
       }else {
@@ -89,16 +89,16 @@ class DataBoletines extends Component {
     })
   }
 
-  findAsignaturasByGrado(keyAsignatura, planilla){
+  findAsignaturasByGrado(keyAsignatura, dataBoletin){
     Base.fetch('asignaturas', {
       context: this,
       asArray: false,
     }).then(data => {
-      console.log(keyAsignatura);
+      // console.log(keyAsignatura);
       this.setState({
         asignaturasByGrado :  data[keyAsignatura],
         showBoletines : true,
-        planilla
+        planilla : dataBoletin
       })
     }).catch(error => {
       console.log("Fallo Consultar Asignaturas" , error);

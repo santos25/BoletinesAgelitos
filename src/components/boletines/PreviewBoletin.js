@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row,Col,Table,Label} from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
-import escudo from '../escudo.jpg'
+// import escudo from '../escudo.jpg'
 import Firmas from './Firmas'
 import CuadroDescriptivo from './CuadroDescriptivo'
 // import HeaderTable from '../planilla/HeaderTable';
@@ -79,8 +79,9 @@ const PreviewBoletin = (props) => {
     <Row className="show-grid">
       <Col xs={12} md={12}>
       <Table striped bordered condensed hover>
-        <HeaderTable boletin={true} />
-        <tbody>
+
+        <HeaderTable planilla={planilla}  boletin={true} />
+        {/* <tbody>
           {Object.keys(asignaturas).map ((key, i) => {
             if (planilla[0][key] && keyEstudiante !== '') {
               // let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
@@ -98,7 +99,7 @@ const PreviewBoletin = (props) => {
               return null;
             }
           })}
-        </tbody>
+        </tbody> */}
       </Table>
       </Col>
     </Row>
