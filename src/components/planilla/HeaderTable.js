@@ -1,7 +1,7 @@
 import React from 'react';
 
 const HeaderTable = (props) => {
-  const rows = '';
+  let rows =  "";
   if (props.boletin) {
     return(
       <thead>
@@ -9,13 +9,19 @@ const HeaderTable = (props) => {
           <th rowSpan="2">Asignatura</th>
           <th rowSpan="2">Descripcion Del Desempeño</th>
           {
-            props.planilla.map((colum , key) => <th colSpan="2" key={key}>Periodo {colum.periodo}</th>)
+            props.planilla.map((colum , key) => {
+              rows += <th> Nota </th>;
+              return (
+                <th colSpan="2" key={key}>Periodo {colum.periodo}</th>
+              )
+            })
           }
           <th rowSpan="2">H/S</th>
         </tr>
         <tr>
-            <th> Nota </th>
-            <th> DS </th>
+          {console.log(rows) }
+            {/* <th> Nota </th>
+            <th> DS </th> */}
         </tr>
       </thead>
     )
@@ -25,7 +31,6 @@ const HeaderTable = (props) => {
     <thead>
       <tr>
         {
-
           props.columns.map((colum,i) => <th key={i} >{colum}</th>)
         }
       </tr>

@@ -54,28 +54,7 @@ const PreviewBoletin = (props) => {
         </Col>
       </div>
     </Row> */}
-    {/* <Row className="show-grid">
-      <Col xs={12} md={12}>
-        <div className="tittleBoletinContainer">
-          <div className="tittleFloating">
-            <Label bsStyle="primary">INFORME ACADEMICO </Label>
-          </div>
-          <div className="tittleFloating">
-            <Label bsStyle="primary">{`GRADO : ${planilla[0].grado}`} </Label>
-          </div>
-          <div className="tittleFloating">
-            <Label bsStyle="primary">JORNADA : Mañana</Label>
-          </div>
-          <div className="tittleFloating">
-            <Label bsStyle="primary">{`PERIODO : ${planilla[0].periodo}`}</Label>
-          </div>
-          <div className="tittleFloating">
-            <Label bsStyle="primary"> {`AÑO : ${ new Date().getFullYear()}`}</Label>
-          </div>
-        </div>
-      </Col>
-
-    </Row> */}
+    
     <Row className="show-grid">
       <Col xs={12} md={12}>
       <Table striped bordered condensed hover>
