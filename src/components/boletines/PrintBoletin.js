@@ -62,7 +62,7 @@ const PrintBoletin = (props) => {
 
         <div>
           <Table striped bordered condensed hover>
-            <HeaderTable  columns={columns}/>
+            <HeaderTable boletin={true} />
             <tbody>
               {Object.keys(asignaturas).map ((key, i) => {
                 if (planilla[0][key] && keyEstudiante !== '') {
@@ -87,6 +87,13 @@ const PrintBoletin = (props) => {
             </tbody>
           </Table>
         </div>
+        <Row>
+          <Col xs={12} md={12}>
+            <div className="promedio" >
+              <Label bsStyle="default"> Promedio : 4.4 </Label>
+            </div>
+          </Col>
+        </Row>
         <Row className="show-grid">
           <div className="obserCuadro">
             <div className="observacion">

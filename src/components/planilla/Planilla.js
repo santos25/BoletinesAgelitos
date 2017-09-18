@@ -69,13 +69,20 @@ class Planilla extends Component {
   }
 
   onChangeAsignatura(e){
-
+    let sure = true;
     // this.openModal(e);
     this.setState({
       keyAsignaturaSelected : e.target.value,
     })
     // this.openModal(e);
+    if(this.state.keyAsignaturaSelected !== '')
+    sure = window.confirm( "SE BORRARAN TODOS LOS DATOS QUE NO HAN SIDO GUARDADOS");
+
+
+    if (sure)
     this.findPlanillasByAsignatura(e.target.value)
+
+
   }
 
   findPlanillasByAsignatura(asignaturaKey){
@@ -210,7 +217,7 @@ class Planilla extends Component {
                 <HeaderTable  columns={columns}/>
                 <RowTable estudiantes={this.state.estudiantes}
                   onChangeStudent={this.onChangeStudent.bind(this)}  />
-              </Table>
+                </Table>
               </Col>
             </Row>
             <Row>
@@ -222,10 +229,10 @@ class Planilla extends Component {
                 </Col>
               </Row>
               {/* <Modal showModalAsignatura={this.state.showModalAsignatura}
-                    close={this.closeModal.bind(this )}/> */}
-              </Grid>
-            )
-          }
+              close={this.closeModal.bind(this )}/> */}
+            </Grid>
+          )
         }
+      }
 
-        export default Planilla;
+      export default Planilla;
