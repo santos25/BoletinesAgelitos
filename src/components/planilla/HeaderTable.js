@@ -10,14 +10,14 @@ const HeaderTable = (props) => {
     return(
       <thead>
         <tr>
-          <th rowSpan="2">Asignatura</th>
-          <th rowSpan="2">Descripcion Del Desempeño</th>
+          <th rowSpan="2">ASIGNATURA</th>
+          <th rowSpan="2"><center>DESCRIPCION DE DESEMPEÑO</center></th>
           {/* { columnsPeriodos } */}
           <th colSpan="2" > <center>Periodo 4</center></th>
           <th rowSpan="2">H/S</th>
         </tr>
         <tr>
-          <th>Nota </th>
+          <th>NOTA </th>
           <th>DS </th>
         </tr>
       </thead>

@@ -19,79 +19,37 @@ const PreviewBoletin = (props) => {
   const {planilla , asignaturas , keyEstudiante} = props;
   return(
     <div>
-      {/* <Row className="show-grid">
-      <div className="divLeft">
-      <Col xs={12} md={4}>
-      <img className="escudo" src={escudo} alt="Escudo"></img>
-    </Col>
-  </div>
-  <div className="">
-  <Col xs={12} md={4}>
-  <div>
-  <Label bsStyle="primary"> INSTITUTO ANGELITOS ALEGRES </Label>
-</div>
-<div>
-<Label bsStyle="primary">Nuevo Bosque Trv. 51    N° 29 B 77</Label>
-</div>
-<div>
-<Label bsStyle="primary" >Aprobado por Resolución N° 7962</Label>
-</div>
-<div>
-<Label bsStyle="primary">Dane: 313001000185</Label>
-</div>
-</Col>
-</div>
-<div className="divRight">
-<Col xs={12} md={4}>
-<div>
-<Label bsStyle="primary">
-{ props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
-+  props.estudiantes[props.keyEstudiante].apellido
-: ""
-}
-</Label>
-</div>
-</Col>
-</div>
-</Row> */}
+      <Row className="show-grid">
+        <Col xs={12} md={12}>
+          <Table striped bordered condensed hover>
 
-<Row className="show-grid">
-  <Col xs={12} md={12}>
-    <Table striped bordered condensed hover>
+            <HeaderTable planilla={planilla}  boletin={true} />
+            <tbody>
+              {Object.keys(asignaturas).map ((key, i) => {
+                if (planilla[0][key] && keyEstudiante !== '') {
+                  // let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
+                  let estudianteData = returnEstudianteData(planilla , key , keyEstudiante);
+                  return(
+                    <tr key={key}>
+                      <td> {planilla[0][key].nombre} </td>
+                      <td className="rowDescripcin"> {estudianteData.descripcion} </td>
+                      <td> {estudianteData.nota} </td>
+                      <td> {estudianteData.desempeno} </td>
+                      <td> {estudianteData.horas} </td>
+                    </tr>
+                  )
+                }else {
+                  return null;
+                }
+              })}
+            </tbody>
+          </Table>
 
-      <HeaderTable planilla={planilla}  boletin={true} />
-      <tbody>
-        {Object.keys(asignaturas).map ((key, i) => {
-          if (planilla[0][key] && keyEstudiante !== '') {
-            // let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
-            let estudianteData = returnEstudianteData(planilla , key , keyEstudiante);
-            return(
-              <tr key={key}>
-                <td> {planilla[0][key].nombre} </td>
-                <td className="rowDescripcin"> {estudianteData.descripcion} </td>
-                <td> {estudianteData.nota} </td>
-                <td> {estudianteData.desempeno} </td>
-                <td> {estudianteData.horas} </td>
-              </tr>
-            )
-          }else {
-            return null;
-          }
-        })}
-      </tbody>
-    </Table>
+        </Col>
+      </Row>
 
-  </Col>
-</Row>
-<Row>
-  <Col xs={12} md={12}>
-    <div className="promedio" >
-      <Label bsStyle="default"> Promedio : 4.4 </Label>
     </div>
-  </Col>
-</Row>
-</div>
-)
+  )
 }
 
 

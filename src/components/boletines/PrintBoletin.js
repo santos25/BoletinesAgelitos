@@ -6,6 +6,11 @@ import escudo from '../escudo.jpg'
 import Firmas from './Firmas'
 import CuadroDescriptivo from './CuadroDescriptivo'
 
+function promedioNota(){
+
+  return 4.2 ;
+}
+
 const PrintBoletin = (props) => {
   const columns = ['Asignatura','Descripcion Del Desempeño', 'Nota', 'DS' ,'H/S'];
   // const columns = ['Nombre Del Estudiante', 'Ver', 'Imprimir'];
@@ -90,7 +95,7 @@ const PrintBoletin = (props) => {
         <Row>
           <Col xs={12} md={12}>
             <div className="promedio" >
-              <Label bsStyle="default"> Promedio : 4.4 </Label>
+              <h4><Label bsStyle="default"> Promedio :  { promedioNota()}</Label></h4>
             </div>
           </Col>
         </Row>
