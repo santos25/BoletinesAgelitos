@@ -32,7 +32,7 @@ const PreviewBoletin = (props) => {
                   return(
                     <tr key={key}>
                       <td> {planilla[0][key].nombre} </td>
-                      <td className="rowDescripcin"> {estudianteData.descripcion} </td>
+                      <td className="rowDescripcinPreview"> {estudianteData.descripcion} </td>
                       <td> {estudianteData.nota} </td>
                       <td> {estudianteData.desempeno} </td>
                       <td> {estudianteData.horas} </td>

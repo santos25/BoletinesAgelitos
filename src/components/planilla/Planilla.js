@@ -18,9 +18,7 @@ class Planilla extends Component {
       keyAsignaturaSelected : '',
       estudiantes : {},
       keyPlanilla : '',
-      alertVisible: false,
-      showModalAsignatura: false,
-      // renderPlanilla: false
+      alertVisible: false
     }
   }
 
@@ -38,7 +36,6 @@ class Planilla extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    console.log("State --> " , nextState);
     return true;
   }
 
@@ -76,7 +73,7 @@ class Planilla extends Component {
     })
     // this.openModal(e);
     if(this.state.keyAsignaturaSelected !== '')
-    sure = window.confirm( "SE BORRARAN TODOS LOS DATOS QUE NO HAN SIDO GUARDADOS");
+    sure = window.confirm( "SE BORRARÁN TODOS LOS DATOS QUE NO HAN SIDO GUARDADOS");
 
 
     if (sure)
@@ -95,7 +92,7 @@ class Planilla extends Component {
       }
     }).then(data => {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
-      // console.log(planilla);
+      // console.log(planilla[0][asignaturaKey]);
       if(planilla[0][asignaturaKey]){
         this.uploadStudents(planilla[0][asignaturaKey].estudiantes , planilla[0].key);
       }else {
@@ -145,7 +142,6 @@ class Planilla extends Component {
       position: 'bottom-left',
       effect: 'scale',
       timeout: 3000
-
     });
   }
 
@@ -175,13 +171,11 @@ class Planilla extends Component {
     this.setState({alertVisible: false});
   }
 
-  toogleModal(){
-    this.setState({
-      showModalAsignatura : !this.state.showModalAsignatura
-    })
-  }
   render(){
-    const columns = ['Nombre Del Estudiante', 'Descripcion Del Desempeño', 'Nota', 'DS = Desempeño' ,'H/S'];
+    let  columns = ['Nombre Del Estudiante', 'Descripcion Del Desempeño', 'Nota', 'DS = Desempeño'];
+    if(!this.props.gradoSelected.excludeHS || false )
+        columns.push("H/S");
+
     return(
       <Grid>
         {this.state.alertVisible ?<AlertAsignatura handleDismiss= {this.handleAlertDismiss.bind(this)}/> : ""}
@@ -216,7 +210,8 @@ class Planilla extends Component {
               <Table striped bordered condensed hover>
                 <HeaderTable  columns={columns}/>
                 <RowTable estudiantes={this.state.estudiantes}
-                  onChangeStudent={this.onChangeStudent.bind(this)}  />
+                  onChangeStudent={this.onChangeStudent.bind(this)}
+                  excludehs={this.props.gradoSelected.excludeHS || false}/>
                 </Table>
               </Col>
             </Row>

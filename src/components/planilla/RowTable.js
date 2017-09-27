@@ -36,6 +36,7 @@ class RowTable extends Component {
   }
 
   renderRow(key){
+    console.log("excludehs " , this.props.excludehs);
     let estudiante = this.props.estudiantes[key];
     const style = {
       width : 90

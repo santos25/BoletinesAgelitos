@@ -32,7 +32,7 @@ componentWillMount(){
     state: 'periodos',
   });
 
-  // this.ref = Base.syncState(`grados/grado1/estudiantes`, {
+  // this.ref = Base.syncState(`grados/grado6/estudiantes`, {
   //   context: this,
   //   state: 'estudiantes',
   // });
@@ -45,7 +45,6 @@ componentDidMount(){
   // })
 }
 componentWillUnmount(){
-  console.log("desmonto App.js");
   Base.removeBinding(this.ref);
 }
 
