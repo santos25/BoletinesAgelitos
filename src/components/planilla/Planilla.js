@@ -146,7 +146,6 @@ class Planilla extends Component {
   }
 
   getAsignaturas(keyAsignatura){
-    console.log(keyAsignatura);
     Base.fetch('asignaturas', {
       context: this,
       asArray: false

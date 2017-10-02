@@ -14,7 +14,7 @@ function returnEstudianteData(planilla, key , keyEstudiante){
 }
 
 const PreviewBoletin = (props) => {
-  const columns = ['Asignatura','Descripcion Del Desempeño', 'Nota', 'DS' ,'H/S'];
+  // const columns = ['Asignatura','Descripcion Del Desempeño', 'Nota', 'DS' ,'H/S'];
   // const columns = ['Nombre Del Estudiante', 'Ver', 'Imprimir'];
   const {planilla , asignaturas , keyEstudiante} = props;
   return(
@@ -23,7 +23,7 @@ const PreviewBoletin = (props) => {
         <Col xs={12} md={12}>
           <Table striped bordered condensed hover>
 
-            <HeaderTable planilla={planilla}  boletin={true} />
+            <HeaderTable   boletin={true} />
             <tbody>
               {Object.keys(asignaturas).map ((key, i) => {
                 if (planilla[0][key] && keyEstudiante !== '') {
