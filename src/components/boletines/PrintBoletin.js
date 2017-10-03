@@ -2,19 +2,16 @@ import React from 'react';
 import { Table,Label,Row,Col } from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
 import PrintTemplate  from 'react-print';
-import escudo from '../escudo.jpg'
-import Firmas from './Firmas'
-import CuadroDescriptivo from './CuadroDescriptivo'
-
-function promedioNota(){
-
-  return 4.2 ;
-}
+import escudo from '../escudo.jpg';
+import Firmas from './Firmas';
+import CuadroDescriptivo from './CuadroDescriptivo';
 
 const PrintBoletin = (props) => {
   const columns = ['Asignatura','Descripcion Del Desempeño', 'Nota', 'DS' ,'H/S'];
   // const columns = ['Nombre Del Estudiante', 'Ver', 'Imprimir'];
   const {planilla , asignaturas , keyEstudiante} = props;
+  let arrayNotas = [];
+  let totalAsignaturas= 0;
   return(
     <div >
       <PrintTemplate>
@@ -22,7 +19,7 @@ const PrintBoletin = (props) => {
           <div className="escudoBoletin">
             <img  src={escudo} alt="Escudo"></img>
           </div>
-          <div className="divCabecera">
+          <div className="">
             <div >
               <label> INSTITUTO ANGELITOS ALEGRES </label>
             </div>
@@ -36,8 +33,8 @@ const PrintBoletin = (props) => {
               <label>Dane: 313001000185</label>
             </div>
           </div>
-          <div className="divCabecera">
-            <label>Nombre del Estudiante : </label>
+          <div className="">
+            <label>Nombre del Estudiante : </label><br/>
             <label>  { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
               +  props.estudiantes[props.keyEstudiante].apellido
               : ""
@@ -56,7 +53,7 @@ const PrintBoletin = (props) => {
             <Label bsStyle="default">JORNADA : Mañana</Label>
           </div>
           <div className="tittleFloating">
-            <Label bsStyle="default">PERIODO : 1 </Label>
+            <Label bsStyle="default">PERIODO : 4 </Label>
             {/* <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label> */}
           </div>
           <div className="tittleFloating">
@@ -69,12 +66,14 @@ const PrintBoletin = (props) => {
           <Table striped bordered condensed hover>
             <HeaderTable boletin={true} />
             <tbody>
-              {Object.keys(asignaturas).map ((key, i) => {
-                if (planilla[0][key] && keyEstudiante !== '') {
-                  let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
+              {Object.keys(asignaturas).map ((keyAsignatura, i) => {
+                if (planilla[0][keyAsignatura] && keyEstudiante !== '') {
+                  let estudianteData = planilla[0][keyAsignatura].estudiantes[keyEstudiante]
+                  arrayNotas.push(estudianteData.nota);
+                  totalAsignaturas = i + 1;
                   return(
-                    <tr key={key}>
-                      <td>{planilla[0][key].nombre}
+                    <tr key={keyAsignatura}>
+                      <td>{planilla[0][keyAsignatura].nombre}
                       </td>
                       <td className="rowDescripcin">{estudianteData.descripcion}   </td>
                       <td>{estudianteData.nota}
@@ -95,31 +94,35 @@ const PrintBoletin = (props) => {
         <Row>
           <Col xs={12} md={12}>
             <div className="promedio" >
-              <h4><Label bsStyle="default"> Promedio :  { promedioNota()}</Label></h4>
-            </div>
-          </Col>
-        </Row>
-        <Row className="show-grid">
-          <div className="obserCuadro">
-            <div className="observacion">
-              <label>Observaciones</label>
-              <pre>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                sagittis tellus. Lorem ipsum dolor sit amet</pre>
-              </div>
-              <div className="cuadro">
-                <CuadroDescriptivo />
-              </div>
-            </div>
-          </Row>
-          <Row className="show-grid">
-            <Col xs={12} md={12}>
-              <Firmas />
-            </Col>
-          </Row>
-        </PrintTemplate>
-      </div>
+              <h4><Label bsStyle="default"> Promedio :  { arrayNotas.reduce( (sum, nota) =>{
+                return sum +  parseFloat(nota);
+              },0) / totalAsignaturas}
+            </Label>
+          </h4>
+        </div>
+      </Col>
+    </Row>
+    <Row className="show-grid">
+      <div className="obserCuadro">
+        <div className="observacion">
+          <label>Observaciones</label>
+          <pre>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            sagittis tellus. Lorem ipsum dolor sit amet</pre>
+          </div>
+          <div className="cuadro">
+            <CuadroDescriptivo />
+          </div>
+        </div>
+      </Row>
+      <Row className="show-grid">
+        <Col xs={12} md={12}>
+          <Firmas />
+        </Col>
+      </Row>
+    </PrintTemplate>
+  </div>
 
-    )
-  }
+)
+}
 
-  export default PrintBoletin;
+export default PrintBoletin;

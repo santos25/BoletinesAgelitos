@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Label,Grid,Row,Col } from 'react-bootstrap';
 import Planilla from './Planilla';
 import InputGradoPeriodo from '../general/InputGradoPeriodo'
+import Alert from 'react-s-alert';
 
 class Informe extends Component {
   constructor(){
@@ -15,10 +16,18 @@ class Informe extends Component {
 
   showPlanilla(e){
     e.preventDefault();
-    console.log("show planilla");
-    this.setState(prevState => ({
-      isPlanilla: !prevState.isPlanilla
-    }))
+    if (this.state.keyPeriodoSelected === 'periodo4') {
+      this.setState(prevState => ({
+        isPlanilla: !prevState.isPlanilla
+      }))
+    }else {
+      Alert.error('Seleccione Periodo 4!', {
+        position: 'bottom-left',
+        effect: 'scale',
+        timeout: 3000
+      });
+    }
+
   }
 
   changeData(e){

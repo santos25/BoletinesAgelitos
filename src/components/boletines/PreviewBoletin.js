@@ -6,9 +6,9 @@ import Firmas from './Firmas'
 import CuadroDescriptivo from './CuadroDescriptivo'
 // import HeaderTable from '../planilla/HeaderTable';
 // import RowTableBoletin from './RowTableBoletin';
-function returnEstudianteData(planilla, key , keyEstudiante){
+function returnEstudianteData(planilla, keyAsignatura , keyEstudiante){
 
-  let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
+  let estudianteData = planilla[0][keyAsignatura].estudiantes[keyEstudiante]
 
   return estudianteData;
 }
@@ -25,13 +25,13 @@ const PreviewBoletin = (props) => {
 
             <HeaderTable   boletin={true} />
             <tbody>
-              {Object.keys(asignaturas).map ((key, i) => {
-                if (planilla[0][key] && keyEstudiante !== '') {
+              {Object.keys(asignaturas).map ((keyAsignatura, i) => {
+                if (planilla[0][keyAsignatura] && keyEstudiante !== '') {
                   // let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
-                  let estudianteData = returnEstudianteData(planilla , key , keyEstudiante);
+                  let estudianteData = returnEstudianteData(planilla , keyAsignatura , keyEstudiante);
                   return(
-                    <tr key={key}>
-                      <td> {planilla[0][key].nombre} </td>
+                    <tr key={keyAsignatura}>
+                      <td> {planilla[0][keyAsignatura].nombre} </td>
                       <td className="rowDescripcinPreview"> {estudianteData.descripcion} </td>
                       <td> {estudianteData.nota} </td>
                       <td> {estudianteData.desempeno} </td>
