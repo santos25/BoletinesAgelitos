@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import Home from './containers/Home';
 import Informe from './planilla/Informe';
 import {Base} from './Base';
-// import estudiantes from './Load-data';
+import estudiantes from './Load-data';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/scale.css';
@@ -17,7 +17,7 @@ constructor(){
       periodos : '',
       // isPlanilla : false,
       // isBoletines : false
-      // estudiantes:''
+      estudiantes:''
   }
 }
 
@@ -32,17 +32,17 @@ componentWillMount(){
     state: 'periodos',
   });
 
-  // this.ref = Base.syncState(`grados/grado6/estudiantes`, {
-  //   context: this,
-  //   state: 'estudiantes',
-  // });
+  this.ref = Base.syncState(`grados/grado1`, {
+    context: this,
+    state: 'estudiantes',
+  });
 
 }
 
 componentDidMount(){
-  // this.setState({
-  //   estudiantes
-  // })
+  this.setState({
+    estudiantes
+  })
 }
 componentWillUnmount(){
   Base.removeBinding(this.ref);

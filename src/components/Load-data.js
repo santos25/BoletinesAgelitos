@@ -1,30 +1,62 @@
 module.exports = {
+  estudiante1 : {
+    nombre : "JUAN SEBASTIAN",
+    apellido :"ATENCIO MOGOLLÓN"
+  },
+  estudiante2 : {
+    nombre : "GABRIELA SOFÍA",
+    apellido :"TORRES MENDOZA"
+  },
+  estudiante3 : {
+    nombre : "MARIE JANE",
+    apellido :"LÓPEZ AGÁMEZ"
+  },
+  estudiante4 : {
+    nombre : "LUIS SANTIAGO",
+    apellido :"LÓPEZ CABRERA"
+  },
+  estudiante5 : {
+    nombre : "LIRA ESTHER",
+    apellido :"LÓPEZ SALAS"
+  },
+  estudiante6 : {
+    nombre : "EMMANUEL DAVID",
+    apellido :"VALENCIA MARTÍNEZ"
+  },
   estudiante7 : {
-    nombre : "SEBASTÍAN ANDRÉS",
-    apellido :"POLANCO LUNA"
+    nombre : "ANDERSON",
+    apellido :"NRODRIGUEZ POLONIA"
   },
   estudiante8 : {
-    nombre : "SALOMÉ SOFÍA",
-    apellido :"TIJERA LAMBIS"
+    nombre : "ALFONSO DAVID",
+    apellido :"CANO ZUÑIGA"
   },
   estudiante9 : {
-    nombre : "ALEJANDRO JOSÉ",
-    apellido :"TRESPALACIOS CRUZ"
+    nombre : "JULIAN DAVID",
+    apellido :"IBARRA LÓPEZ"
   },
   estudiante10 : {
-    nombre : "NICOLLE ANDREA",
-    apellido :"VALENCIA NÚÑEZ"
+    nombre : "JORGE MARIO ",
+    apellido :"CADENA PELUFO"
   },
   estudiante11 : {
-    nombre : "KENAN",
-    apellido :"VALIENTE MARTÍNEZ"
+    nombre : "SANTIAGO ISAÍAS ",
+    apellido :"VERBEL CONEO"
   },
   estudiante12 : {
-    nombre : "XAVIER",
-    apellido :"ZEA PUERTA"
+    nombre : "SARA MARCELA ",
+    apellido :"GALVIS MAZA "
   },
   estudiante13 : {
-    nombre : "ADRIAN JOSÉ",
-    apellido :"NIEVES JURADO"
+    nombre : "RAMÓN ANDRÉS ",
+    apellido :"CORRAL NARVAEZ "
+  },
+  estudiante14 : {
+    nombre : "CARLOS THOMÁS ",
+    apellido :"RIVADENEIRA CERPA"
+  },
+  estudiante15 : {
+    nombre : "VALERY  ",
+    apellido :"CARO DÌAZ"
   }
 }
