@@ -1,62 +1,74 @@
 module.exports = {
   estudiante1 : {
-    nombre : "JUAN SEBASTIAN",
-    apellido :"ATENCIO MOGOLLÓN"
+    nombre : "MARIA CAMILA   ",
+    apellido :"MARTÍNEZ PEDROZA"
   },
   estudiante2 : {
-    nombre : "GABRIELA SOFÍA",
-    apellido :"TORRES MENDOZA"
+    nombre : "MELANY    ",
+    apellido :"DE LA ROSA HENAO"
   },
   estudiante3 : {
-    nombre : "MARIE JANE",
-    apellido :"LÓPEZ AGÁMEZ"
+    nombre : "SARA     ",
+    apellido :"DE LA ROSA POSSO   "
   },
   estudiante4 : {
-    nombre : "LUIS SANTIAGO",
-    apellido :"LÓPEZ CABRERA"
+    nombre : "JUAN JOSÉ  ",
+    apellido :"PEREIRA TOSCANO"
   },
   estudiante5 : {
-    nombre : "LIRA ESTHER",
-    apellido :"LÓPEZ SALAS"
+    nombre : "SAMUEL    ",
+    apellido :"LÓPEZ PEÑATA "
   },
   estudiante6 : {
-    nombre : "EMMANUEL DAVID",
-    apellido :"VALENCIA MARTÍNEZ"
+    nombre : "SOFIA   ",
+    apellido :"SOLANO PATERNINA "
   },
   estudiante7 : {
-    nombre : "ANDERSON",
-    apellido :"NRODRIGUEZ POLONIA"
+    nombre : "DANIEL ESTEBAN   ",
+    apellido :"ROJAS ZUÑIGA"
   },
   estudiante8 : {
-    nombre : "ALFONSO DAVID",
-    apellido :"CANO ZUÑIGA"
+    nombre : "ALEX SANTIAGO    ",
+    apellido :"ACOSTA PACHECO"
   },
   estudiante9 : {
-    nombre : "JULIAN DAVID",
-    apellido :"IBARRA LÓPEZ"
+    nombre : "ISABELLA SOFIA     ",
+    apellido :"CASTELLANO ÁVILA   "
   },
   estudiante10 : {
-    nombre : "JORGE MARIO ",
-    apellido :"CADENA PELUFO"
+    nombre : "VALERI SOFIA    ",
+    apellido :"TORRES MADRID   "
   },
   estudiante11 : {
-    nombre : "SANTIAGO ISAÍAS ",
-    apellido :"VERBEL CONEO"
+    nombre : "IVAN FELIPE    ",
+    apellido :"BEJARANO GONZÁLEZ      "
   },
   estudiante12 : {
-    nombre : "SARA MARCELA ",
-    apellido :"GALVIS MAZA "
+    nombre : "ALEJANDRO      ",
+    apellido :"BANQUEZ NIÑO  "
   },
   estudiante13 : {
-    nombre : "RAMÓN ANDRÉS ",
-    apellido :"CORRAL NARVAEZ "
+    nombre : "JEREMY CAMILO    ",
+    apellido :"ZAMBRANO RODRIGUEZ  "
   },
   estudiante14 : {
-    nombre : "CARLOS THOMÁS ",
-    apellido :"RIVADENEIRA CERPA"
+    nombre : "TALIANA SOFIA  ",
+    apellido :"OSORIO LEÓN "
   },
   estudiante15 : {
-    nombre : "VALERY  ",
-    apellido :"CARO DÌAZ"
+    nombre : "DEINER ANDRÉS ",
+    apellido :"RAMIREZ MARRUGO "
+  },
+  estudiante16 : {
+    nombre : "SARA SOFIA   ",
+    apellido :"TOVAR RODRIGUEZ  "
+  },
+  estudiante17 : {
+    nombre : "THIAGO ALONSO    ",
+    apellido :"MARRUGO DEAN  "
+  },
+  estudiante18 : {
+    nombre : "IAN JOSÉ     ",
+    apellido :"NIEVES JURADO  "
   }
 }

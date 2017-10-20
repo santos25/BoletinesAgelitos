@@ -56,7 +56,7 @@ class Informe extends Component {
           <Row className="show-grid">
             <Col xs={12} md={8}>
               <div className="formPlanilla">
-                <h3><Label bsStyle="primary"> PLANILLA </Label><br></br></h3>
+                <h3><Label bsStyle="primary"> Planilla </Label><br></br></h3>
               </div>
             </Col>
           </Row>

@@ -17,12 +17,14 @@ const GradoPeriodo = (props) => {
               </Col>
               <Col xs={6} md={6}>
                 {props.showPeriodo &&   <ControlsSelect title="Seleccione Periodo"
-                    name="keyPeriodoSelected"
-                    valueSelected={props.valuePeriodoSelected}
-                    changeData={props.changePeriodoData}
-                    data={props.dataPeriodo}/> }
+                  name="keyPeriodoSelected"
+                  valueSelected={props.valuePeriodoSelected}
+                  changeData={props.changePeriodoData}
+                  data={props.dataPeriodo}/> }
                 </Col>
-                <Button disabled={props.disabled} bsStyle="primary" type="submit"> {props.labelButton}</Button>
+                <Col xs={12} md={12}>
+                  <center><Button  disabled={props.disabled} bsStyle="primary" type="submit"> {props.labelButton}</Button></center>
+                </Col>
               </form>
             </Row>
           </Grid>

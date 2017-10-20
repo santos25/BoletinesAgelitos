@@ -35,7 +35,8 @@ class RowTable extends Component {
     }
   }
 
-  renderHS(excludehs, estudiante , style){
+  renderHS(estudiante , style){
+      console.log(estudiante);
       return(
         <td style={style}>
           <h3 className="formPlanilla"><Label bsStyle="info">{estudiante.horas || ''}</Label></h3>
@@ -49,7 +50,7 @@ class RowTable extends Component {
     const style = {
       width : 90
     }
-    let rowHS ; 
+    let rowHS ;
     if (!this.props.excludehs) {
       rowHS = this.renderHS(estudiante, style);
     }
@@ -76,6 +77,7 @@ class RowTable extends Component {
               <FormControl  id="formControlsText"
                 onChange={(e) => this.onChangeRowStudent(e, key)}
                 type="number"
+                required
                 min="0"
                 name="nota"
                 value={estudiante.nota || ''}

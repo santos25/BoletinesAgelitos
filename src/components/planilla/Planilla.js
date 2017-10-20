@@ -18,7 +18,7 @@ class Planilla extends Component {
       keyAsignaturaSelected : '',
       estudiantes : {},
       keyPlanilla : '',
-      alertVisible: false
+      alertVisible: true
     }
   }
 
@@ -68,16 +68,21 @@ class Planilla extends Component {
   onChangeAsignatura(e){
     let sure = true;
     // this.openModal(e);
-    this.setState({
-      keyAsignaturaSelected : e.target.value,
-    })
+    // this.setState({
+    //   keyAsignaturaSelected : e.target.value,
+    // })
     // this.openModal(e);
     if(this.state.keyAsignaturaSelected !== '')
     sure = window.confirm( "SE BORRARÁN TODOS LOS DATOS QUE NO HAN SIDO GUARDADOS");
 
 
-    if (sure)
-    this.findPlanillasByAsignatura(e.target.value)
+    if (sure){
+      this.setState({
+        keyAsignaturaSelected : e.target.value,
+      });
+
+      this.findPlanillasByAsignatura(e.target.value)
+    }
 
 
   }
@@ -172,8 +177,7 @@ class Planilla extends Component {
 
   render(){
     let  columns = ['Nombre Del Estudiante', 'Descripcion Del Desempeño', 'Nota', 'DS = Desempeño'];
-    if(!this.props.gradoSelected.excludeHS || false )
-        columns.push("H/S");
+    if(!this.props.gradoSelected.excludeHS || false )  columns.push("H/S");
 
     return(
       <Grid>
