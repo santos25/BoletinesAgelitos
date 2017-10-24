@@ -65,7 +65,7 @@ class RowTable extends Component {
           <FormGroup controlId="formControlsTextarea">
             <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
               componentClass="textarea"
-              style={{ height: 150 }}
+              style={{ height: 100 }}
               className="textarea"
               name="descripcion"
               value={estudiante.descripcion || ''}
