@@ -1,8 +1,10 @@
 import React from 'react';
 import {Grid,Row,Col,Button } from 'react-bootstrap';
 import ControlsSelect from './ControlsSelect';
-import "./InputGradoPeriodo.css"
+import "./InputGradoPeriodo.css";
+
 const GradoPeriodo = (props) => {
+
   return (
     <div id="form">
       <Grid >

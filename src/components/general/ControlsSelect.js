@@ -2,7 +2,7 @@
   import {FormGroup,FormControl,ControlLabel } from 'react-bootstrap';
 
   const formControlsSelect = (props) => {
-
+    
   return(
     <FormGroup controlId="formControlsSelect">
       <ControlLabel>{props.title}</ControlLabel>

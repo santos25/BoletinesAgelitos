@@ -13,7 +13,7 @@ class App extends Component {
 constructor(){
   super();
   this.state = {
-      grados : '',
+      grados : [],
       periodos : '',
       // isPlanilla : false,
       // isBoletines : false
@@ -25,7 +25,9 @@ componentWillMount(){
   this.ref = Base.syncState(`grados`, {
     context: this,
     state: 'grados',
+    asArray: true
   });
+
 
   this.ref = Base.syncState(`periodos`, {
     context: this,

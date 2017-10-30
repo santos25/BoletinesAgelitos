@@ -214,7 +214,8 @@ class Planilla extends Component {
                 <HeaderTable  columns={columns}/>
                 <RowTable estudiantes={this.state.estudiantes}
                   onChangeStudent={this.onChangeStudent.bind(this)}
-                  excludehs={this.props.gradoSelected.excludeHS || false}/>
+                  excludehs={this.props.gradoSelected.excludeHS || false}
+                  horasByAsignatura={ this.state.asignaturas[this.state.keyAsignaturaSelected] || ""}/>
                 </Table>
               </Col>
             </Row>

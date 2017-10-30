@@ -8,8 +8,8 @@ class Informe extends Component {
   constructor(){
     super();
     this.state = {
-      keyGradoSelected : 'grado1',
-      keyPeriodoSelected: 'periodo1'
+      keyGradoSelected : '',
+      keyPeriodoSelected: ''
       // isPlanilla: false
     }
   }
@@ -38,8 +38,11 @@ class Informe extends Component {
     })
   }
 
+
   render() {
     const disabled =  this.state.keyGradoSelected && this.state.keyPeriodoSelected? false : true;
+
+      //  this.props.grados.sort((beforeData,afterData) => parseInt(beforeData.orden) - parseInt(afterData.orden));
 
     if(this.state.isPlanilla){
       console.log(this.props.grados[this.state.keyGradoSelected]);
@@ -65,7 +68,7 @@ class Informe extends Component {
               <InputGradoPeriodo onSubmit={this.showPlanilla.bind(this)}
                 valueGradoSelected={this.state.keyGradoSelected}
                 changeGradoData={this.changeData.bind(this)}
-                dataGrado={this.props.grados}
+                dataGrado={this.props.grados.sort((beforeData,afterData) => parseInt(beforeData.orden) - parseInt(afterData.orden))}
                 valuePeriodoSelected={this.state.keyPeriodoSelected}
                 changePeriodoData={this.changeData.bind(this)}
                 dataPeriodo={this.props.periodos}

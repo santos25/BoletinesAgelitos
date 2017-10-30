@@ -9,7 +9,10 @@ class RowTable extends Component {
     let estuEdit = {...this.props.estudiantes[keyEstudiante], [name] : value};
     if(desempeno){
       estuEdit.desempeno = desempeno;
-      estuEdit.horas = 5;
+      if (!this.props.excludehs) {
+        estuEdit.horas = this.props.horasByAsignatura.horas;
+      }
+      // estuEdit.horas = this.props.horasByAsignatura;
     }
     this.props.onChangeStudent(keyEstudiante,estuEdit);
 
@@ -39,7 +42,7 @@ class RowTable extends Component {
       console.log(estudiante);
       return(
         <td style={style}>
-          <h3 className="formPlanilla"><Label bsStyle="info">{estudiante.horas || ''}</Label></h3>
+          <h3 className="formPlanilla"><Label bsStyle="info">{estudiante.horas || this.props.horasByAsignatura.horas}</Label></h3>
         </td>
       )
   }
@@ -57,7 +60,6 @@ class RowTable extends Component {
 
     return(
       <tr key={key}>
-
         <td style={{width : 150}}>
           {estudiante.nombre + " " + estudiante.apellido}
         </td>
