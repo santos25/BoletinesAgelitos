@@ -176,7 +176,7 @@ class Planilla extends Component {
   }
 
   render(){
-    let  columns = ['Nombre Del Estudiante', 'Descripcion Del Desempeño', 'Nota', 'DS = Desempeño'];
+    let  columns = [ 'ESTUDIANTE /DESCRIPCION DE DESEMPEÑO','Observacion', 'Nota', 'DS = Desempeño'];
     if(!this.props.gradoSelected.excludeHS || false )  columns.push("H/S");
 
     return(

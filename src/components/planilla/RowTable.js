@@ -42,7 +42,8 @@ class RowTable extends Component {
       console.log(estudiante);
       return(
         <td style={style}>
-          <h3 className="formPlanilla"><Label bsStyle="info">{estudiante.horas || this.props.horasByAsignatura.horas}</Label></h3>
+          <br></br><br></br>
+          <h3 className="formPlanilla"><Label bsStyle="primary">{estudiante.horas || this.props.horasByAsignatura.horas}</Label></h3>
         </td>
       )
   }
@@ -51,7 +52,7 @@ class RowTable extends Component {
     let estudiante = this.props.estudiantes[key];
     // rowHS = renderRow(this.props.excludehs);
     const style = {
-      width : 90
+      width : 80
     }
     let rowHS ;
     if (!this.props.excludehs) {
@@ -60,10 +61,11 @@ class RowTable extends Component {
 
     return(
       <tr key={key}>
-        <td style={{width : 150}}>
+        {/* <td style={{width : 150}}>
           {estudiante.nombre + " " + estudiante.apellido}
-        </td>
+        </td> */}
         <td>
+          Estudiante : <Label bsStyle="default" >  {estudiante.nombre + " " + estudiante.apellido}</Label><br></br><br></br>
           <FormGroup controlId="formControlsTextarea">
             <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
               componentClass="textarea"
@@ -74,7 +76,20 @@ class RowTable extends Component {
               placeholder="Descripcion" />
             </FormGroup>
           </td>
+          <td>
+            <br></br><br></br>
+            <FormGroup controlId="formControlsTextarea">
+              <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
+                componentClass="textarea"
+                style={{ height: 100 }}
+                className="textarea"
+                name="observacion"
+                value={estudiante.observacion || ''}
+                placeholder="Observacion" />
+              </FormGroup>
+            </td>
           <td style={style}>
+            <br></br><br></br>
             <FormGroup  controlId="formControlsText">
               <FormControl  id="formControlsText"
                 onChange={(e) => this.onChangeRowStudent(e, key)}
@@ -87,7 +102,8 @@ class RowTable extends Component {
               </FormGroup>
             </td>
             <td style={style}>
-              <h3 className="formPlanilla"><Label bsStyle="info">{ estudiante.desempeno || ''}</Label></h3>
+              <br></br><br></br>
+              <h3 className="formPlanilla"><Label bsStyle="primary">{ estudiante.desempeno || ''}</Label></h3>
             </td>
             {rowHS}
           </tr>
