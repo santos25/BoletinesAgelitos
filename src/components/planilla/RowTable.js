@@ -3,18 +3,33 @@ import React,{Component} from 'react';
 import {FormGroup,FormControl,Label,OverlayTrigger,Popover } from 'react-bootstrap';
 
 class RowTable extends Component {
+  constructor(){
+    super();
+    this.state = {
+      observacion:""
+    }
+  }
 
   changeDataRow(value, name,keyEstudiante, desempeno){
 
-    let estuEdit = {...this.props.estudiantes[keyEstudiante], [name] : value};
-    if(desempeno){
-      estuEdit.desempeno = desempeno;
-      if (!this.props.excludehs) {
-        estuEdit.horas = this.props.horasByAsignatura.horas;
+    if(name !== 'observacion' ){
+      let estuEdit = {...this.props.estudiantes[keyEstudiante], [name] : value};
+      if(desempeno){
+        estuEdit.desempeno = desempeno;
+        if (!this.props.excludehs) {
+          estuEdit.horas = this.props.horasByAsignatura.horas;
+        }
+        // estuEdit.horas = this.props.horasByAsignatura;
       }
-      // estuEdit.horas = this.props.horasByAsignatura;
+      this.props.onChangeStudent(keyEstudiante,estuEdit);
+    }else{
+      console.log("Estudiante ", this.props.estudiantes[keyEstudiante]);
+      console.log("Observacion ", value);
+      this.setState({
+        [name] : value
+      })
     }
-    this.props.onChangeStudent(keyEstudiante,estuEdit);
+
 
   }
 
@@ -39,16 +54,14 @@ class RowTable extends Component {
   }
 
   renderHS(estudiante , style){
-      console.log(estudiante);
-      return(
-        <td style={style}>
-          <br></br><br></br>
-          <h3 className="formPlanilla"><Label bsStyle="primary">{estudiante.horas || this.props.horasByAsignatura.horas}</Label></h3>
-        </td>
-      )
+    console.log(estudiante);
+    return(
+      <td style={style}>
+        <br></br><br></br>
+        <h3 className="formPlanilla"><Label bsStyle="primary">{estudiante.horas || this.props.horasByAsignatura.horas}</Label></h3>
+      </td>
+    )
   }
-
-
 
   renderRow(key){
     let estudiante = this.props.estudiantes[key];
@@ -62,44 +75,44 @@ class RowTable extends Component {
     }
 
     const popoverHoverFocus = (
-  <Popover id="popover-trigger-hover-focus" title="Información">
-     Las observaciones son  independientes de las asignaturas. Solo debe escribirla una sola vez,
-     no en cada asignatura. Gracias  &#128512;
-  </Popover>
-);
+      <Popover id="popover-trigger-hover-focus" title="Información">
+        La observacion es independiente de las asignaturas. Solo debe escribirla una sola vez,
+        no en cada asignatura. Gracias  &#128512;
+      </Popover>
+    );
 
     return(
       <tr key={key}>
         {/* <td style={{width : 150}}>
-          {estudiante.nombre + " " + estudiante.apellido}
-        </td> */}
+        {estudiante.nombre + " " + estudiante.apellido}
+      </td> */}
+      <td>
+        <b> ESTUDIANTE :  {estudiante.nombre + " " + estudiante.apellido}</b><br></br><br></br>
+        <FormGroup controlId="formControlsTextarea">
+          <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
+            componentClass="textarea"
+            style={{ height: 100 }}
+            className="textarea"
+            name="descripcion"
+            value={estudiante.descripcion || ''}
+            placeholder="Descripcion Del Desempeño" />
+          </FormGroup>
+        </td>
         <td>
-          <b> ESTUDIANTE :  {estudiante.nombre + " " + estudiante.apellido}</b><br></br><br></br>
-          <FormGroup controlId="formControlsTextarea">
-            <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
-              componentClass="textarea"
-              style={{ height: 100 }}
-              className="textarea"
-              name="descripcion"
-              value={estudiante.descripcion || ''}
-              placeholder="Descripcion Del Desempeño" />
-            </FormGroup>
-          </td>
-          <td>
-            <br></br><br></br>
-            <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocus}>
+          <br></br><br></br>
+          <OverlayTrigger trigger={['hover', 'focus']} placement="top" overlay={popoverHoverFocus}>
             <FormGroup controlId="formControlsTextarea">
               <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
                 componentClass="textarea"
                 style={{ height: 100 }}
                 className="textarea"
                 name="observacion"
-                value={estudiante.observacion || ''}
+                value={this.state.observacion}
                 placeholder="Observacion" />
               </FormGroup>
             </OverlayTrigger>
 
-            </td>
+          </td>
           <td style={style}>
             <br></br><br></br>
             <FormGroup  controlId="formControlsText">

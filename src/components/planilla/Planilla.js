@@ -18,7 +18,7 @@ class Planilla extends Component {
       keyAsignaturaSelected : '',
       estudiantes : {},
       keyPlanilla : '',
-      alertVisible: true
+      alertVisible: false
     }
   }
 
@@ -31,7 +31,6 @@ class Planilla extends Component {
   }
 
   componentDidMount(){
-    console.log("objeto asig " , this.props.gradoSelected.asignaturas);
     this.getAsignaturas(Object.keys(this.props.gradoSelected.asignaturas));
   }
 
@@ -51,13 +50,11 @@ class Planilla extends Component {
     }).then(data => {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
       if(planilla.length > 0){
-        // this.uploadStudents(planilla[0].asignatura.asignatura1.estudiantes)
-        // this.setState({
-        //   planilla
-        // })
+
       }else {
-        // this.uploadStudents(this.props.gradoSelected.estudiantes);
+
         this.createNewPlanilla();
+
       }
     }).catch(error => {
       //handle error
@@ -67,11 +64,7 @@ class Planilla extends Component {
 
   onChangeAsignatura(e){
     let sure = true;
-    // this.openModal(e);
-    // this.setState({
-    //   keyAsignaturaSelected : e.target.value,
-    // })
-    // this.openModal(e);
+
     if(this.state.keyAsignaturaSelected !== '')
     sure = window.confirm( "SE BORRARÁN TODOS LOS DATOS QUE NO HAN SIDO GUARDADOS");
 
@@ -81,13 +74,13 @@ class Planilla extends Component {
         keyAsignaturaSelected : e.target.value,
       });
 
-      this.findPlanillasByAsignatura(e.target.value)
+      this.findPlanillasByAsignatura(e.target.value, false)
     }
 
 
   }
 
-  findPlanillasByAsignatura(asignaturaKey){
+  findPlanillasByAsignatura(asignaturaKey, booleanToKnowIdPlanilla){
     Base.fetch('planillas', {
       context: this,
       asArray: true,
@@ -98,11 +91,18 @@ class Planilla extends Component {
     }).then(data => {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
       // console.log(planilla[0][asignaturaKey]);
-      if(planilla[0][asignaturaKey]){
-        this.uploadStudents(planilla[0][asignaturaKey].estudiantes , planilla[0].key);
-      }else {
-        this.uploadStudents(this.props.gradoSelected.estudiantes, planilla[0].key);
+      if(booleanToKnowIdPlanilla){
+          this.createObservacionesStudent(planilla[0].key);
+      }else{
+        if(planilla[0][asignaturaKey]){
+          this.uploadStudents(planilla[0][asignaturaKey].estudiantes , planilla[0].key);
+
+        }else {
+          this.uploadStudents(this.props.gradoSelected.estudiantes, planilla[0].key);
+        }
       }
+
+
     }).catch(error => {
       //handle error
     })
@@ -115,15 +115,44 @@ class Planilla extends Component {
     planilla.periodo = this.props.periodoSelected;
     planilla.grado = this.props.gradoSelected.nombre;
     planilla.asignatura = {}
+    planilla.observaciones = {}
+
     Base.post(`planillas/${ new Date().getFullYear()+this.props.gradoSelected.nombre + this.props.periodoSelected}`, {
       data: planilla
     }).then(() => {
       console.log("Guardado Exitoso");
+      this.findPlanillasByAsignatura("", true)
+      // this.createObservacionesStudent();
+
     }).catch(err => {
       // handle error
       console.log("Error al registrar Planilla Nueva");
     });
   }
+
+  createObservacionesStudent(keyPlanilla){
+    Base.fetch('grados', {
+      context: this,
+      asArray: true,
+      queries: {
+        orderByChild: 'nombre',
+        equalTo : this.props.gradoSelected.nombre
+      }
+    }).then(datas => {
+
+      var usersRef = firebase.database().ref(`planillas/${ keyPlanilla}`);
+      console.log(usersRef);
+      var observacion = {};
+      datas.map((data,index) => Object.keys(data.estudiantes).map(key =>{
+        observacion[key] = "";
+      }));
+
+        usersRef.child('observaciones').set(observacion);
+    }).catch(error => {
+      //handle error
+    })
+  }
+
 
   uploadStudents(students, keyPlani , asignaturaKey){
     this.setState({
@@ -140,8 +169,14 @@ class Planilla extends Component {
       nombre : this.state.asignaturas[this.state.keyAsignaturaSelected].nombre,
       estudiantes : estudiantes
     }
+    let dataStudentObservaciones = {
+      estudiante1 : "observacion erronea",
+      estudiante2 : "Observacion erroena 2"
+    }
     var usersRef = firebase.database().ref(`planillas/${ this.state.keyPlanilla}`);
     usersRef.child(this.state.keyAsignaturaSelected).set(dataStudentForm);
+    
+    // this.createObservacionesStudent();
 
     Alert.success('Planilla Guardada!', {
       position: 'bottom-left',

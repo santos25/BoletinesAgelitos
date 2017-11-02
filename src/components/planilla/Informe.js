@@ -8,9 +8,9 @@ class Informe extends Component {
   constructor(){
     super();
     this.state = {
-      keyGradoSelected : '',
-      keyPeriodoSelected: ''
-      // isPlanilla: false
+      keyGradoSelected : '3',
+      keyPeriodoSelected: 'periodo4',
+      isPlanilla: false
     }
   }
 
@@ -42,10 +42,7 @@ class Informe extends Component {
   render() {
     const disabled =  this.state.keyGradoSelected && this.state.keyPeriodoSelected? false : true;
 
-      //  this.props.grados.sort((beforeData,afterData) => parseInt(beforeData.orden) - parseInt(afterData.orden));
-
     if(this.state.isPlanilla){
-      console.log(this.props.grados[this.state.keyGradoSelected]);
       return (
         <Planilla periodoSelected={this.props.periodos[this.state.keyPeriodoSelected].nombre}
           gradoSelected={this.props.grados[this.state.keyGradoSelected]}
