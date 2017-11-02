@@ -1,6 +1,6 @@
 
 import React,{Component} from 'react';
-import {FormGroup,FormControl,Label } from 'react-bootstrap';
+import {FormGroup,FormControl,Label,OverlayTrigger,Popover } from 'react-bootstrap';
 
 class RowTable extends Component {
 
@@ -48,6 +48,8 @@ class RowTable extends Component {
       )
   }
 
+
+
   renderRow(key){
     let estudiante = this.props.estudiantes[key];
     // rowHS = renderRow(this.props.excludehs);
@@ -59,13 +61,20 @@ class RowTable extends Component {
       rowHS = this.renderHS(estudiante, style);
     }
 
+    const popoverHoverFocus = (
+  <Popover id="popover-trigger-hover-focus" title="Información">
+     Las observaciones son  independientes de las asignaturas. Solo debe escribirla una sola vez,
+     no en cada asignatura. Gracias  &#128512;
+  </Popover>
+);
+
     return(
       <tr key={key}>
         {/* <td style={{width : 150}}>
           {estudiante.nombre + " " + estudiante.apellido}
         </td> */}
         <td>
-          Estudiante : <Label bsStyle="default" >  {estudiante.nombre + " " + estudiante.apellido}</Label><br></br><br></br>
+          <b> ESTUDIANTE :  {estudiante.nombre + " " + estudiante.apellido}</b><br></br><br></br>
           <FormGroup controlId="formControlsTextarea">
             <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
               componentClass="textarea"
@@ -73,11 +82,12 @@ class RowTable extends Component {
               className="textarea"
               name="descripcion"
               value={estudiante.descripcion || ''}
-              placeholder="Descripcion" />
+              placeholder="Descripcion Del Desempeño" />
             </FormGroup>
           </td>
           <td>
             <br></br><br></br>
+            <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocus}>
             <FormGroup controlId="formControlsTextarea">
               <FormControl  onChange={(e) => this.onChangeRowStudent(e, key)}
                 componentClass="textarea"
@@ -87,6 +97,8 @@ class RowTable extends Component {
                 value={estudiante.observacion || ''}
                 placeholder="Observacion" />
               </FormGroup>
+            </OverlayTrigger>
+
             </td>
           <td style={style}>
             <br></br><br></br>
