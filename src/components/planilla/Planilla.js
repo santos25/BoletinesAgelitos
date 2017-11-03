@@ -17,6 +17,7 @@ class Planilla extends Component {
       asignaturas:{},
       keyAsignaturaSelected : '',
       estudiantes : {},
+      observaciones : {},
       keyPlanilla : '',
       alertVisible: false
     }
@@ -92,14 +93,18 @@ class Planilla extends Component {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
       // console.log(planilla[0][asignaturaKey]);
       if(booleanToKnowIdPlanilla){
-          this.createObservacionesStudent(planilla[0].key);
+          this.createOrFindObservacionesStudent(planilla[0].key, true);
       }else{
         if(planilla[0][asignaturaKey]){
           this.uploadStudents(planilla[0][asignaturaKey].estudiantes , planilla[0].key);
-
+          console.log(planilla[0]);
+          // this.getObervacionesStudent(planilla[0].observaciones);
         }else {
           this.uploadStudents(this.props.gradoSelected.estudiantes, planilla[0].key);
+          // this.getObervacionesStudent(planilla[0].observaciones);
         }
+        this.getObervacionesStudent(planilla[0].observaciones);
+
       }
 
 
@@ -130,27 +135,40 @@ class Planilla extends Component {
     });
   }
 
-  createObservacionesStudent(keyPlanilla){
-    Base.fetch('grados', {
-      context: this,
-      asArray: true,
-      queries: {
-        orderByChild: 'nombre',
-        equalTo : this.props.gradoSelected.nombre
-      }
-    }).then(datas => {
+getObervacionesStudent(observaciones){
+this.setState({
+  observaciones
+})
 
-      var usersRef = firebase.database().ref(`planillas/${ keyPlanilla}`);
-      console.log(usersRef);
-      var observacion = {};
-      datas.map((data,index) => Object.keys(data.estudiantes).map(key =>{
-        observacion[key] = "";
-      }));
+}
 
-        usersRef.child('observaciones').set(observacion);
-    }).catch(error => {
-      //handle error
-    })
+  createOrFindObservacionesStudent(keyPlanilla, createBool){
+    if(createBool){
+      Base.fetch('grados', {
+        context: this,
+        asArray: true,
+        queries: {
+          orderByChild: 'nombre',
+          equalTo : this.props.gradoSelected.nombre
+        }
+      }).then(datas => {
+
+        var usersRef = firebase.database().ref(`planillas/${ keyPlanilla}`);
+        var observacion = {};
+        datas.map((data,index) => Object.keys(data.estudiantes).map(key =>{
+          observacion[key] = "";
+        }));
+          usersRef.child('observaciones').set(observacion);
+          this.setState({
+            observaciones: observacion
+          })
+      }).catch(error => {
+        //handle error
+      })
+    }else{
+
+    }
+
   }
 
 
@@ -169,13 +187,11 @@ class Planilla extends Component {
       nombre : this.state.asignaturas[this.state.keyAsignaturaSelected].nombre,
       estudiantes : estudiantes
     }
-    let dataStudentObservaciones = {
-      estudiante1 : "observacion erronea",
-      estudiante2 : "Observacion erroena 2"
-    }
+
     var usersRef = firebase.database().ref(`planillas/${ this.state.keyPlanilla}`);
     usersRef.child(this.state.keyAsignaturaSelected).set(dataStudentForm);
-    
+    usersRef.child('observaciones').set(this.state.observaciones);
+
     // this.createObservacionesStudent();
 
     Alert.success('Planilla Guardada!', {
@@ -203,6 +219,15 @@ class Planilla extends Component {
     estudiantes[key] = estudiante;
     this.setState({
       estudiantes
+    })
+  }
+
+  onChangeObservacionStudent(key, valueObservacion){
+    let observaciones = {...this.state.observaciones};
+    observaciones[key] = valueObservacion;
+    console.log(observaciones);
+    this.setState({
+      observaciones
     })
   }
 
@@ -248,6 +273,8 @@ class Planilla extends Component {
               <Table striped bordered condensed hover>
                 <HeaderTable  columns={columns}/>
                 <RowTable estudiantes={this.state.estudiantes}
+                  observaciones={this.state.observaciones}
+                  onChangeObservaciones={this.onChangeObservacionStudent.bind(this)}
                   onChangeStudent={this.onChangeStudent.bind(this)}
                   excludehs={this.props.gradoSelected.excludeHS || false}
                   horasByAsignatura={ this.state.asignaturas[this.state.keyAsignaturaSelected] || ""}/>

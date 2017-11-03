@@ -3,34 +3,22 @@ import React,{Component} from 'react';
 import {FormGroup,FormControl,Label,OverlayTrigger,Popover } from 'react-bootstrap';
 
 class RowTable extends Component {
-  constructor(){
-    super();
-    this.state = {
-      observacion:""
-    }
-  }
+
 
   changeDataRow(value, name,keyEstudiante, desempeno){
-
-    if(name !== 'observacion' ){
+    if(name !== 'observacion'){
       let estuEdit = {...this.props.estudiantes[keyEstudiante], [name] : value};
       if(desempeno){
         estuEdit.desempeno = desempeno;
         if (!this.props.excludehs) {
           estuEdit.horas = this.props.horasByAsignatura.horas;
         }
-        // estuEdit.horas = this.props.horasByAsignatura;
+
       }
       this.props.onChangeStudent(keyEstudiante,estuEdit);
     }else{
-      console.log("Estudiante ", this.props.estudiantes[keyEstudiante]);
-      console.log("Observacion ", value);
-      this.setState({
-        [name] : value
-      })
+        this.props.onChangeObservaciones(keyEstudiante, value)
     }
-
-
   }
 
   onChangeRowStudent(e, keyEstudiante){
@@ -65,7 +53,8 @@ class RowTable extends Component {
 
   renderRow(key){
     let estudiante = this.props.estudiantes[key];
-    // rowHS = renderRow(this.props.excludehs);
+    let observanEstudiante = this.props.observaciones[key];
+    console.log(observanEstudiante);
     const style = {
       width : 80
     }
@@ -107,7 +96,7 @@ class RowTable extends Component {
                 style={{ height: 100 }}
                 className="textarea"
                 name="observacion"
-                value={this.state.observacion}
+                value={observanEstudiante}
                 placeholder="Observacion" />
               </FormGroup>
             </OverlayTrigger>
