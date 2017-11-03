@@ -19,7 +19,7 @@ class Planilla extends Component {
       estudiantes : {},
       observaciones : {},
       keyPlanilla : '',
-      alertVisible: false
+      alertVisible: true
     }
   }
 

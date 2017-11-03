@@ -8,8 +8,8 @@ class Informe extends Component {
   constructor(){
     super();
     this.state = {
-      keyGradoSelected : '3',
-      keyPeriodoSelected: 'periodo4',
+      keyGradoSelected : '',
+      keyPeriodoSelected: '',
       isPlanilla: false
     }
   }
