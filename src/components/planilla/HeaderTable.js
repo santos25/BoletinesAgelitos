@@ -2,17 +2,10 @@ import React from 'react';
 
 const HeaderTable = (props) => {
   if (props.boletin) {
-
-    // let columnsPeriodos = props.planilla.map((colum , key) => <th colSpan="2" key={key}>Periodo {colum.periodo}</th>)
-    // let columnsInsideNota = props.planilla.map((colum , i) => <th key={i}>Nota </th>)
-    // let columnsInsideDS = props.planilla.map((colum , i) => <th key={i}>DS </th>)
-
     return(
       <thead>
         <tr>
-          <th rowSpan="2">ASIGNATURA</th>
-          <th rowSpan="2"><center>DESCRIPCION DE DESEMPEÑO</center></th>
-          {/* { columnsPeriodos } */}
+          <th rowSpan="2"><center>DESCRIPCION DE DESEMPEÑO. </center></th>
           <th colSpan="2" > <center>Periodo 4</center></th>
           <th rowSpan="2">H/S</th>
         </tr>
@@ -22,8 +15,8 @@ const HeaderTable = (props) => {
         </tr>
       </thead>
     )
-
   }
+
   return (
     <thead>
       <tr>

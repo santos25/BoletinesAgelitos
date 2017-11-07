@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row,Col,Table,Label} from 'react-bootstrap';
+import {Row,Col,Table,Label,Well} from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
 // import escudo from '../escudo.jpg'
 import Firmas from './Firmas'
@@ -21,6 +21,12 @@ const PreviewBoletin = (props) => {
     <div>
       <Row className="show-grid">
         <Col xs={12} md={12}>
+          <h4><Label bsStyle="primary">Observacion</Label></h4>
+          <Well bsSize="small">{planilla[0].observaciones[keyEstudiante]}</Well>
+        </Col>
+      </Row>
+      <Row className="show-grid">
+        <Col xs={12} md={12}>
           <Table striped bordered condensed hover>
 
             <HeaderTable   boletin={true} />
@@ -29,27 +35,31 @@ const PreviewBoletin = (props) => {
                 if (planilla[0][keyAsignatura] && keyEstudiante !== '') {
                   // let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
                   let estudianteData = returnEstudianteData(planilla , keyAsignatura , keyEstudiante);
+                  console.log();
                   return(
                     <tr key={keyAsignatura}>
-                      <td> {planilla[0][keyAsignatura].nombre} </td>
-                      <td className="rowDescripcinPreview"> {estudianteData.descripcion} </td>
-                      <td> {estudianteData.nota} </td>
-                      <td> {estudianteData.desempeno} </td>
-                      <td> {estudianteData.horas} </td>
-                    </tr>
-                  )
-                }else {
-                  return null;
-                }
-              })}
-            </tbody>
-          </Table>
+                      <td className="rowDescripcinPreview"> <b>{planilla[0][keyAsignatura].nombre}</b> <br></br><br></br>
+                      {estudianteData.descripcion}
+                    </td>
+                    {/* <td className="rowDescripcinPreview"> {estudianteData.descripcion} </td> */}
+                    {/* <td> {planilla[0].observaciones[keyEstudiante]} </td> */}
+                    <td> {estudianteData.nota} </td>
+                    <td> {estudianteData.desempeno} </td>
+                    <td> {estudianteData.horas} </td>
+                  </tr>
+                )
+              }else {
+                return null;
+              }
+            })}
+          </tbody>
+        </Table>
+      </Col>
+    </Row>
 
-        </Col>
-      </Row>
 
-    </div>
-  )
+  </div>
+)
 }
 
 

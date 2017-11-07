@@ -1,5 +1,5 @@
 import React  from 'react';
-import {Grid,Row,Col,Table} from 'react-bootstrap';
+import {Grid,Row,Col,Table,Label} from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
 import RowTableBoletin from './RowTableBoletin';
 import PreviewBoletin from './PreviewBoletin';
@@ -15,6 +15,10 @@ const BoletinStudent = (props) => {
         <Row className="show-grid">
           <Col xs={12} md={4}>
             <div id="react-no-print">
+              <h4>
+                <Label bsStyle="primary">Grado : </Label>&nbsp;
+                <Label bsStyle="success">{props.grado.nombre}</Label>
+              </h4>
               <Table  bordered condensed >
                 <HeaderTable  columns={columns}/>
                 <RowTableBoletin estudiantes={props.estudiantes}
