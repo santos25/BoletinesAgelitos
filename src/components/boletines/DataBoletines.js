@@ -169,7 +169,7 @@ class DataBoletines extends Component {
               </Row>
               <Row className="show-grid">
                 <Col xs={12} md={8}>
-                  <div >
+                  <center><div>
                     <InputGradoPeriodo onSubmit={this.showBoletinesStudent.bind(this)}
                       valueGradoSelected={this.state.keyGradoSelected}
                       changeGradoData={this.changeData.bind(this)}
@@ -179,6 +179,7 @@ class DataBoletines extends Component {
                       labelButton="Ir a Boletines"
                     />
                   </div>
+                  </center>
                 </Col>
               </Row>
             </Grid>
