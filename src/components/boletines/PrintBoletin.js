@@ -6,6 +6,16 @@ import escudo from '../escudo.jpg';
 import Firmas from './Firmas';
 import CuadroDescriptivo from './CuadroDescriptivo';
 
+function promedioNotas(arrayNotas){
+  let totalAsignaturas= 0;
+
+  console.log(arrayNotas);
+  return(arrayNotas.reduce( (sum, nota) =>{
+    return sum +  parseFloat(nota);
+  },0) / totalAsignaturas)
+
+}
+
 const PrintBoletin = (props) => {
 
   const columns = ['Descripcion Del Desempeño', 'Nota', 'DS' ,'"H/S'];
@@ -33,7 +43,7 @@ const PrintBoletin = (props) => {
             <p>Aprobado por Resolución N° 7962</p>
             <p>Dane: 313001000185</p>
           </div>
-        </div><br></br>
+        </div><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <div id="informacionBoletin">
           <div className="nombreEstudiante">
             <p>Nombre : { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
@@ -90,30 +100,30 @@ const PrintBoletin = (props) => {
 <Row>
   <Col xs={12} md={12}>
     <div className="promedio" >
-      <p> Promedio :  { arrayNotas.reduce( (sum, nota) =>{
+      <p> Promedio :  { (arrayNotas.reduce( (sum, nota) =>{
         return sum +  parseFloat(nota);
-      },0) / totalAsignaturas}
+      },0) / totalAsignaturas).toFixed(2)}
     </p>
+    {/* <p>{promedioNotas(arrayNotas)}</p> */}
 </div>
 </Col>
 </Row>
-{/* <Row className="show-grid">
-<div className="obserCuadro">
-<div className="observacion">
-<label>Observaciones</label>
-<pre>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-sagittis tellus. Lorem ipsum dolor sit amet</pre>
-</div>
-<div className="cuadro">
-<CuadroDescriptivo />
-</div>
-</div>
-</Row> */}
-{/* <Row className="show-grid">
-<Col xs={12} md={12}>
-<Firmas />
-</Col>
-</Row> */}
+<Row className="show-grid">
+  <div className="obserCuadro">
+    <div className="observacion">
+      <label>Observacion</label>
+      <pre>{planilla[0].observaciones[keyEstudiante]}</pre>
+      </div>
+      <div className="cuadro">
+        <CuadroDescriptivo />
+      </div>
+    </div>
+  </Row>
+  <Row className="show-grid">
+    <Col xs={12} md={12}>
+      <Firmas />
+    </Col>
+  </Row>
 </PrintTemplate>
 </div>
 

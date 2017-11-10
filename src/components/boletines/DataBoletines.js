@@ -131,8 +131,7 @@ class DataBoletines extends Component {
     const disabled =  this.state.keyGradoSelected ? false : true;
 
     if (this.state.showBoletines) {
-      console.log(this.state.grados[this.state.keyGradoSelected].nombre);
-      console.log(this.state.grados[this.state.keyGradoSelected].excludeHS);
+      // console.log(this.state.grados[this.state.keyGradoSelected].nombre);
       return  ( <Home>
         <BoletinStudent estudiantes={this.state.grados[this.state.keyGradoSelected].estudiantes}
           planilla={this.state.planilla}
