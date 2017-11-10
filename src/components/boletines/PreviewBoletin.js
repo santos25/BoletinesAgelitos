@@ -43,9 +43,9 @@ const PreviewBoletin = (props) => {
                     </td>
                     {/* <td className="rowDescripcinPreview"> {estudianteData.descripcion} </td> */}
                     {/* <td> {planilla[0].observaciones[keyEstudiante]} </td> */}
-                    <td> {estudianteData.nota} </td>
-                    <td> {estudianteData.desempeno} </td>
-                    <td> {estudianteData.horas} </td>
+                    <td ><p className="centerData"> {estudianteData.nota} </p></td>
+                    <td> <p className="centerData">{estudianteData.desempeno} </p></td>
+                    <td> <p className="centerData">{estudianteData.horas}</p> </td>
                   </tr>
                 )
               }else {

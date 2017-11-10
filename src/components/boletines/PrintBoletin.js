@@ -81,11 +81,11 @@ const PrintBoletin = (props) => {
                       {estudianteData.descripcion}
                     </td>
                     {/* <td className="rowDescripcin">{estudianteData.descripcion}   </td> */}
-                    <td><p>{estudianteData.nota}</p>
+                    <td ><p className="centerData">{estudianteData.nota}</p>
                   </td>
-                  <td><p>{estudianteData.desempeno}</p>
+                  <td><p className="centerData">{estudianteData.desempeno}</p>
                 </td>
-                <td><p>{estudianteData.horas}</p>
+                <td><p className="centerData">{estudianteData.horas}</p>
               </td>
               {/* {rowHS} */}
             </tr>
@@ -100,7 +100,7 @@ const PrintBoletin = (props) => {
 <Row>
   <Col xs={12} md={12}>
     <div className="promedio" >
-      <p> Promedio :  { (arrayNotas.reduce( (sum, nota) =>{
+      <p className="preObservacion"> Promedio :  { (arrayNotas.reduce( (sum, nota) =>{
         return sum +  parseFloat(nota);
       },0) / totalAsignaturas).toFixed(2)}
     </p>

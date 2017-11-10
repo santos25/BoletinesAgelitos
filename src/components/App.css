@@ -11,7 +11,9 @@
     background-color: red;
 }
 
-
+.centerData {
+  text-align: center;
+}
 .obserCuadro > div {
   display: inline-block;
 
