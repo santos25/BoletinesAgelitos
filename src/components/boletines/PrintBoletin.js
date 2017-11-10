@@ -105,25 +105,29 @@ const PrintBoletin = (props) => {
       },0) / totalAsignaturas).toFixed(2)}
     </p>
     {/* <p>{promedioNotas(arrayNotas)}</p> */}
-</div>
+  </div>
 </Col>
 </Row>
 <Row className="show-grid">
   <div className="obserCuadro">
     <div className="observacion">
-      <label>Observacion</label>
-      <pre>{planilla[0].observaciones[keyEstudiante]}</pre>
-      </div>
-      <div className="cuadro">
-        <CuadroDescriptivo />
-      </div>
-    </div>
-  </Row>
-  <Row className="show-grid">
-    <Col xs={12} md={12}>
+      <label className="preObservacion"><b>Observacion</b></label><br></br>
+      <pre className="preObservacion">
+      <p style={{width:800}}>{planilla[0].observaciones[keyEstudiante]}</p>
+      </pre>
+      <br></br><br></br>
       <Firmas />
-    </Col>
-  </Row>
+    </div>
+    <div className="cuadro">
+      <CuadroDescriptivo />
+    </div>
+  </div>
+</Row>
+{/* <Row className="show-grid">
+  <Col xs={12} md={12}>
+    <Firmas />
+  </Col>
+</Row> */}
 </PrintTemplate>
 </div>
 

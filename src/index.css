@@ -37,9 +37,15 @@ body {
     margin-top: 5rem;
 }
 
+.preObservacion {
+  font: 150% sans-serif;
+
+}
+
 .firmaDirectora {
   float: left;
 }
+
 
 .firmaRectora {
   float: right;
