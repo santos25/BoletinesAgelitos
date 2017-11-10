@@ -41,6 +41,7 @@ const BoletinStudent = (props) => {
             <Row  className="show-grid">
               <Col xs={12} md={12}>
                 <PrintBoletin planilla={props.planilla}
+                  grado={props.grado}
                   asignaturas={props.asignaturas}
                   keyEstudiante={props.keyEstudiante}
                   estudiantes={props.estudiantes}/>

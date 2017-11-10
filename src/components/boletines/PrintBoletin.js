@@ -7,61 +7,55 @@ import Firmas from './Firmas';
 import CuadroDescriptivo from './CuadroDescriptivo';
 
 const PrintBoletin = (props) => {
-  const columns = ['Asignatura','Descripcion Del Desempeño', 'Nota', 'DS' ,'H/S'];
+
+  const columns = ['Descripcion Del Desempeño', 'Nota', 'DS' ,'"H/S'];
+  // if(!props.grado.excludeHS || false )  columns.push("H/S");
   // const columns = ['Nombre Del Estudiante', 'Ver', 'Imprimir'];
   const {planilla , asignaturas , keyEstudiante} = props;
   let arrayNotas = [];
   let totalAsignaturas= 0;
+
+  // let rowHS ;
+  // if (!props.grado.excludeHS) {
+  //   rowHS = this.renderHS(estudiante, style);
+  // }
+
   return(
     <div >
       <PrintTemplate>
         <div id="cabecera">
-          <div className="escudoBoletin">
-            <img  src={escudo} alt="Escudo"></img>
+          <div className="escudoContainer">
+            <img className="escudo"  src={escudo} alt="Escudo"></img>
           </div>
-          <div className="">
-            <div >
-              <label> INSTITUTO ANGELITOS ALEGRES </label>
-            </div>
-            <div>
-              <label>Nuevo Bosque Trv. 51    N° 29 B 77</label>
-            </div>
-            <div>
-              <label>Aprobado por Resolución N° 7962</label>
-            </div>
-            <div>
-              <label>Dane: 313001000185</label>
-            </div>
+          <div className="titulo">
+            <p className="tittlePrimary"> INSTITUTO ANGELITOS ALEGRES </p>
+            <p>Nuevo Bosque Trv. 51    N° 29 B 77</p>
+            <p>Aprobado por Resolución N° 7962</p>
+            <p>Dane: 313001000185</p>
           </div>
-          <div className="">
-            <label>Nombre del Estudiante : </label><br/>
-            <label>  { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
+        </div><br></br>
+        <div id="informacionBoletin">
+          <div className="nombreEstudiante">
+            <p>Nombre : { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
               +  props.estudiantes[props.keyEstudiante].apellido
               : ""
-            }</label>
+            }</p>
           </div>
-        </div>
-        <div id="informacion">
-          <div className="tittleFloating">
-            <Label bsStyle="default">INFORME ACADEMICO </Label>
-          </div>
-          <div className="tittleFloating">
-            <Label bsStyle="default">GRADO : PREESCOLAR </Label>
+          <div className="gradoBoletin">
+            <p>{`GRADO : ${planilla[0].grado}` }</p>
             {/* <Label bsStyle="default">{`GRADO : ${planilla[0].grado}`} </Label> */}
           </div>
-          <div className="tittleFloating">
-            <Label bsStyle="default">JORNADA : Mañana</Label>
+          <div className="jornada">
+            <p>JORNADA : Mañana</p>
           </div>
-          <div className="tittleFloating">
-            <Label bsStyle="default">PERIODO : 4 </Label>
-            {/* <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label> */}
+          <div className="periodo">
+            <p>PERIODO : 4 </p>
+            {/* <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label>*/ }
           </div>
-          <div className="tittleFloating">
-            <Label bsStyle="default">AÑO 2017 </Label>
-            {/* <Label bsStyle="default"> {`AÑO : ${ new Date().getFullYear()}`}</Label> */}
+          <div className="año">
+            <p>AÑO 2017 </p>
           </div>
         </div>
-
         <div>
           <Table striped bordered condensed hover>
             <HeaderTable boletin={true} />
@@ -73,54 +67,55 @@ const PrintBoletin = (props) => {
                   totalAsignaturas = i + 1;
                   return(
                     <tr key={keyAsignatura}>
-                      <td>{planilla[0][keyAsignatura].nombre}
-                      </td>
-                      <td className="rowDescripcin">{estudianteData.descripcion}   </td>
-                      <td>{estudianteData.nota}
-                      </td>
-                      <td>{estudianteData.desempeno}
-                      </td>
-                      <td>{estudianteData.horas}
-                      </td>
-                    </tr>
-                  )
-                }else {
-                  return null;
-                }
-              })}
-            </tbody>
-          </Table>
-        </div>
-        <Row>
-          <Col xs={12} md={12}>
-            <div className="promedio" >
-              <h4><Label bsStyle="default"> Promedio :  { arrayNotas.reduce( (sum, nota) =>{
-                return sum +  parseFloat(nota);
-              },0) / totalAsignaturas}
-            </Label>
-          </h4>
-        </div>
-      </Col>
-    </Row>
-    <Row className="show-grid">
-      <div className="obserCuadro">
-        <div className="observacion">
-          <label>Observaciones</label>
-          <pre>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            sagittis tellus. Lorem ipsum dolor sit amet</pre>
-          </div>
-          <div className="cuadro">
-            <CuadroDescriptivo />
-          </div>
-        </div>
-      </Row>
-      <Row className="show-grid">
-        <Col xs={12} md={12}>
-          <Firmas />
-        </Col>
-      </Row>
-    </PrintTemplate>
-  </div>
+                      <td className="rowDescripcinPreview"><b>{planilla[0][keyAsignatura].nombre}</b><br></br>
+                      {estudianteData.descripcion}
+                    </td>
+                    {/* <td className="rowDescripcin">{estudianteData.descripcion}   </td> */}
+                    <td><p>{estudianteData.nota}</p>
+                  </td>
+                  <td><p>{estudianteData.desempeno}</p>
+                </td>
+                <td><p>{estudianteData.horas}</p>
+              </td>
+              {/* {rowHS} */}
+            </tr>
+          )
+        }else {
+          return null;
+        }
+      })}
+    </tbody>
+  </Table>
+</div>
+<Row>
+  <Col xs={12} md={12}>
+    <div className="promedio" >
+      <p> Promedio :  { arrayNotas.reduce( (sum, nota) =>{
+        return sum +  parseFloat(nota);
+      },0) / totalAsignaturas}
+    </p>
+</div>
+</Col>
+</Row>
+{/* <Row className="show-grid">
+<div className="obserCuadro">
+<div className="observacion">
+<label>Observaciones</label>
+<pre>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+sagittis tellus. Lorem ipsum dolor sit amet</pre>
+</div>
+<div className="cuadro">
+<CuadroDescriptivo />
+</div>
+</div>
+</Row> */}
+{/* <Row className="show-grid">
+<Col xs={12} md={12}>
+<Firmas />
+</Col>
+</Row> */}
+</PrintTemplate>
+</div>
 
 )
 }
