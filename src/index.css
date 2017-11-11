@@ -26,6 +26,9 @@ body {
 }
 .cuadroDescriptivo {
   float : right;
+  font: 140% sans-serif;
+
+
 }
 
 .cuadroDescriptivo table td, th{
@@ -37,8 +40,13 @@ body {
     margin-top: 5rem;
 }
 
-.preObservacion {
+.styleletterPrimary {
   font: 150% sans-serif;
+
+}
+
+.styleletterSecond {
+  font: 140% sans-serif;
 
 }
 

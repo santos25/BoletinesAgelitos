@@ -46,24 +46,29 @@ const PrintBoletin = (props) => {
         </div><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <div id="informacionBoletin">
           <div className="nombreEstudiante">
-            <p>Nombre : { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
+            <p className="styleletterPrimary">Nombre </p>
+            <p className="styleletterPrimary"> { props.keyEstudiante ? props.estudiantes[props.keyEstudiante].nombre +  " "
               +  props.estudiantes[props.keyEstudiante].apellido
               : ""
             }</p>
           </div>
           <div className="gradoBoletin">
-            <p>{`GRADO : ${planilla[0].grado}` }</p>
+            <p className="styleletterPrimary">Grado </p>
+            <p className="styleletterPrimary">{planilla[0].grado}</p>
             {/* <Label bsStyle="default">{`GRADO : ${planilla[0].grado}`} </Label> */}
           </div>
           <div className="jornada">
-            <p>JORNADA : Mañana</p>
+            <p className="styleletterPrimary">Jornada </p>
+            <p className="styleletterPrimary">Mañana</p>
           </div>
           <div className="periodo">
-            <p>PERIODO : 4 </p>
+            <p className="styleletterPrimary">Periodo </p>
+            <p className="styleletterPrimary">4 </p>
             {/* <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label>*/ }
           </div>
           <div className="año">
-            <p>AÑO 2017 </p>
+            <p className="styleletterPrimary">Año </p>
+            <p className="styleletterPrimary">2017 </p>
           </div>
         </div>
         <div>
@@ -77,15 +82,15 @@ const PrintBoletin = (props) => {
                   totalAsignaturas = i + 1;
                   return(
                     <tr key={keyAsignatura}>
-                      <td className="rowDescripcinPreview"><b>{planilla[0][keyAsignatura].nombre}</b><br></br>
-                      {estudianteData.descripcion}
+                      <td className="rowDescripcinPreview"><b className="styleletterPrimary">{planilla[0][keyAsignatura].nombre}</b><br></br>
+                      <p className="styleletterSecond">{estudianteData.descripcion}</p>
                     </td>
                     {/* <td className="rowDescripcin">{estudianteData.descripcion}   </td> */}
-                    <td ><p className="centerData">{estudianteData.nota}</p>
+                    <td className="styleletterSecond"><p className="centerData">{estudianteData.nota}</p>
                   </td>
-                  <td><p className="centerData">{estudianteData.desempeno}</p>
+                  <td className="styleletterSecond"><p className="centerData">{estudianteData.desempeno}</p>
                 </td>
-                <td><p className="centerData">{estudianteData.horas}</p>
+                <td className="styleletterSecond"><p className="centerData">{estudianteData.horas}</p>
               </td>
               {/* {rowHS} */}
             </tr>
@@ -100,7 +105,7 @@ const PrintBoletin = (props) => {
 <Row>
   <Col xs={12} md={12}>
     <div className="promedio" >
-      <p className="preObservacion"> Promedio :  { (arrayNotas.reduce( (sum, nota) =>{
+      <p className="styleletterSecond"> Promedio :  { (arrayNotas.reduce( (sum, nota) =>{
         return sum +  parseFloat(nota);
       },0) / totalAsignaturas).toFixed(2)}
     </p>
@@ -111,11 +116,11 @@ const PrintBoletin = (props) => {
 <Row className="show-grid">
   <div className="obserCuadro">
     <div className="observacion">
-      <label className="preObservacion"><b>Observacion</b></label><br></br>
-      <pre className="preObservacion">
+      <label className="styleletterPrimary"><b>Observacion</b></label><br></br>
+      <pre className="styleletterSecond">
       <p style={{width:800}}>{planilla[0].observaciones[keyEstudiante]}</p>
       </pre>
-      <br></br><br></br>
+      <br></br>
       <Firmas />
     </div>
     <div className="cuadro">

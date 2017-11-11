@@ -5,7 +5,7 @@ const HeaderTable = (props) => {
     return(
       <thead>
         <tr>
-          <th rowSpan="2"><center>DESCRIPCION DE DESEMPEÑO. </center></th>
+          <th rowSpan="2" className="styleletterPrimary"><center>DESCRIPCION DE DESEMPEÑO. </center></th>
           <th colSpan="2" > <center>Periodo 4</center></th>
           <th rowSpan="2">H/S</th>
         </tr>
