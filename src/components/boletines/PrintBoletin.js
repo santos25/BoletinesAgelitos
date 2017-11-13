@@ -18,9 +18,6 @@ function promedioNotas(arrayNotas){
 
 const PrintBoletin = (props) => {
 
-  const columns = ['Descripcion Del Desempeño', 'Nota', 'DS' ,'"H/S'];
-  // if(!props.grado.excludeHS || false )  columns.push("H/S");
-  // const columns = ['Nombre Del Estudiante', 'Ver', 'Imprimir'];
   const {planilla , asignaturas , keyEstudiante} = props;
   let arrayNotas = [];
   let totalAsignaturas= 0;
@@ -82,7 +79,7 @@ const PrintBoletin = (props) => {
                   totalAsignaturas = i + 1;
                   return(
                     <tr key={keyAsignatura}>
-                      <td className="rowDescripcinPreview"><b className="styleletterPrimary">{planilla[0][keyAsignatura].nombre}</b><br></br>
+                      <td className="rowDescripcinPreview"><b className="styleletterPrimaryBold">{planilla[0][keyAsignatura].nombre}</b><br></br>
                       <p className="styleletterSecond">{estudianteData.descripcion}</p>
                     </td>
                     {/* <td className="rowDescripcin">{estudianteData.descripcion}   </td> */}
@@ -116,7 +113,7 @@ const PrintBoletin = (props) => {
 <Row className="show-grid">
   <div className="obserCuadro">
     <div className="observacion">
-      <label className="styleletterPrimary"><b>Observacion</b></label><br></br>
+      <label className="styleletterPrimary"><b>Observaciones</b></label><br></br>
       <pre className="styleletterSecond">
       <p style={{width:800}}>{planilla[0].observaciones[keyEstudiante]}</p>
       </pre>

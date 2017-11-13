@@ -45,8 +45,13 @@ body {
 
 }
 
+.styleletterPrimaryBold {
+  font: 150% sans-serif;
+  font-weight: bold;
+}
+
 .styleletterSecond {
-  font: 140% sans-serif;
+  font: 120% sans-serif;
 
 }
 
