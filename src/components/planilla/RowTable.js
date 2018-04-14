@@ -64,8 +64,8 @@ class RowTable extends Component {
     }
 
     const popoverHoverFocus = (
-      <Popover id="popover-trigger-hover-focus" title="Información">
-        La observacion es independiente de las asignaturas. Solo debe escribirla una sola vez,
+      <Popover id="popover-trigger-hover-focus" title="INFORMACIÓN">
+        La observación es independiente de las asignaturas. Solo debe escribirla una sola vez,
         no en cada asignatura. Gracias  &#128512;
       </Popover>
     );
