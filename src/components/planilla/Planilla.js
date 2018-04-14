@@ -51,9 +51,7 @@ class Planilla extends Component {
     }).then(data => {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
       if(planilla.length > 0){
-          console.log("Encontró planilla!");
       }else {
-        console.log("No Encontró planilla!");
         this.createNewPlanilla();
 
       }
