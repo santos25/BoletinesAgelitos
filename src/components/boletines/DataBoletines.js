@@ -70,7 +70,18 @@ class DataBoletines extends Component {
       }
     }).then(data => {
       if(data.length > 0){
-        this.findAsignaturasByGrado(Object.keys(this.state.grados[this.state.keyGradoSelected].asignaturas) , data);
+        console.log(data);
+        for (var x = 0; x < data.length; x++) {
+          console.log(data[x].ano);
+            if (data[x].ano === 2018) {
+                console.log(data[x]);
+                var newVector = new Array();
+                newVector[0] = data[x];
+                console.log(newVector);
+                this.findAsignaturasByGrado(Object.keys(this.state.grados[this.state.keyGradoSelected].asignaturas) , newVector);
+            }
+        }
+        //this.findAsignaturasByGrado(Object.keys(this.state.grados[this.state.keyGradoSelected].asignaturas) , data);
       }else {
         this.setState(prevState => ({
           showNoData: true
