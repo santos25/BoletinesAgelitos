@@ -35,7 +35,6 @@ const PreviewBoletin = (props) => {
                 if (planilla[0][keyAsignatura] && keyEstudiante !== '') {
                   // let estudianteData = planilla[0][key].estudiantes[keyEstudiante]
                   let estudianteData = returnEstudianteData(planilla , keyAsignatura , keyEstudiante);
-                  console.log();
                   return(
                     <tr key={keyAsignatura}>
                       <td className="rowDescripcinPreview"> <b>{planilla[0][keyAsignatura].nombre}</b> <br></br><br></br>

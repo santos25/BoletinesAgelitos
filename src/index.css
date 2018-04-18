@@ -5,8 +5,8 @@ body {
 }
 
 .escudo{
-   width: 30%;
-   height: 30%;
+   width: 15px;
+   height: 15px;
    border-radius: 25px 25px 25px 25px;
    -moz-border-radius: 25px 25px 25px 25px;
    -webkit-border-radius: 25px 25px 25px 25px;
@@ -48,17 +48,17 @@ body {
 }
 
 .styleletterPrimary {
-  font: 150% sans-serif;
+  font: 110% sans-serif;
 
 }
 
 .styleletterPrimaryBold {
-  font: 150% sans-serif;
+  font: 110% sans-serif;
   font-weight: bold;
 }
 
 .styleletterSecond {
-  font: 120% sans-serif;
+  font: 100% sans-serif;
 
 }
 

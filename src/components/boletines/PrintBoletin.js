@@ -36,9 +36,9 @@ const PrintBoletin = (props) => {
           </div>
           <div className="titulo">
             <p className="tittlePrimary"> INSTITUTO ANGELITOS ALEGRES </p>
-            <p>Nuevo Bosque Trv. 51    N° 29 B 77</p>
-            <p>Aprobado por Resolución N° 7962</p>
-            <p>Dane: 313001000185</p>
+            <p >Nuevo Bosque Trv. 51    N° 29 B 77</p>
+            <p >Aprobado por Resolución N° 7962</p>
+            <p >Dane: 313001000185</p>
           </div>
         </div><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <div id="informacionBoletin">
