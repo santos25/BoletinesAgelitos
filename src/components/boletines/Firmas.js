@@ -8,7 +8,7 @@ const Firmas = (props) => {
       <div className="firmaDirectora">
         <img className="firmaMadre"  src={firma} alt="Escudo"></img><br/>
         _____________________________ <br/>
-        <label>Rectora</label>  <br/> <br/><br/> <br/>
+        <label>Rectora</label>  <br/> <br/><br/>
          <div>
            _____________________________ <br/>
            <label>Directora de grupo</label>

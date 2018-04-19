@@ -117,7 +117,7 @@ const PrintBoletin = (props) => {
       <pre className="styleletterSecond">
       <p style={{width:800}}>{planilla[0].observaciones[keyEstudiante]}</p>
       </pre>
-      <br></br>
+      <br>
       <Firmas />
       <CuadroDescriptivo />
     </div>
