@@ -40,7 +40,7 @@ const PrintBoletin = (props) => {
             <p >Aprobado por Resolución N° 7962</p>
             <p >Dane: 313001000185</p>
           </div>
-        </div><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+        </div><br></br><br></br><br></br><br></br><br></br><br></br>
         <div id="informacionBoletin">
           <div className="nombreEstudiante">
             <p className="styleletterPrimary">Nombre </p>
@@ -117,7 +117,6 @@ const PrintBoletin = (props) => {
       <pre className="styleletterSecond">
       <p style={{width:800}}>{planilla[0].observaciones[keyEstudiante]}</p>
       </pre>
-      <br>
       <Firmas />
       <CuadroDescriptivo />
     </div>
