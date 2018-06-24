@@ -281,7 +281,7 @@ this.setState({
             </Row>
             <Row>
               <Col xs={12} md={12} >
-                <div className="formPlanilla">
+            <div className="formPlanilla">
                   <Button disabled={this.state.keyAsignaturaSelected ? false : true} bsStyle="primary" type="submit" bsSize="large"
                     onClick={this.submitPlantilla.bind(this)}> Guardar Planilla</Button>
                   </div>
