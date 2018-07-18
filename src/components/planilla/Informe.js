@@ -24,6 +24,7 @@ class Informe extends Component {
       Alert.error('Seleccione Periodo 2!', {
         position: 'bottom-left',
         effect: 'scale',
+        
         timeout: 3000
       });
     }
