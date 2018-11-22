@@ -49,7 +49,8 @@ class Planilla extends Component {
         equalTo : this.props.gradoSelected.nombre
       }
     }).then(data => {
-      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
+      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected && planilla.ano === 2018);
+
       if(planilla.length > 0){
       }else {
         this.createNewPlanilla();
@@ -88,8 +89,9 @@ class Planilla extends Component {
         equalTo : this.props.gradoSelected.nombre
       }
     }).then(data => {
-      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected);
-      // console.log(planilla[0][asignaturaKey]);
+      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected && planilla.ano === 2018);
+      console.log(planilla)
+
       if(booleanToKnowIdPlanilla){
           this.createOrFindObservacionesStudent(planilla[0].key, true);
       }else{
@@ -151,10 +153,11 @@ this.setState({
         }
       }).then(datas => {
 
+        console.log(keyPlanilla);
         var usersRef = firebase.database().ref(`planillas/${ keyPlanilla}`);
         var observacion = {};
         datas.map((data,index) => Object.keys(data.estudiantes).map(key =>{
-          observacion[key] = "";
+          observacion[key] = " ";
         }));
           usersRef.child('observaciones').set(observacion);
           this.setState({

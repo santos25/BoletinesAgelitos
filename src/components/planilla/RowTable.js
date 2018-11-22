@@ -53,8 +53,9 @@ class RowTable extends Component {
 
   renderRow(key){
     let estudiante = this.props.estudiantes[key];
+    console.log(key);
     let observanEstudiante = this.props.observaciones[key];
-    console.log(observanEstudiante);
+    
     const style = {
       width : 80
     }
