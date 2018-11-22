@@ -2,6 +2,10 @@
   "name": "angelitos_alegres",
   "version": "0.1.2",
   "private": true,
+  "engines": {
+    "node": "7.7.4",
+    "npm": "4.1.2"
+  },
   "dependencies": {
     "bootstrap": "^3.3.7",
     "firebase": "^4.1.5",

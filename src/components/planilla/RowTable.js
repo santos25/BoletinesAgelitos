@@ -42,7 +42,6 @@ class RowTable extends Component {
   }
 
   renderHS(estudiante , style){
-    console.log(estudiante);
     return(
       <td style={style}>
         <br></br><br></br>
@@ -53,9 +52,9 @@ class RowTable extends Component {
 
   renderRow(key){
     let estudiante = this.props.estudiantes[key];
-    console.log(key);
+    //console.log(key);
     let observanEstudiante = this.props.observaciones[key];
-    
+
     const style = {
       width : 80
     }
