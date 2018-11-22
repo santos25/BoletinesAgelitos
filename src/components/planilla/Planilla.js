@@ -90,7 +90,7 @@ class Planilla extends Component {
       }
     }).then(data => {
       let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected && planilla.ano === 2018);
-      //console.log(planilla)
+      console.log(planilla)
 
       if(booleanToKnowIdPlanilla){
           this.createOrFindObservacionesStudent(planilla[0].key, true);
