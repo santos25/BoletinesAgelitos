@@ -21,7 +21,7 @@ class Informe extends Component {
         isPlanilla: !prevState.isPlanilla
       }))
     }else {
-      Alert.error('Seleccione Periodo 4!', {
+      Alert.error('Seleccione Periodo 4!!', {
         position: 'bottom-left',
         effect: 'scale',
 
