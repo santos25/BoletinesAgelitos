@@ -49,7 +49,7 @@ class Planilla extends Component {
         equalTo : this.props.gradoSelected.nombre
       }
     }).then(data => {
-      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected && planilla.ano === 2018);
+      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected && planilla.ano === 2019);
 
       if(planilla.length > 0){
       }else {
@@ -77,7 +77,6 @@ class Planilla extends Component {
       this.findPlanillasByAsignatura(e.target.value, false)
     }
 
-
   }
 
   findPlanillasByAsignatura(asignaturaKey, booleanToKnowIdPlanilla){
@@ -89,7 +88,7 @@ class Planilla extends Component {
         equalTo : this.props.gradoSelected.nombre
       }
     }).then(data => {
-      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected && planilla.ano === 2018);
+      let planilla = data.filter((planilla) => planilla.periodo === this.props.periodoSelected && planilla.ano === 2019);
       console.log(planilla)
 
       if(booleanToKnowIdPlanilla){
