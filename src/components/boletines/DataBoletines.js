@@ -73,7 +73,7 @@ class DataBoletines extends Component {
         console.log(data);
         for (var x = 0; x < data.length; x++) {
           //console.log(data[x].ano);
-            if (data[x].ano === 2020 && data[x].periodo === 1) {
+            if (data[x].ano === 2020 && data[x].periodo === 2) {
                 console.log(data[x]);
                 var newVector = new Array();
                 newVector[0] = data[x];
