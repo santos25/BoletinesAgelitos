@@ -3,22 +3,28 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
-
-.escudo{
-   width: 15px;
-   height: 15px;
-   border-radius: 25px 25px 25px 25px;
-   -moz-border-radius: 25px 25px 25px 25px;
-   -webkit-border-radius: 25px 25px 25px 25px;
-   border: 0px solid #000000;
+img {
+  width: 100%;
 }
 
-.firmaMadre{
-   width: 55%;
-   height: 55%;
-
+.image-welcome {
+  width: 40%;
+  height: auto;
 }
 
+.escudo {
+  width: 15px;
+  height: 15px;
+  border-radius: 25px 25px 25px 25px;
+  -moz-border-radius: 25px 25px 25px 25px;
+  -webkit-border-radius: 25px 25px 25px 25px;
+  border: 0px solid #000000;
+}
+
+.firmaMadre {
+  width: 55%;
+  height: 55%;
+}
 
 .welcome {
   float: none;
@@ -27,29 +33,26 @@ body {
   margin-bottom: 1rem;
 }
 
-.promedio{
-  float : right;
-
+.promedio {
+  float: right;
 }
 .cuadroDescriptivo {
-  float : right;
+  float: right;
   font: 100% sans-serif;
-
-
 }
 
-.cuadroDescriptivo table td, th{
+.cuadroDescriptivo table td,
+th {
   border: 1px solid #999;
   padding: 0.3rem;
 }
 
 .firmas {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .styleletterPrimary {
   font: 110% sans-serif;
-
 }
 
 .styleletterPrimaryBold {
@@ -59,13 +62,11 @@ body {
 
 .styleletterSecond {
   font: 100% sans-serif;
-
 }
 
 .firmaDirectora {
   float: left;
 }
-
 
 .firmaRectora {
   float: right;
