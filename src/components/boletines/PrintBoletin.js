@@ -88,6 +88,7 @@ const PrintBoletin = (props) => {
                     planilla[0][keyAsignatura].estudiantes[keyEstudiante];
                   arrayNotas.push(estudianteData.nota);
                   totalAsignaturas = i + 1;
+                  console.log(totalAsignaturas);
                   return (
                     <tr key={keyAsignatura}>
                       <td className="rowDescripcinPreview">
@@ -127,6 +128,8 @@ const PrintBoletin = (props) => {
                 Promedio :{" "}
                 {(
                   arrayNotas.reduce((sum, nota) => {
+                    console.log(sum);
+                    console.log(nota);
                     return sum + parseFloat(nota);
                   }, 0) / totalAsignaturas
                 ).toFixed(2)}
