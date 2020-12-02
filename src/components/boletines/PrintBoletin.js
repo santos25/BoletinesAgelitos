@@ -22,11 +22,17 @@ const PrintBoletin = (props) => {
   let arrayNotas = [];
   let totalAsignaturas = 0;
 
-  // let rowHS ;
-  // if (!props.grado.excludeHS) {
-  //   rowHS = this.renderHS(estudiante, style);
-  // }
+  console.log(props);
 
+  //validate the total asignatures when the boletin is for Preescolar as preescolar does not have Informatica asignature..
+
+  const ReturnTotalAsignatures = (totalasig) => {
+    if (props.grado.name !== "grado3") {
+      return totalasig - 1;
+    } else {
+      return totalasig;
+    }
+  };
   return (
     <div>
       <PrintTemplate>
@@ -131,7 +137,7 @@ const PrintBoletin = (props) => {
                     console.log(sum);
                     console.log(nota);
                     return sum + parseFloat(nota);
-                  }, 0) / totalAsignaturas
+                  }, 0) / ReturnTotalAsignatures(totalAsignaturas)
                 ).toFixed(2)}
               </p>
               {/* <p>{promedioNotas(arrayNotas)}</p> */}
