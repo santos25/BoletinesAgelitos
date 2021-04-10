@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import { Grid, Row, Col, Button, Label, Table } from "react-bootstrap";
-import { Base, firebase } from "../Base";
-import ControlsSelect from "../general/ControlsSelect";
-import RowTable from "./RowTable";
-import HeaderTable from "./HeaderTable";
-import AlertAsignatura from "./AlertStudentData";
+import React, { Component } from 'react';
+import { Grid, Row, Col, Button, Label, Table } from 'react-bootstrap';
+import { Base, firebase } from '../Base';
+import ControlsSelect from '../general/ControlsSelect';
+import RowTable from './RowTable';
+import HeaderTable from './HeaderTable';
+import AlertAsignatura from './AlertStudentData';
 // import Modal from './ModalInformation'
 // import CuadroDescriptivo from './CuadroDescriptivo';
-import "../App.css";
-import Alert from "react-s-alert";
+import '../App.css';
+import Alert from 'react-s-alert';
 
 class Planilla extends Component {
   constructor() {
     super();
     this.state = {
       asignaturas: {},
-      keyAsignaturaSelected: "",
+      keyAsignaturaSelected: '',
       estudiantes: {},
       observaciones: {},
-      keyPlanilla: "",
+      keyPlanilla: '',
       alertVisible: true,
     };
   }
@@ -40,19 +40,16 @@ class Planilla extends Component {
   }
 
   findPlanillasByPeriodAndGrado() {
-    Base.fetch("planillas", {
+    Base.fetch('planillas', {
       context: this,
       asArray: true,
       queries: {
-        orderByChild: "grado",
+        orderByChild: 'grado',
         equalTo: this.props.gradoSelected.nombre,
       },
     })
       .then((data) => {
-        let planilla = data.filter(
-          (planilla) =>
-            planilla.periodo === this.props.periodoSelected &&
-            planilla.ano === 2020
+        let planilla = data.filter( (planilla) => planilla.periodo === this.props.periodoSelected &&   planilla.ano === 2021
         );
 
         if (planilla.length > 0) {
@@ -62,16 +59,16 @@ class Planilla extends Component {
       })
       .catch((error) => {
         //handle error
-        console.log("Error Consultando Planillas " + error);
+        console.log('Error Consultando Planillas ' + error);
       });
   }
 
   onChangeAsignatura(e) {
     let sure = true;
 
-    if (this.state.keyAsignaturaSelected !== "")
+    if (this.state.keyAsignaturaSelected !== '')
       sure = window.confirm(
-        "SE BORRARÁN TODOS LOS DATOS QUE NO HAN SIDO GUARDADOS"
+        'SE BORRARÁN TODOS LOS DATOS QUE NO HAN SIDO GUARDADOS'
       );
 
     if (sure) {
@@ -84,11 +81,11 @@ class Planilla extends Component {
   }
 
   findPlanillasByAsignatura(asignaturaKey, booleanToKnowIdPlanilla) {
-    Base.fetch("planillas", {
+    Base.fetch('planillas', {
       context: this,
       asArray: true,
       queries: {
-        orderByChild: "grado",
+        orderByChild: 'grado',
         equalTo: this.props.gradoSelected.nombre,
       },
     })
@@ -96,7 +93,7 @@ class Planilla extends Component {
         let planilla = data.filter(
           (planilla) =>
             planilla.periodo === this.props.periodoSelected &&
-            planilla.ano === 2020
+            planilla.ano === 2021
         );
         console.log(planilla);
 
@@ -117,7 +114,7 @@ class Planilla extends Component {
             );
             // this.getObervacionesStudent(planilla[0].observaciones);
           }
-          this.getObervacionesStudent(planilla[0].observaciones);
+          this.getObervacionesStudent(planilla[0].observaciones? planilla[0].observaciones : {});
         }
       })
       .catch((error) => {
@@ -144,13 +141,13 @@ class Planilla extends Component {
       }
     )
       .then(() => {
-        console.log("Guardado Exitoso");
-        this.findPlanillasByAsignatura("", true);
+        console.log('Guardado Exitoso');
+        this.findPlanillasByAsignatura('', true);
         // this.createObservacionesStudent();
       })
       .catch((err) => {
         // handle error
-        console.log("Error al registrar Planilla Nueva");
+        console.log('Error al registrar Planilla Nueva');
       });
   }
 
@@ -162,11 +159,11 @@ class Planilla extends Component {
 
   createOrFindObservacionesStudent(keyPlanilla, createBool) {
     if (createBool) {
-      Base.fetch("grados", {
+      Base.fetch('grados', {
         context: this,
         asArray: true,
         queries: {
-          orderByChild: "nombre",
+          orderByChild: 'nombre',
           equalTo: this.props.gradoSelected.nombre,
         },
       })
@@ -176,10 +173,10 @@ class Planilla extends Component {
           var observacion = {};
           datas.map((data, index) =>
             Object.keys(data.estudiantes).map((key) => {
-              observacion[key] = " ";
+              observacion[key] = ' ';
             })
           );
-          usersRef.child("observaciones").set(observacion);
+          usersRef.child('observaciones').set(observacion);
           this.setState({
             observaciones: observacion,
           });
@@ -211,29 +208,31 @@ class Planilla extends Component {
       .database()
       .ref(`planillas/${this.state.keyPlanilla}`);
     usersRef.child(this.state.keyAsignaturaSelected).set(dataStudentForm);
-    usersRef.child("observaciones").set(this.state.observaciones);
+    usersRef.child('observaciones').set(this.state.observaciones);
 
     // this.createObservacionesStudent();
 
-    Alert.success("Planilla Guardada!", {
-      position: "bottom-left",
-      effect: "scale",
+    Alert.success('Planilla Guardada!', {
+      position: 'bottom-left',
+      effect: 'scale',
       timeout: 3000,
     });
   }
 
   getAsignaturas(keyAsignatura) {
-    Base.fetch("asignaturas", {
+    Base.fetch('asignaturas', {
       context: this,
       asArray: false,
     })
       .then((data) => {
+        console.log(data);
+        console.log(keyAsignatura);
         this.setState({
           asignaturas: data[keyAsignatura],
         });
       })
       .catch((error) => {
-        console.log("Fallo Consultar Asignaturas");
+        console.log('Fallo Consultar Asignaturas');
       });
   }
 
@@ -259,9 +258,9 @@ class Planilla extends Component {
   }
 
   excludeAsignatureByGrade(asignatures) {
-    if (this.props.gradoSelected.nombre !== "Tercero") {
+    if (this.props.gradoSelected.nombre === 'Transición') {
       const resultAsignatures = Object.keys(asignatures).reduce((obj, val) => {
-        if (asignatures[val].nombre !== "INFORMATICA") {
+        if (asignatures[val].nombre !== 'Informática') {
           obj[val] = asignatures[val];
         }
         return obj;
@@ -274,19 +273,19 @@ class Planilla extends Component {
 
   render() {
     let columns = [
-      "ESTUDIANTE / DESCRIPCION DEL DESEMPEÑO",
-      "Observacion",
-      "Nota",
-      "DS = Desempeño",
+      'ESTUDIANTE / DESCRIPCION DEL DESEMPEÑO',
+      'Observacion',
+      'Nota',
+      'DS = Desempeño',
     ];
-    if (!this.props.gradoSelected.excludeHS || false) columns.push("H/S");
+    if (!this.props.gradoSelected.excludeHS || false) columns.push('H/S');
 
     return (
       <Grid>
         {this.state.alertVisible ? (
           <AlertAsignatura handleDismiss={this.handleAlertDismiss.bind(this)} />
         ) : (
-          ""
+          ''
         )}
         <Row className="show-grid">
           <Col xs={12} md={6}>
@@ -314,7 +313,7 @@ class Planilla extends Component {
             <div className="formPlanilla">
               <h3>
                 <Label bsStyle="default">
-                  {" "}
+                  {' '}
                   Informe de Desempeño de los Estudiantes
                 </Label>
                 <br></br>
@@ -335,7 +334,7 @@ class Planilla extends Component {
                 onChangeStudent={this.onChangeStudent.bind(this)}
                 excludehs={this.props.gradoSelected.excludeHS || false}
                 horasByAsignatura={
-                  this.state.asignaturas[this.state.keyAsignaturaSelected] || ""
+                  this.state.asignaturas[this.state.keyAsignaturaSelected] || ''
                 }
               />
             </Table>
@@ -351,7 +350,7 @@ class Planilla extends Component {
                 bsSize="large"
                 onClick={this.submitPlantilla.bind(this)}
               >
-                {" "}
+                {' '}
                 Guardar Planilla
               </Button>
             </div>

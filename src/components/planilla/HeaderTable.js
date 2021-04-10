@@ -10,7 +10,7 @@ const HeaderTable = (props) => {
           </th>
           <th colSpan="2">
             {" "}
-            <center>Periodo 3</center>
+            <center>Periodo 2</center>
           </th>
           <th rowSpan="2">H/S</th>
         </tr>

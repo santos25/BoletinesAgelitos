@@ -1,29 +1,29 @@
-import React, { Component } from "react";
-import { Label, Grid, Row, Col } from "react-bootstrap";
-import Planilla from "./Planilla";
-import InputGradoPeriodo from "../general/InputGradoPeriodo";
-import Alert from "react-s-alert";
+import React, { Component } from 'react';
+import { Label, Grid, Row, Col } from 'react-bootstrap';
+import Planilla from './Planilla';
+import InputGradoPeriodo from '../general/InputGradoPeriodo';
+import Alert from 'react-s-alert';
 
 class Informe extends Component {
   constructor() {
     super();
     this.state = {
-      keyGradoSelected: "",
-      keyPeriodoSelected: "",
+      keyGradoSelected: '',
+      keyPeriodoSelected: '',
       isPlanilla: false,
     };
   }
 
   showPlanilla(e) {
     e.preventDefault();
-    if (this.state.keyPeriodoSelected === "periodo3") {
+    if (this.state.keyPeriodoSelected === 'periodo1') {
       this.setState((prevState) => ({
         isPlanilla: !prevState.isPlanilla,
       }));
     } else {
-      Alert.error("Seleccione Periodo 3!!", {
-        position: "bottom-left",
-        effect: "scale",
+      Alert.error('Seleccione Periodo 1!!', {
+        position: 'bottom-left',
+        effect: 'scale',
 
         timeout: 3000,
       });
@@ -44,6 +44,7 @@ class Informe extends Component {
         ? false
         : true;
 
+    console.log(this.state.keyGradoSelected);
     if (this.state.isPlanilla) {
       return (
         <Planilla

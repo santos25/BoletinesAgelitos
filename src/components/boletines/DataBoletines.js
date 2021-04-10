@@ -57,7 +57,7 @@ class DataBoletines extends Component {
 
   showBoletinesStudent(e) {
     e.preventDefault();
-
+    console.log(this.state.keyGradoSelected);
     Base.fetch("planillas", {
       context: this,
       asArray: true,
@@ -71,7 +71,7 @@ class DataBoletines extends Component {
           console.log(data);
           for (var x = 0; x < data.length; x++) {
             //console.log(data[x].ano);
-            if (data[x].ano === 2020 && data[x].periodo === 3) {
+            if (data[x].ano === 2020 && data[x].periodo === 2) {
               console.log(data[x]);
               var newVector = new Array();
               newVector[0] = data[x];
