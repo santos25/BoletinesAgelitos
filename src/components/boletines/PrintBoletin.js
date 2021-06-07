@@ -27,7 +27,8 @@ const PrintBoletin = (props) => {
   //validate the total asignatures when the boletin is for Preescolar as preescolar does not have Informatica asignature..
 
   const ReturnTotalAsignatures = (totalasig) => {
-    if (props.grado.name !== "grado3") {
+    console.log(totalasig);
+    if (props.grado.nombre === "Transición") {
       return totalasig - 1;
     } else {
       return totalasig;
@@ -76,12 +77,12 @@ const PrintBoletin = (props) => {
           </div>
           <div className="periodo">
             <p className="styleletterPrimary">Periodo </p>
-            <p className="styleletterPrimary">2</p>
+            <p className="styleletterPrimary">1</p>
             {/* <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label>*/}
           </div>
           <div className="año">
             <p className="styleletterPrimary">Año </p>
-            <p className="styleletterPrimary">2020 </p>
+            <p className="styleletterPrimary">2021 </p>
           </div>
         </div>
         <div>
@@ -134,8 +135,8 @@ const PrintBoletin = (props) => {
                 Promedio :{" "}
                 {(
                   arrayNotas.reduce((sum, nota) => {
-                    console.log(sum);
-                    console.log(nota);
+                    // console.log(sum);
+                    // console.log(nota);
                     return sum + parseFloat(nota);
                   }, 0) / ReturnTotalAsignatures(totalAsignaturas)
                 ).toFixed(2)}
