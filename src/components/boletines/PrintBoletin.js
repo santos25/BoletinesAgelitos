@@ -28,7 +28,7 @@ const PrintBoletin = (props) => {
 
   const ReturnTotalAsignatures = (totalasig) => {
     console.log(totalasig);
-    if (props.grado.nombre === "Transición") {
+    if (props.grado.nombre === "Primero") {
       return totalasig - 1;
     } else {
       return totalasig;
