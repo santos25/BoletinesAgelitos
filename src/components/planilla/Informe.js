@@ -16,12 +16,12 @@ class Informe extends Component {
 
   showPlanilla(e) {
     e.preventDefault();
-    if (this.state.keyPeriodoSelected === 'periodo2') {
+    if (this.state.keyPeriodoSelected === 'periodo3') {
       this.setState((prevState) => ({
         isPlanilla: !prevState.isPlanilla,
       }));
     } else {
-      Alert.error('Seleccione Periodo 2!!', {
+      Alert.error('Seleccione Periodo 3!!', {
         position: 'bottom-left',
         effect: 'scale',
 
