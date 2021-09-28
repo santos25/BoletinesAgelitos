@@ -258,17 +258,18 @@ class Planilla extends Component {
   }
 
   excludeAsignatureByGrade(asignatures) {
-    if (this.props.gradoSelected.nombre === 'Transición') {
-      const resultAsignatures = Object.keys(asignatures).reduce((obj, val) => {
-        if (asignatures[val].nombre !== 'Informática') {
-          obj[val] = asignatures[val];
-        }
-        return obj;
-      }, {});
-      return resultAsignatures;
-    } else {
-      return asignatures;
-    }
+    // if (this.props.gradoSelected.nombre === 'Transición') {
+    //   const resultAsignatures = Object.keys(asignatures).reduce((obj, val) => {
+    //     if (asignatures[val].nombre !== 'Informática') {
+    //       obj[val] = asignatures[val];
+    //     }
+    //     return obj;
+    //   }, {});
+    //   return resultAsignatures;
+    // } else {
+    //   return asignatures;
+    // }
+    return asignatures;
   }
 
   render() {
