@@ -93,7 +93,7 @@ const PrintBoletin = (props) => {
                 if (planilla[0][keyAsignatura] && keyEstudiante !== "") {
                   let estudianteData =
                     planilla[0][keyAsignatura].estudiantes[keyEstudiante];
-                  arrayNotas.push(estudianteData.nota);
+                  arrayNotas.push(estudianteData.nota || 0);
                   totalAsignaturas = i + 1;
                   console.log(totalAsignaturas);
                   return (
