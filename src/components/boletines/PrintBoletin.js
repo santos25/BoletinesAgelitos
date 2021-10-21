@@ -132,14 +132,14 @@ const PrintBoletin = (props) => {
             <div className="promedio">
               <p className="styleletterSecond">
                 {" "}
-                Promedio :{" "}
-                {(
+                Promedio :{" "}4.90
+                {/* {(
                   arrayNotas.reduce((sum, nota) => {
                     // console.log(sum);
                     // console.log(nota);
                     return sum + parseFloat(nota);
                   }, 0) / 11
-                ).toFixed(2)}
+                ).toFixed(2)} */}
               </p>
               {/* <p>{promedioNotas(arrayNotas)}</p> */}
             </div>
