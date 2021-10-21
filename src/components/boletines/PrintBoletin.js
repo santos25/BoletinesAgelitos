@@ -138,7 +138,7 @@ const PrintBoletin = (props) => {
                     // console.log(sum);
                     // console.log(nota);
                     return sum + parseFloat(nota);
-                  }, 0) / ReturnTotalAsignatures(totalAsignaturas)
+                  }, 0) / 11
                 ).toFixed(2)}
               </p>
               {/* <p>{promedioNotas(arrayNotas)}</p> */}
