@@ -28,7 +28,7 @@ const PrintBoletin = (props) => {
 
   const ReturnTotalAsignatures = (totalasig) => {
     console.log(totalasig);
-    if (props.grado.nombre === "Segundo") {
+    if (props.grado.nombre === "Primero") {
       return totalasig - 1;
     } else {
       return totalasig;
@@ -93,7 +93,7 @@ const PrintBoletin = (props) => {
                 if (planilla[0][keyAsignatura] && keyEstudiante !== "") {
                   let estudianteData =
                     planilla[0][keyAsignatura].estudiantes[keyEstudiante];
-                  arrayNotas.push(estudianteData.nota || 0);
+                  arrayNotas.push(estudianteData.nota);
                   totalAsignaturas = i + 1;
                   console.log(totalAsignaturas);
                   return (
