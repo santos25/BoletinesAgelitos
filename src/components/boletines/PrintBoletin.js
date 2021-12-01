@@ -77,7 +77,7 @@ const PrintBoletin = (props) => {
           </div>
           <div className="periodo">
             <p className="styleletterPrimary">Periodo </p>
-            <p className="styleletterPrimary">3</p>
+            <p className="styleletterPrimary">4</p>
             {/* <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label>*/}
           </div>
           <div className="año">
@@ -132,14 +132,14 @@ const PrintBoletin = (props) => {
             <div className="promedio">
               <p className="styleletterSecond">
                 {" "}
-                Promedio :{" "}4.90
-                {/* {(
+                Promedio :{" "}
+                {(
                   arrayNotas.reduce((sum, nota) => {
                     // console.log(sum);
                     // console.log(nota);
                     return sum + parseFloat(nota);
-                  }, 0) / 11
-                ).toFixed(2)} */}
+                  }, 0) / ReturnTotalAsignatures(totalAsignaturas)
+                ).toFixed(2)}
               </p>
               {/* <p>{promedioNotas(arrayNotas)}</p> */}
             </div>
