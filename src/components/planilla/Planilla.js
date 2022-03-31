@@ -49,7 +49,7 @@ class Planilla extends Component {
       },
     })
       .then((data) => {
-        let planilla = data.filter( (planilla) => planilla.periodo === this.props.periodoSelected &&   planilla.ano === 2021
+        let planilla = data.filter( (planilla) => planilla.periodo === this.props.periodoSelected &&   planilla.ano === 2022
         );
 
         if (planilla.length > 0) {
