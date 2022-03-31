@@ -93,7 +93,7 @@ class Planilla extends Component {
         let planilla = data.filter(
           (planilla) =>
             planilla.periodo === this.props.periodoSelected &&
-            planilla.ano === 2021
+            planilla.ano === 2022
         );
         console.log(planilla);
 
