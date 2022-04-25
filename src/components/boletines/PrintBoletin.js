@@ -77,12 +77,12 @@ const PrintBoletin = (props) => {
           </div>
           <div className="periodo">
             <p className="styleletterPrimary">Periodo </p>
-            <p className="styleletterPrimary">2</p>
+            <p className="styleletterPrimary">1</p>
             {/* <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label>*/}
           </div>
           <div className="año">
             <p className="styleletterPrimary">Año </p>
-            <p className="styleletterPrimary">2021 </p>
+            <p className="styleletterPrimary">2022 </p>
           </div>
         </div>
         <div>
