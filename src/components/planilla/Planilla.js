@@ -95,7 +95,6 @@ class Planilla extends Component {
             planilla.periodo === this.props.periodoSelected &&
             planilla.ano === 2022
         );
-        console.log(planilla);
 
         if (booleanToKnowIdPlanilla) {
           this.createOrFindObservacionesStudent(planilla[0].key, true);
@@ -105,7 +104,6 @@ class Planilla extends Component {
               planilla[0][asignaturaKey].estudiantes,
               planilla[0].key
             );
-            console.log(planilla[0]);
             // this.getObervacionesStudent(planilla[0].observaciones);
           } else {
             this.uploadStudents(
