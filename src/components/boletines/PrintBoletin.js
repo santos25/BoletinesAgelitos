@@ -9,7 +9,7 @@ import CuadroDescriptivo from "./CuadroDescriptivo";
 function promedioNotas(arrayNotas) {
   let totalAsignaturas = 0;
 
-  console.log(arrayNotas);
+  // console.log(arrayNotas);
   return (
     arrayNotas.reduce((sum, nota) => {
       return sum + parseFloat(nota);
@@ -22,12 +22,12 @@ const PrintBoletin = (props) => {
   let arrayNotas = [];
   let totalAsignaturas = 0;
 
-  console.log(props);
+  // console.log(props);
 
   //validate the total asignatures when the boletin is for Preescolar as preescolar does not have Informatica asignature..
 
   const ReturnTotalAsignatures = (totalasig) => {
-    console.log(totalasig);
+    // console.log(totalasig);
     if (props.grado.nombre === "Segundo") {
       return totalasig;
     } else {
@@ -77,7 +77,7 @@ const PrintBoletin = (props) => {
           </div>
           <div className="periodo">
             <p className="styleletterPrimary">Periodo </p>
-            <p className="styleletterPrimary">1</p>
+            <p className="styleletterPrimary">2</p>
             {/* <Label bsStyle="default">{`PERIODO : ${planilla[0].periodo}`}</Label>*/}
           </div>
           <div className="año">

@@ -2,8 +2,8 @@ import React from 'react';
 import {Row,Col,Table,Label,Well} from 'react-bootstrap';
 import HeaderTable from '../planilla/HeaderTable';
 // import escudo from '../escudo.jpg'
-import Firmas from './Firmas'
-import CuadroDescriptivo from './CuadroDescriptivo'
+// import Firmas from './Firmas'
+// import CuadroDescriptivo from './CuadroDescriptivo'
 // import HeaderTable from '../planilla/HeaderTable';
 // import RowTableBoletin from './RowTableBoletin';
 function returnEstudianteData(planilla, keyAsignatura , keyEstudiante){
