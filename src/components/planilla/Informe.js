@@ -16,7 +16,7 @@ class Informe extends Component {
 
   showPlanilla(e) {
     e.preventDefault();
-    if (this.state.keyPeriodoSelected === 'periodo4') {
+    if (this.state.keyPeriodoSelected === 'periodo2') {
       this.setState((prevState) => ({
         isPlanilla: !prevState.isPlanilla,
       }));
